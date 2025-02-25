@@ -22,3 +22,12 @@ class Enrollment(models.Model) :
     
     def __str__(self):
         return f'course id {self.course_fk.course_id}, ({self.semester, self.year}), {self.grade}'
+    
+class CaluculatedEnrollment() :    
+    def __init__(self, *args, **kwargs):
+        if 'enrollment' in kwargs.keys() and 'totalGrade' in kwargs.keys() :
+            self.enrollment = kwargs['enrollment']
+            self.totalGrade = kwargs['totalGrade']
+
+        else :
+            raise RuntimeError('CalculatedEnrollment class required following named argument {"enrollment", "totalGrade"}')

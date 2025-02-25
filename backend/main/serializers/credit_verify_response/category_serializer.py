@@ -11,9 +11,17 @@ class CategorySerializer(serializers.Serializer) :
     subcategories = serializers.SerializerMethodField()
     courses = serializers.SerializerMethodField()
     is_complete = serializers.BooleanField()
+    gpax = serializers.DecimalField(max_digits=3, decimal_places=2)
     
     def to_representation(self, instance):
-        if not (instance.get('category') and instance.get('courses_or_subcategories') and isinstance(instance.get('isFreeElective'), bool) and isinstance(instance.get('isComplete'), bool)) :
+        if not (
+            instance.get('category') and
+            instance.get('courses_or_subcategories') and
+            isinstance(instance.get('isFreeElective'), bool) and
+            isinstance(instance.get('isComplete'), bool) and
+            isinstance(instance.get('totalWeightedGrade'), float) and
+            isinstance(instance.get('totalCredit'), int)
+        ) :
             raise serializers.ValidationError('expected object with attribute name "category" and "courses_or_subcategories" and "isFreeElective" and "isComplete" in CategorySerializer class')
         if not isinstance(instance['category'], Category) :
             raise serializers.ValidationError('unexpected object type in CategorySerializer class')
@@ -23,16 +31,17 @@ class CategorySerializer(serializers.Serializer) :
             return {
                 'category_name': instance['category'].category_name,
                 'min_credit': instance['category'].category_min_credit,
-                'subcategories': None,
-                'courses': self.get_courses(instance['courses_or_subcategories']),
                 'is_complete': instance['isComplete'],
+                'gpax': instance['totalWeightedGrade']/instance['totalCredit'],
+                'courses': self.get_courses(instance['courses_or_subcategories']),
             }
         
         return {
             'category_name': instance['category'].category_name,
             'min_credit': instance['category'].category_min_credit,
+            'is_complete': instance['isComplete'],
+            'gpax': instance['totalWeightedGrade']/instance['totalCredit'],
             'subcategories': self.get_subcategories(instance['courses_or_subcategories']),
-            'courses': None,
         }
         
     def get_subcategories(self, obj) :

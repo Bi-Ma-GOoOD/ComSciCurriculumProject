@@ -1,6 +1,6 @@
 from typing import List
 
-from ..models import Curriculum, Enrollment
+from ..models import Curriculum, Enrollment, CaluculatedEnrollment
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
 
@@ -19,6 +19,8 @@ class EducationEvaluationService() :
         
         isComplete = True
         categories = []
+        totalWeightedGrade = 0
+        totalCredit = 0
         
         subcategoryDetailParam = dict(param.get('subCategoryDetail'))
         # no elective category course
@@ -29,6 +31,8 @@ class EducationEvaluationService() :
                 subcategoriesDetail=subcategoryDetailParam.get(category.category_name),
             )
             isComplete &= checked['isComplete']
+            totalWeightedGrade += checked['totalWeightedGrade']
+            totalCredit += checked['totalCredit']
             categories.append(checked)
             
         # elective category course
@@ -37,27 +41,44 @@ class EducationEvaluationService() :
             freeElectiveEnrollment=mappingResult['free elective'],
         )
         isComplete &= freeElectiveCheck['isComplete']
+        totalWeightedGrade += freeElectiveCheck['totalWeightedGrade']
+        totalCredit += freeElectiveCheck['totalCredit']
         categories.append(freeElectiveCheck)
+        
+        gpax = totalWeightedGrade/float(totalCredit)
         
         return {
             'curriculum': curriculum,
-            'isComplete': isComplete,
+            'isComplete': isComplete and (gpax >= 2.00),
             'categories': categories,
+            'gpax': gpax,
         }
         
     def getFreeElectionCategoryDetal(self, freeElectiveEnrollment, freeElectiveDetail) :
         studied = []
         totalCredit = 0
+        totalWeightedGrade = 0
+        
         for enrollment in freeElectiveEnrollment :
-            totalCredit += enrollment.course_fk.credit
+            credit = enrollment.enrollment.course_fk.credit
+            grade = enrollment.totalGrade
+            
+            if totalWeightedGrade >= 0 and grade > 0 :
+                # no need to calculate further if result grade is F, N, I
+                totalWeightedGrade += grade * credit
+                
+            totalCredit += credit
+            
             studied.append({
-                'course': enrollment.course_fk,
+                'course': enrollment.enrollment.course_fk,
                 'studyResult': enrollment,
             })
         
         return {
             'category': freeElectiveDetail,
-            'isComplete': totalCredit >= freeElectiveDetail.category_min_credit,
+            'isComplete': totalWeightedGrade > 0 and totalCredit >= freeElectiveDetail.category_min_credit,
+            'totalCredit': totalCredit,
+            'totalWeightedGrade': totalWeightedGrade,
             'isFreeElective': True,
             'courses_or_subcategories': studied,
         }
@@ -69,34 +90,51 @@ class EducationEvaluationService() :
             
         isComplete = True
         subcategories = []
+        totalWeightedGrade = 0
+        totalCredit = 0
+        
         for subcategory in subcategoriesDetail :
             checked = self.getSubcategoryDetail(subcategory, categorizeCoursesReformat)
             subcategories.append(checked)
-            isComplete &= checked['isComplete']
+            isComplete &= checked['isComplete'] and (checked['totalWeightedGrade'] > 0)
+            totalCredit += checked['totalCredit']
+            totalWeightedGrade += checked['totalWeightedGrade']
         
         return {
             'category': categoryDetail,
             'isComplete': isComplete,
+            'totalCredit': totalCredit,
+            'totalWeightedGrade': totalWeightedGrade,
             'isFreeElective': False,
-            'courses_or_subcategories': [
-                self.getSubcategoryDetail(subcategory, categorizeCoursesReformat) for subcategory in subcategoriesDetail
-            ]
+            'courses_or_subcategories': subcategories
         }
         
     def getSubcategoryDetail(self, subcategory, categorizeCourses) :
         studied = []
+        totalWeightedGrade = 0
         totalCredit = 0
+        
         for enrollment in categorizeCourses[subcategory.subcategory_name] :
-            totalCredit += enrollment.course_fk.credit
+            credit = enrollment.enrollment.course_fk.credit
+            grade = enrollment.totalGrade
+            
+            if totalWeightedGrade >= 0 and grade > 0 :
+                # no need to calculate further if result grade is F, N, I
+                totalWeightedGrade += grade * credit
+                
+            totalCredit += credit
+            
             studied.append({
-                'course': enrollment.course_fk,
+                'course': enrollment.enrollment.course_fk,
                 'studyResult': enrollment,
             })
             
         return {
             'subcategory': subcategory,
-            'isComplete': totalCredit >= subcategory.subcateory_min_credit,
+            'isComplete': totalWeightedGrade > 0 and totalCredit >= subcategory.subcateory_min_credit,
             'courses': studied,
+            'totalWeightedGrade': totalWeightedGrade,
+            'totalCredit': totalCredit,
         }
     
     def verify(self, curriculum: Curriculum, enrollments: List[Enrollment], *args) :
@@ -113,6 +151,7 @@ class EducationEvaluationService() :
             else :
                 subcategoriesReformate[categoryId] = [subcategory] 
         
+  
         cleanEnrollment = self.caculator.GPACalculate(enrollments)
         mappingResult = self.caculator.map(subcategories, cleanEnrollment)
 

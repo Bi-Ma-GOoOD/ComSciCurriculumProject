@@ -16,8 +16,8 @@ class AssignResult(TestCase) :
         
         self.courses = mockCourses(self.subcategories[0], [3, 2, 1])
         
-        enrollments = [(c, 4, 2565) for c in self.courses]
-        enrollments.append((self.courses[0], 0, 2566))
+        enrollments = [(c, 'A', 2565) for c in self.courses]
+        enrollments.append((self.courses[0], 'F', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
 
     def test_checking_result(self) :

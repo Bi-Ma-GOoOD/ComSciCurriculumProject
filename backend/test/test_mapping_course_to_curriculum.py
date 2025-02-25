@@ -54,21 +54,21 @@ class MappingTest(TestCase) :
         self.st_enrollment1 = Enrollment.objects.create(
             semester=Enrollment.Semester.FIRST,
             year=2565,
-            grade=3.00,
+            grade='B',
             user_fk=self.u,
             course_fk=self.c1,
         )
         self.st_enrollment2 = Enrollment.objects.create(
             semester=Enrollment.Semester.SECOND,
             year=2565,
-            grade=3.5,
+            grade='B+',
             user_fk=self.u,
             course_fk=self.c2,
         )
         self.st_enrollment3 = Enrollment.objects.create(
             semester=Enrollment.Semester.FIRST,
             year=2566,
-            grade=4,
+            grade='A',
             user_fk=self.u,
             course_fk=self.c3,
         )
@@ -81,7 +81,7 @@ class MappingTest(TestCase) :
         
         subcategory = [self.subcate1]
         
-        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, courses)
+        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, calculated_course)
         
         freeElective = mappingResult['free elective']
         categorizedCourse = mappingResult['categorize course']
@@ -96,7 +96,7 @@ class MappingTest(TestCase) :
         
         subcategory = [self.subcate1]
         
-        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, courses)
+        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, self.calculator.GPACalculate(courses))
         
         freeElective = mappingResult['free elective']
         categorizedCourse = mappingResult['categorize course']
@@ -111,7 +111,7 @@ class MappingTest(TestCase) :
         
         subcategory = [self.subcate1]
         
-        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, courses)
+        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, self.calculator.GPACalculate(courses))
         
         freeElective = mappingResult['free elective']
         categorizedCourse = mappingResult['categorize course']
@@ -130,7 +130,7 @@ class MappingTest(TestCase) :
         
         subcategory = [self.subcate1]
         
-        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, courses)
+        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, self.calculator.GPACalculate(courses))
         
         freeElective = mappingResult['free elective']
         categorizedCourse = mappingResult['categorize course']
@@ -140,7 +140,7 @@ class MappingTest(TestCase) :
 
         self.assertEqual(len(categorizedCourse[0]['matchEnrollment']), 2)
         
-        self.assertEqual(freeElective[0].course_fk.course_id, 'course a')
+        self.assertEqual(freeElective[0].enrollment.course_fk.course_id, 'course a')
 
     def test_mapping_with_more_than_creadit_and_unfit_divided(self) :
         self.c1.credit = 3
@@ -151,7 +151,7 @@ class MappingTest(TestCase) :
         
         subcategory = [self.subcate1]
         
-        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, courses)
+        mappingResult: List[SubcategoryDetails] = self.calculator.map(subcategory, self.calculator.GPACalculate(courses))
         
         freeElective = mappingResult['free elective']
         categorizedCourse = mappingResult['categorize course']
@@ -161,4 +161,4 @@ class MappingTest(TestCase) :
 
         self.assertEqual(len(categorizedCourse[0]['matchEnrollment']), 2)
         
-        self.assertIn(freeElective[0].course_fk.course_id, ['course a', 'course c'])
+        self.assertIn(freeElective[0].enrollment.course_fk.course_id, ['course a', 'course c'])

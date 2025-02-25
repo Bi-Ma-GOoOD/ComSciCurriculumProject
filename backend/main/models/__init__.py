@@ -3,7 +3,7 @@ from .curriculum import Curriculum
 from .course import Course
 from .subcategory import Subcategory
 from .user import User
-from .enrollment import Enrollment
+from .enrollment import Enrollment, CaluculatedEnrollment
 from .credit_detail import CreditDetail
 from .form import Form
 from .subcategory_details import SubcategoryDetails
