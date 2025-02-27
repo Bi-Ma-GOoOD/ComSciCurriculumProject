@@ -28,10 +28,12 @@ class CalculatorService() :
         
         for enrollment in stEnrollments :
             key = enrollment.course_fk.course_id
-            newGrade = utils.getGrade(enrollment.grade)
+            newGrade, charGrade = utils.getGrade(enrollment.grade)
             if calculatedEnrollments.get(key) :
                 # if duplicate course will add total grade
-                calculatedEnrollments[key].totalGrade += newGrade if newGrade is not None else 0
+                if newGrade != None :
+                    calculatedEnrollments[key].totalGrade += newGrade
+                    calculatedEnrollments[key].charGrade = None
                 
                 # DONE:  implement update recently year and semester
                 if enrollment.year > calculatedEnrollments[key].enrollment.year :
@@ -51,7 +53,9 @@ class CalculatorService() :
                 calculatedEnrollments[key] = CaluculatedEnrollment(
                     enrollment=enrollment,
                     totalGrade=newGrade,
+                    charGrade=charGrade,
                 )
+                
                 encounter[key] = 0
             
             if newGrade != None :
@@ -60,7 +64,8 @@ class CalculatorService() :
             
         # averaging the gpa for every courses
         for key in list(calculatedEnrollments.keys()) :
-            calculatedEnrollments[key].totalGrade /= encounter[key]
+            if calculatedEnrollments[key].totalGrade != None :
+                calculatedEnrollments[key].totalGrade /= encounter[key]
             
         return list(calculatedEnrollments.values())
         
@@ -160,7 +165,11 @@ class CalculatorService() :
         solver: pywraplp.Solver = pywraplp.Solver.CreateSolver(model)
         
         # variable
-        variables = [solver.IntVar(0, 1, enrollment['enrollment'].enrollment.course_fk.course_id) for enrollment in convertedEnrollment.values()]
+        variables = []
+        for enrollment in convertedEnrollment.values() :
+            if isinstance(enrollment['enrollment'].totalGrade, float) :
+                variable = solver.IntVar(0, 1, enrollment['enrollment'].enrollment.course_fk.course_id)
+                variables.append(variable)
         
         # constraint
         constraint = sum([v*convertedEnrollment[v.name()]['credit'] for v in variables])

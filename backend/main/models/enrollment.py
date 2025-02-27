@@ -25,9 +25,10 @@ class Enrollment(models.Model) :
     
 class CaluculatedEnrollment() :    
     def __init__(self, *args, **kwargs):
-        if 'enrollment' in kwargs.keys() and 'totalGrade' in kwargs.keys() :
+        if 'enrollment' in kwargs.keys() and 'totalGrade' in kwargs.keys() and 'charGrade' in kwargs.keys() :
             self.enrollment = kwargs['enrollment']
             self.totalGrade = kwargs['totalGrade']
+            self.charGrade = kwargs['charGrade']
 
         else :
             raise RuntimeError('CalculatedEnrollment class required following named argument {"enrollment", "totalGrade"}')

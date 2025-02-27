@@ -16,7 +16,7 @@ class CategorySerializer(serializers.Serializer) :
     def to_representation(self, instance):
         if not (
             instance.get('category') and
-            instance.get('courses_or_subcategories') and
+            isinstance(instance.get('courses_or_subcategories'), list) and
             isinstance(instance.get('isFreeElective'), bool) and
             isinstance(instance.get('isComplete'), bool) and
             isinstance(instance.get('totalWeightedGrade'), float) and
@@ -32,7 +32,7 @@ class CategorySerializer(serializers.Serializer) :
                 'category_name': instance['category'].category_name,
                 'min_credit': instance['category'].category_min_credit,
                 'is_complete': instance['isComplete'],
-                'gpax': instance['totalWeightedGrade']/instance['totalCredit'],
+                'gpax': instance['totalWeightedGrade']/instance['totalCredit']  if instance['totalCredit'] != 0 else 0,
                 'courses': self.get_courses(instance['courses_or_subcategories']),
             }
         
@@ -40,7 +40,7 @@ class CategorySerializer(serializers.Serializer) :
             'category_name': instance['category'].category_name,
             'min_credit': instance['category'].category_min_credit,
             'is_complete': instance['isComplete'],
-            'gpax': instance['totalWeightedGrade']/instance['totalCredit'],
+            'gpax': instance['totalWeightedGrade']/instance['totalCredit'] if instance['totalCredit'] != 0 else 0,
             'subcategories': self.get_subcategories(instance['courses_or_subcategories']),
         }
         

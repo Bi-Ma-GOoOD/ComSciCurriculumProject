@@ -13,7 +13,7 @@ class SubcategorySerializer(serializers.Serializer) :
     def to_representation(self, instance):
         if not (
             instance.get('subcategory') and
-            instance.get('courses') and
+            isinstance(instance.get('courses'), list) and
             isinstance(instance.get('isComplete'), bool) and
             isinstance(instance.get('totalWeightedGrade'), float) and
             isinstance(instance.get('totalCredit'), int)
@@ -26,7 +26,7 @@ class SubcategorySerializer(serializers.Serializer) :
             'subcategory_name': instance['subcategory'].subcategory_name,
             'min_credit': instance['subcategory'].subcateory_min_credit,
             'is_complete': instance['isComplete'],
-            'total_weighted_grade': instance['totalWeightedGrade']/instance['totalCredit'],
+            'total_weighted_grade': instance['totalWeightedGrade']/instance['totalCredit'] if instance['totalCredit'] != 0 else 0,
             'courses': self.get_courses(instance['courses']),
         }
         

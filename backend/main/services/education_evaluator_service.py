@@ -45,13 +45,14 @@ class EducationEvaluationService() :
         totalCredit += freeElectiveCheck['totalCredit']
         categories.append(freeElectiveCheck)
         
-        gpax = totalWeightedGrade/float(totalCredit)
+        gpax = totalWeightedGrade/float(totalCredit) if totalCredit != 0 else 0
         
         return {
             'curriculum': curriculum,
             'isComplete': isComplete and (gpax >= 2.00),
             'categories': categories,
             'gpax': gpax,
+            'credit': totalCredit,
         }
         
     def getFreeElectionCategoryDetal(self, freeElectiveEnrollment, freeElectiveDetail) :
@@ -63,11 +64,11 @@ class EducationEvaluationService() :
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
             
-            if totalWeightedGrade >= 0 and grade > 0 :
+            if grade != None :
                 # no need to calculate further if result grade is F, N, I
                 totalWeightedGrade += grade * credit
                 
-            totalCredit += credit
+                totalCredit += credit
             
             studied.append({
                 'course': enrollment.enrollment.course_fk,
@@ -76,9 +77,9 @@ class EducationEvaluationService() :
         
         return {
             'category': freeElectiveDetail,
-            'isComplete': totalWeightedGrade > 0 and totalCredit >= freeElectiveDetail.category_min_credit,
+            'isComplete': totalWeightedGrade > 0 and (totalCredit >= freeElectiveDetail.category_min_credit),
             'totalCredit': totalCredit,
-            'totalWeightedGrade': totalWeightedGrade,
+            'totalWeightedGrade': totalWeightedGrade if totalWeightedGrade != 0 else 0.0,
             'isFreeElective': True,
             'courses_or_subcategories': studied,
         }
@@ -104,9 +105,9 @@ class EducationEvaluationService() :
             'category': categoryDetail,
             'isComplete': isComplete,
             'totalCredit': totalCredit,
-            'totalWeightedGrade': totalWeightedGrade,
+            'totalWeightedGrade': totalWeightedGrade if totalWeightedGrade != 0 else 0.0,
             'isFreeElective': False,
-            'courses_or_subcategories': subcategories
+            'courses_or_subcategories': subcategories,
         }
         
     def getSubcategoryDetail(self, subcategory, categorizeCourses) :
@@ -118,22 +119,22 @@ class EducationEvaluationService() :
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
             
-            if totalWeightedGrade >= 0 and grade > 0 :
+            if grade != None :
                 # no need to calculate further if result grade is F, N, I
                 totalWeightedGrade += grade * credit
                 
-            totalCredit += credit
+                totalCredit += credit
             
             studied.append({
                 'course': enrollment.enrollment.course_fk,
                 'studyResult': enrollment,
             })
-            
+        
         return {
             'subcategory': subcategory,
             'isComplete': totalWeightedGrade > 0 and totalCredit >= subcategory.subcateory_min_credit,
             'courses': studied,
-            'totalWeightedGrade': totalWeightedGrade,
+            'totalWeightedGrade': totalWeightedGrade if totalWeightedGrade != 0 else 0.0,
             'totalCredit': totalCredit,
         }
     

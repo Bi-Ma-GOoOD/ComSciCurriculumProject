@@ -8,19 +8,22 @@ class CreditVerifySerializer(serializers.Serializer) :
     categories = serializers.SerializerMethodField()
     is_complete = serializers.BooleanField()
     gpax = serializers.DecimalField(max_digits=3, decimal_places=2)
+    total_credit = serializers.IntegerField()
     
     def to_representation(self, instance):
         if not (
             instance.get('curriculum') and
-            instance.get('categories') and
+            isinstance(instance.get('categories'), list) and
             isinstance(instance.get('isComplete'), bool) and
-            isinstance(instance.get('gpax'), float)
+            isinstance(instance.get('gpax'), float) and
+            isinstance(instance.get('credit'), int)
         ) :
             raise serializers.ValidationError('expect object with attribute name "curriculum" and "categories" and "isComplete" in CreditVerifySerializer class')
         
         return {
             'is_complete': instance['isComplete'],
             'gpax': instance['gpax'],
+            'total_credit': instance['credit'],
             'curriculum': self.get_curriculum(instance['curriculum']),
             'categories': self.get_categories(instance['categories']),
         }

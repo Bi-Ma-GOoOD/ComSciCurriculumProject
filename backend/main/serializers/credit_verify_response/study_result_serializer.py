@@ -14,5 +14,5 @@ class StudyResultSerializer(serializers.Serializer) :
         return {
             'studied_semester': instance.enrollment.semester.value,
             'studied_year': instance.enrollment.year,
-            'grade': instance.totalGrade,
+            'grade': instance.totalGrade if instance.totalGrade != None else instance.charGrade,
         }
