@@ -75,12 +75,13 @@ class AssignResult(TestCase) :
 
     def test_checking_result_with_I_or_N_grade(self) :
         # TODO resolve prsentaton of grade
-        self.courses = mockCourses(self.subcategories[0], [3, 1, 1])
+        self.courses = mockCourses(self.subcategories[0], [3, 1, 1, 2])
         
         # enrollments = [(c, 'A', 2565) for c in self.courses[]]
         enrollments = [(self.courses[0], 'A', 2565)]
         enrollments.append((self.courses[1], 'A', 2566))
         enrollments.append((self.courses[2], 'I', 2566))
+        enrollments.append((self.courses[3], 'N', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)

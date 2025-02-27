@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from .course_serializer import CourseSerializer
 from .category_serializer import CategorySerializer
 from .curriculum_serializer import CurriculumSerializer
 
@@ -16,7 +17,8 @@ class CreditVerifySerializer(serializers.Serializer) :
             isinstance(instance.get('categories'), list) and
             isinstance(instance.get('isComplete'), bool) and
             isinstance(instance.get('gpax'), float) and
-            isinstance(instance.get('credit'), int)
+            isinstance(instance.get('credit'), int) and
+            isinstance(instance.get('restudyRequire'), list)
         ) :
             raise serializers.ValidationError('expect object with attribute name "curriculum" and "categories" and "isComplete" in CreditVerifySerializer class')
         
@@ -26,6 +28,7 @@ class CreditVerifySerializer(serializers.Serializer) :
             'total_credit': instance['credit'],
             'curriculum': self.get_curriculum(instance['curriculum']),
             'categories': self.get_categories(instance['categories']),
+            'restudy_require': self.get_restudyRequire(instance['restudyRequire'])
         }
         
     def get_curriculum(self, obj) :
@@ -33,3 +36,6 @@ class CreditVerifySerializer(serializers.Serializer) :
 
     def get_categories(self, obj) :
         return CategorySerializer(obj, many=True).data
+    
+    def get_restudyRequire(self, obj) :
+        return CourseSerializer(obj, many=True).data

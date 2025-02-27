@@ -17,6 +17,8 @@ class EducationEvaluationService() :
         if not (param and param.get('nonElectiveCategoryDetail')) : return # want [ categories, ... ]
         if not (param and param.get('subCategoryDetail')) : return # want { category: [subcategories, ...] }
         
+        restudyRequire = []
+        
         isComplete = True
         categories = []
         totalWeightedGrade = 0
@@ -29,6 +31,7 @@ class EducationEvaluationService() :
                 categorizeCourses=mappingResult['categorize course'],
                 categoryDetail=category,
                 subcategoriesDetail=subcategoryDetailParam.get(category.category_name),
+                restudyRequire=restudyRequire,
             )
             isComplete &= checked['isComplete']
             totalWeightedGrade += checked['totalWeightedGrade']
@@ -39,6 +42,7 @@ class EducationEvaluationService() :
         freeElectiveCheck = self.getFreeElectionCategoryDetal(
             freeElectiveDetail=param.get('freeElectiveDetail'), 
             freeElectiveEnrollment=mappingResult['free elective'],
+            restudyRequire=restudyRequire,
         )
         isComplete &= freeElectiveCheck['isComplete']
         totalWeightedGrade += freeElectiveCheck['totalWeightedGrade']
@@ -53,9 +57,10 @@ class EducationEvaluationService() :
             'categories': categories,
             'gpax': gpax,
             'credit': totalCredit,
+            'restudyRequire': restudyRequire,
         }
         
-    def getFreeElectionCategoryDetal(self, freeElectiveEnrollment, freeElectiveDetail) :
+    def getFreeElectionCategoryDetal(self, freeElectiveEnrollment, freeElectiveDetail, restudyRequire) :
         studied = []
         totalCredit = 0
         totalWeightedGrade = 0
@@ -69,6 +74,12 @@ class EducationEvaluationService() :
                 totalWeightedGrade += grade * credit
                 
                 totalCredit += credit
+                
+            if grade == None or grade == 0.0 :
+                restudyRequire.append({
+                    'course': enrollment.enrollment.course_fk,
+                    'studyResult': enrollment,
+                })
             
             studied.append({
                 'course': enrollment.enrollment.course_fk,
@@ -84,7 +95,7 @@ class EducationEvaluationService() :
             'courses_or_subcategories': studied,
         }
         
-    def getCategorizeCategoryDetail(self, categorizeCourses, categoryDetail, subcategoriesDetail) :
+    def getCategorizeCategoryDetail(self, categorizeCourses, categoryDetail, subcategoriesDetail, restudyRequire) :
         categorizeCoursesReformat = {}
         for categorizeCourse in categorizeCourses :
             categorizeCoursesReformat[categorizeCourse['subcategory'].subcategory_name] = list(categorizeCourse['matchEnrollment'].values())
@@ -95,7 +106,7 @@ class EducationEvaluationService() :
         totalCredit = 0
         
         for subcategory in subcategoriesDetail :
-            checked = self.getSubcategoryDetail(subcategory, categorizeCoursesReformat)
+            checked = self.getSubcategoryDetail(subcategory, categorizeCoursesReformat, restudyRequire)
             subcategories.append(checked)
             isComplete &= checked['isComplete'] and (checked['totalWeightedGrade'] > 0)
             totalCredit += checked['totalCredit']
@@ -110,7 +121,7 @@ class EducationEvaluationService() :
             'courses_or_subcategories': subcategories,
         }
         
-    def getSubcategoryDetail(self, subcategory, categorizeCourses) :
+    def getSubcategoryDetail(self, subcategory, categorizeCourses, restudyRequire) :
         studied = []
         totalWeightedGrade = 0
         totalCredit = 0
@@ -124,6 +135,12 @@ class EducationEvaluationService() :
                 totalWeightedGrade += grade * credit
                 
                 totalCredit += credit
+                
+            if grade == None or grade == 0.0 :
+                restudyRequire.append({
+                    'course': enrollment.enrollment.course_fk,
+                    'studyResult': enrollment,
+                })
             
             studied.append({
                 'course': enrollment.enrollment.course_fk,
