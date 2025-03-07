@@ -1,0 +1,752 @@
+[
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01422111-60",
+        "eng_name":"Principles of Statistics",
+        "thai_name":"หลักสถิติ",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01417111-60",
+        "eng_name":"Calculus I",
+        "thai_name":"แคลคูลัส I",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01417112-60",
+        "eng_name":"Calculus II",
+        "thai_name":"แคลคูลัส II",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01417332-60",
+        "eng_name":"Introductory Linear Algebra",
+        "thai_name":"พีชคณิตเชิงเส้นเบื้องต้น",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418102-60",
+        "eng_name":"Information Technology for Entrepreneurs",
+        "thai_name":"เทคโนโลยีสารสนเทศเพื่อผู้ประกอบการ",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418103-60",
+        "eng_name":"Health and Digital Society",
+        "thai_name":"สุขภาพและสังคมดิจิทัล",
+        "credit":2,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418104-60",
+        "eng_name":"IT Updates",
+        "thai_name":"รู้ทันไอที",
+        "credit":2,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418105-60",
+        "eng_name":"Digital Creatives Arts",
+        "thai_name":"ศิลปะสร้างสรรค์ดิจิทัล",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418111-60",
+        "eng_name":"Computer Applications",
+        "thai_name":"การใช้งานคอมพิวเตอร์",
+        "credit":1,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418112-60",
+        "eng_name":"Fundamental Programming Concepts",
+        "thai_name":"แนวคิดการโปรแกรมเบื้องต้น",
+        "credit":3,
+        "condition":"01418114-60 หรือพร้อมกัน"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418113-60",
+        "eng_name":"Computer Programming",
+        "thai_name":"การโปรแกรมคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418112-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418114-60",
+        "eng_name":"Introduction to Computer Science",
+        "thai_name":"วิทยาการคอมพิวเตอร์เบื้องต้น",
+        "credit":2,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418131-60",
+        "eng_name":"Digital Computer Logic",
+        "thai_name":"ตรรกศาสตร์ของดิจิทัลคอมพิวเตอร์",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01418132-60",
+        "eng_name":"Fundamentals of Computing",
+        "thai_name":"หลักมูลการคณนา",
+        "credit":4,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418211-60",
+        "eng_name":"Software Construction",
+        "thai_name":"การสร้างซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418113-60 หรือ 01418212-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418212-60",
+        "eng_name":"C Programming",
+        "thai_name":"การโปรแกรมภาษาซี",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418213-60",
+        "eng_name":"COBOL Programming",
+        "thai_name":"การโปรแกรมภาษาโคบอล",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418214-60",
+        "eng_name":"Visual Programming",
+        "thai_name":"การโปรแกรมภาษาภาพ",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418215-60",
+        "eng_name":"Java Programming",
+        "thai_name":"การโปรแกรมภาษาจาวา",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418216-60",
+        "eng_name":"Principles of Programming Languages",
+        "thai_name":"หลักภาษาโปรแกรม",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418217-60",
+        "eng_name":"LISP Programming",
+        "thai_name":"การโปรแกรมภาษาลิสป์",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418218-60",
+        "eng_name":"Prolog Programming",
+        "thai_name":"การโปรแกรมภาษาโพรล็อก",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418219-60",
+        "eng_name":"Practicum in Software Development",
+        "thai_name":"การฝึกปฏิบัติการพัฒนาซอฟต์แวร์",
+        "credit":1,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418221-60",
+        "eng_name":"Fundamentals of Database Systems",
+        "thai_name":"ระบบฐานข้อมูลเบื้องต้น",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418222-60",
+        "eng_name":"Internet Application for Commerce",
+        "thai_name":"การประยุกต์อินเทอร์เน็ตเพื่อการพาณิชย์",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418231-60",
+        "eng_name":"Data Structures",
+        "thai_name":"โครงสร้างข้อมูล",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418232-60",
+        "eng_name":"Algorithm Design and Analysis",
+        "thai_name":"การออกแบบและการวิเคราะห์ขั้นตอนวิธี",
+        "credit":3,
+        "condition":"01418132-60 และ 01418231-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418233-60",
+        "eng_name":"Assembly Language and Computer Architecture",
+        "thai_name":"ภาษาแอสเซมบลีและสถาปัตยกรรมคอมพิวเตอร์",
+        "credit":4,
+        "condition":"01418113-60 และ 01418131-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418234-60",
+        "eng_name":"Programming Internet of Things",
+        "thai_name":"การโปรแกรมอินเทอร์เน็ตของสรรพสิ่ง",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418235-60",
+        "eng_name":"Unix Operating System and Shell Programming",
+        "thai_name":"ระบบปฏิบัติการยูนิกซ์และการโปรแกรมเปลือกระบบ",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418311-60",
+        "eng_name":"Challenging Computational Programming",
+        "thai_name":"การโปรแกรมเชิงคำนวณแบบท้าทาย",
+        "credit":3,
+        "condition":"01418232-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418321-60",
+        "eng_name":"System Analysis and Design",
+        "thai_name":"การวิเคราะห์และการออกแบบระบบ",
+        "credit":3,
+        "condition":"01418211-60 และ 01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418322-60",
+        "eng_name":"Principles of Information System",
+        "thai_name":"หลักระบบสารสนเทศ",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418323-60",
+        "eng_name":"Introduction to Data Science",
+        "thai_name":"วิทยาการข้อมูลเบื้องต้น",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418324-60",
+        "eng_name":"Information Quality Management",
+        "thai_name":"การจัดการคุณภาพสารสนเทศ",
+        "credit":3,
+        "condition":"01418221-60 หรือ 01418222-60 หรือ 01418322-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418325-60",
+        "eng_name":"Database Management System Architecture",
+        "thai_name":"สถาปัตยกรรมระบบจัดการฐานข้อมูล",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418326-60",
+        "eng_name":"Multimedia Database",
+        "thai_name":"ฐานข้อมูลสื่อประสม",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418327-60",
+        "eng_name":"Decision Support and Business Intelligent Systems",
+        "thai_name":"ระบบสนับสนุนการตัดสินใจและอัจฉริยะทางธุรกิจ",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418328-60",
+        "eng_name":"Human Resources Information System",
+        "thai_name":"ระบบบริหารจัดการสารสนเทศด้านทรัพยากรบุคคล",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418331-60",
+        "eng_name":"Operating Systems",
+        "thai_name":"ระบบปฏิบัติการ",
+        "credit":4,
+        "condition":"01418233-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418332-60",
+        "eng_name":"Information System Security",
+        "thai_name":"ความมั่นคงในระบบสารสนเทศ",
+        "credit":3,
+        "condition":"01418331-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418333-60",
+        "eng_name":"Automata Theory",
+        "thai_name":"ทฤษฎีออโตมาตา",
+        "credit":2,
+        "condition":"01418132-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418334-60",
+        "eng_name":"Compiler Techniques",
+        "thai_name":"เทคนิคตัวแปลโปรแกรม",
+        "credit":2,
+        "condition":"01418333-60 หรือพร้อมกัน"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418335-60",
+        "eng_name":"Data Compression",
+        "thai_name":"การบีบอัดข้อมูล",
+        "credit":3,
+        "condition":"01418231-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418341-60",
+        "eng_name":"Intellectual Properties and Professional Ethics",
+        "thai_name":"ทรัพย์สินทางปัญญาและจรรยาบรรณวิชาชีพ",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418342-60",
+        "eng_name":"Enterprise Resource Planning System Design and Development",
+        "thai_name":"การออกแบบและการพัฒนาระบบการวางแผนทรัพยากรองค์กร",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418343-60",
+        "eng_name":"Computer Programming in Business",
+        "thai_name":"การโปรแกรมคอมพิวเตอร์ทางธุรกิจ",
+        "credit":3,
+        "condition":"01418113-60 หรือ 01418212-60 หรือ 01418213-60 หรือ 01418214-60 หรือ 01418215-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418344-60",
+        "eng_name":"Mobile Application Design and Development",
+        "thai_name":"การออกแบบและพัฒนาโปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418351-60",
+        "eng_name":"Computer Communications and Cloud Computing Principles",
+        "thai_name":"หลักการการสื่อสารคอมพิวเตอร์และการประมวลผลบนคลาวด์",
+        "credit":3,
+        "condition":"01418331-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418352-60",
+        "eng_name":"Data Communications and Networks",
+        "thai_name":"การสื่อสารข้อมูลและเครือข่าย",
+        "credit":3,
+        "condition":"01418351-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418353-60",
+        "eng_name":"Distributed and Cloud Systems",
+        "thai_name":"ระบบแบบกระจายและระบบกลุ่มเมฆ",
+        "credit":3,
+        "condition":"01418331-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418381-60",
+        "eng_name":"Principles of Computer Animation",
+        "thai_name":"หลักการสร้างภาพเคลื่อนไหวด้วยคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418382-60",
+        "eng_name":"Introduction to Interactive Computer Graphics",
+        "thai_name":"คอมพิวเตอร์กราฟิกส์เชิงโต้ตอบเบื้องต้น",
+        "credit":3,
+        "condition":"01418113-60 หรือ 01418212-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418383-60",
+        "eng_name":"Game Programming",
+        "thai_name":"การโปรแกรมเกม",
+        "credit":3,
+        "condition":"01418113-60 หรือ 01418212-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418384-60",
+        "eng_name":"Image Analysis and Computer Vision",
+        "thai_name":"การวิเคราะห์ภาพและคอมพิวเตอร์วิทัศน์",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418385-60",
+        "eng_name":"Digital Image Processing",
+        "thai_name":"การประมวลผลภาพดิจิทัล",
+        "credit":3,
+        "condition":"01418113-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418390-60",
+        "eng_name":"Cooperative Education Preparation",
+        "thai_name":"การเตรียมความพร้อมสหกิจศึกษา",
+        "credit":1,
+        "condition":"01418321-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418421-60",
+        "eng_name":"Human Computer Interaction",
+        "thai_name":"อันตรกิริยาระหว่างมนุษย์และคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418113-60 หรือ 01418322-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418441-60",
+        "eng_name":"Business Data Dimension and Report Management",
+        "thai_name":"การจัดการมิติข้อมูลและรายงานทางธุรกิจ",
+        "credit":3,
+        "condition":"01418342-60 หรือ 01418343-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418442-60",
+        "eng_name":"Web Technology and Web Services",
+        "thai_name":"เว็บเทคโนโลยีและเว็บบริการ",
+        "credit":3,
+        "condition":"01418211-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418451-60",
+        "eng_name":"Network Design and Administration",
+        "thai_name":"การออกแบบและการบริหารเครือข่าย",
+        "credit":3,
+        "condition":"01418351-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418461-60",
+        "eng_name":"Information Retrieval System",
+        "thai_name":"ระบบค้นคืนสารสนเทศ",
+        "credit":3,
+        "condition":"01418232-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418462-60",
+        "eng_name":"Artificial Intelligence",
+        "thai_name":"ปัญญาประดิษฐ์",
+        "credit":3,
+        "condition":"01418232-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418471-60",
+        "eng_name":"Introduction to Software Engineering",
+        "thai_name":"วิศวกรรมซอฟต์แวร์เบื้องต้น",
+        "credit":3,
+        "condition":"01418211-60 และ 01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418472-60",
+        "eng_name":"Project Management and Control",
+        "thai_name":"การบริหารและการควบคุมโครงการ",
+        "credit":3,
+        "condition":"01418221-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418473-60",
+        "eng_name":"Computer Control and Audit",
+        "thai_name":"การควบคุมและการตรวจสอบงานคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418321-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418474-60",
+        "eng_name":"Software Quality Management",
+        "thai_name":"การจัดการคุณภาพซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418321-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418475-60",
+        "eng_name":"Software Testing and Verification",
+        "thai_name":"การทดสอบและทวนสอบซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418211-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418476-60",
+        "eng_name":"Software Measurement",
+        "thai_name":"การวัดซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418321-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418481-60",
+        "eng_name":"Multi-Character Animation",
+        "thai_name":"ภาพเคลื่อนไหวหลายตัวละคร",
+        "credit":3,
+        "condition":"01418112-60 หรือ 01418114-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418482-60",
+        "eng_name":"Computer Graphics",
+        "thai_name":"คอมพิวเตอร์กราฟิกส์",
+        "credit":3,
+        "condition":"01418113-60 หรือ 01418212-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418490-60",
+        "eng_name":"Cooperative Education",
+        "thai_name":"สหกิจศึกษา",
+        "credit":6,
+        "condition":"01418390-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418496-60",
+        "eng_name":"Selected Topic in Computer Science",
+        "thai_name":"เรื่องเฉพาะทางวิทยาการคอมพิวเตอร์",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418497-60",
+        "eng_name":"Seminar",
+        "thai_name":"สัมมนา",
+        "credit":1,
+        "condition":"01418221-60 หรือ 01418232-60 หรือ 01418233-60"
+    },
+    {
+        "str":60,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418499-60",
+        "eng_name":"Computer Science Project",
+        "thai_name":"โครงงานวิทยาการคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418321-60"
+    }
+]

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign up with OTP</title>
+</head>
+<body>
+    <h2>Sign up with OTP</h2>
+    {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Enter your email address to receive an OTP:</p>
+        {{ form.as_p }}
+        <button type="submit">Send OTP</button>
+    </form>
+</body>
+</html>

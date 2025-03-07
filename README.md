@@ -51,6 +51,10 @@ To activate backend run the following command
 1. `docker compose down`
 2. `deactivate` in terminal using virtual environment
 
+### email for sending OTP code
+1. `EMAIL_HOST_USER = 'xxxxxxxxxx@gmail.com'` change the email
+2. `EMAIL_HOST_PASSWORD = 'xxxxxxxxxxxxxxxx'` change the app password (get the app password from google account)
+
 ### how to do unit testing
 1. `cd backend`
 2. `pytest -sv`

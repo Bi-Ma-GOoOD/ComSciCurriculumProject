@@ -1,0 +1,662 @@
+[
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01417111-65",
+        "eng_name":"Calculus",
+        "thai_name":"แคลคูลัส",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01417322-65",
+        "eng_name":"Basic Linear Algebra",
+        "thai_name":"พีชคณิตเชิงเส้นพื้นฐาน",
+        "credit":3,
+        "condition":"01417111-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418101-65",
+        "eng_name":"Computer Applications",
+        "thai_name":"การใช้งานคอมพิวเตอร์",
+        "credit":1,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418102-65",
+        "eng_name":"Information Technology for Entrepreneurs",
+        "thai_name":"เทคโนโลยีสารสนเทศเพื่อผู้ประกอบการ",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418103-65",
+        "eng_name":"Health and Digital Society",
+        "thai_name":"สุขภาพและสังคมดิจิทัล",
+        "credit":2,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418104-65",
+        "eng_name":"IT Updates",
+        "thai_name":"รู้ทันไอที",
+        "credit":2,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418105-65",
+        "eng_name":"Digital Creatives Arts",
+        "thai_name":"ศิลปะสร้างสรรค์ดิจิทัล",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418106-65",
+        "eng_name":"Digital Technology Skills",
+        "thai_name":"ทักษะเทคโนโลยีดิจิทัล",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418111-65",
+        "eng_name":"Introduction to Computer Science",
+        "thai_name":"วิทยาการคอมพิวเตอร์เบื้องต้น",
+        "credit":2,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418112-65",
+        "eng_name":"Fundamental Programming Concepts",
+        "thai_name":"แนวคิดการโปรแกรมเบื้องต้น",
+        "credit":3,
+        "condition":"01418111-65 หรือพร้อมกัน"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418113-65",
+        "eng_name":"Computer Programming",
+        "thai_name":"การโปรแกรมคอมพิวเตอร์",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01418131-65",
+        "eng_name":"Statistical Programming",
+        "thai_name":"การโปรแกรมทางสถิติ",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"แกน",
+        "code":"01418132-65",
+        "eng_name":"Fundamentals of Computing",
+        "thai_name":"หลักมูลการคณนา",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418141-65",
+        "eng_name":"Intellectual Properties and Professional Ethics",
+        "thai_name":"ทรัพย์สินทางปัญญาและจรรยาบรรณวิชาชีพ",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418211-65",
+        "eng_name":"Software Construction",
+        "thai_name":"การสร้างซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418113-65 หรือ 01418212-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418212-65",
+        "eng_name":"C Programming",
+        "thai_name":"การโปรแกรมภาษาซี",
+        "credit":3,
+        "condition":"01418111-65 หรือ 01418112-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418213-65",
+        "eng_name":"COBOL Programming",
+        "thai_name":"การโปรแกรมภาษาโคบอล",
+        "credit":3,
+        "condition":"01418111-65 หรือ 01418112-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418214-65",
+        "eng_name":"Practicum in Software Development",
+        "thai_name":"การฝึกปฏิบัติการพัฒนาซอฟต์แวร์",
+        "credit":1,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418221-65",
+        "eng_name":"Fundamentals of Database Systems",
+        "thai_name":"ระบบฐานข้อมูลเบื้องต้น",
+        "credit":3,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418222-65",
+        "eng_name":"Enterprise Information System",
+        "thai_name":"ระบบสารสนเทศวิสาหกิจ",
+        "credit":3,
+        "condition":"01418112-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418223-65",
+        "eng_name":"Data Science and Application Programs",
+        "thai_name":"วิทยาการข้อมูลและโปรแกรมประยุกต์",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418231-65",
+        "eng_name":"Data Structures and Algorithms",
+        "thai_name":"โครงสร้างข้อมูลและขั้นตอนวิธี",
+        "credit":3,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418232-65",
+        "eng_name":"Algorithm Design and Analysis",
+        "thai_name":"การออกแบบและวิเคราะห์ขั้นตอนวิธี",
+        "credit":3,
+        "condition":"01418231-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418233-65",
+        "eng_name":"Computer Architecture",
+        "thai_name":"สถาปัตยกรรมคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418234-65",
+        "eng_name":"Programming Internet of Things",
+        "thai_name":"การโปรแกรมอินเทอร์เน็ตของสรรพสิ่ง",
+        "credit":3,
+        "condition":"01418112-65 หรือ 01418113-65 หรือ 01418212-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418235-65",
+        "eng_name":"Unix Operating System and Shell Programming",
+        "thai_name":"ระบบปฏิบัติการยูนิกซ์และการโปรแกรมเปลือกระบบ",
+        "credit":3,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418236-65",
+        "eng_name":"Operating Systems",
+        "thai_name":"ระบบปฏิบัติการ",
+        "credit":3,
+        "condition":"01418233-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418241-65",
+        "eng_name":"Financial and Banking Information Technology",
+        "thai_name":"เทคโนโลยีสารสนเทศการเงินและการธนาคาร",
+        "credit":3,
+        "condition":"01418111-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418261-65",
+        "eng_name":"Fundamentals of Artificial Intelligence",
+        "thai_name":"หลักพื้นฐานของปัญญาประดิษฐ์",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418281-65",
+        "eng_name":"Principles of Computer Animation",
+        "thai_name":"หลักการสร้างภาพเคลื่อนไหวด้วยคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418112-65 หรือ 01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418282-65",
+        "eng_name":"Image and Video Processing",
+        "thai_name":"การประมวลผลภาพและวีดิทัศน์",
+        "credit":3,
+        "condition":"01418112-65 หรือ 01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418311-65",
+        "eng_name":"Challenging Computational Programming",
+        "thai_name":"การโปรแกรมเชิงคำนวณแบบท้าทาย",
+        "credit":3,
+        "condition":"01418232-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418321-65",
+        "eng_name":"System Analysis and Design",
+        "thai_name":"การวิเคราะห์และการออกแบบระบบ",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418322-65",
+        "eng_name":"Introduction to Data Science",
+        "thai_name":"วิทยาการข้อมูลเบื้องต้น",
+        "credit":3,
+        "condition":"01418112-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418323-65",
+        "eng_name":"Data Quality Management",
+        "thai_name":"การจัดการคุณภาพข้อมูล",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418324-65",
+        "eng_name":"Decision Support and Business Intelligent Systems",
+        "thai_name":"ระบบสนับสนุนการตัดสินใจและอัจฉริยะทางธุรกิจ",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418325-65",
+        "eng_name":"Data Visualization",
+        "thai_name":"ข้อมูลจินตทัศน์",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418331-65",
+        "eng_name":"Theory of Computation",
+        "thai_name":"ทฤษฎีการคำนวณ",
+        "credit":3,
+        "condition":"01418132-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418332-65",
+        "eng_name":"Information System Security",
+        "thai_name":"ความมั่นคงในระบบสารสนเทศ",
+        "credit":3,
+        "condition":"01418236-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418333-65",
+        "eng_name":"Compiler Techniques",
+        "thai_name":"เทคนิคตัวแปลโปรแกรม",
+        "credit":3,
+        "condition":"01418231-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418341-65",
+        "eng_name":"Enterprise Resource Planning System Design and Development",
+        "thai_name":"การออกแบบและการพัฒนาระบบการวางแผนทรัพยากรองค์กร",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418342-65",
+        "eng_name":"Mobile Application Design and Development",
+        "thai_name":"การออกแบบและพัฒนาโปรแกรมประยุกต์สำหรับอุปกรณ์เคลื่อนที่",
+        "credit":3,
+        "condition":"01418211-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418343-65",
+        "eng_name":"Parallel Computing with CUDA",
+        "thai_name":"การคำนวณแบบขนานด้วยคูด้า",
+        "credit":3,
+        "condition":"01418231-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418344-65",
+        "eng_name":"Business Data Dimension and Report Management",
+        "thai_name":"การจัดการมิติข้อมูลและรายงานทางธุรกิจ",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418351-65",
+        "eng_name":"Computer Networks and Cloud Computing Principles",
+        "thai_name":"หลักการเครือข่ายคอมพิวเตอร์และการประมวลผลบนคลาวด์",
+        "credit":3,
+        "condition":"01418236-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418352-65",
+        "eng_name":"Data Communications and Networks",
+        "thai_name":"การสื่อสารข้อมูลและเครือข่าย",
+        "credit":3,
+        "condition":"01418351-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418353-65",
+        "eng_name":"Cloud Computing Concepts and Services",
+        "thai_name":"แนวคิดและบริการการคำนวณแบบคลาวด์",
+        "credit":3,
+        "condition":"01418236-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418361-65",
+        "eng_name":"Introduction to Computer Vision",
+        "thai_name":"คอมพิวเตอร์วิทัศน์เบื้องต้น",
+        "credit":3,
+        "condition":"01418112-65 หรือ 01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418362-65",
+        "eng_name":"Introduction to Machine Learning",
+        "thai_name":"การเรียนรู้ของเครื่องเบื้องต้น",
+        "credit":3,
+        "condition":"01418231-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418363-65",
+        "eng_name":"Natural Language Processing",
+        "thai_name":"การประมวลผลภาษาธรรมชาติ",
+        "credit":3,
+        "condition":"01418112-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418371-65",
+        "eng_name":"Project Management and Digital Startup",
+        "thai_name":"การบริหารโครงการและสตาร์ทอัพดิจิทัล",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418381-65",
+        "eng_name":"Introduction to Interactive Computer Graphics",
+        "thai_name":"คอมพิวเตอร์กราฟิกส์เชิงโต้ตอบเบื้องต้น",
+        "credit":3,
+        "condition":"01418112-65 หรือ 01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418382-65",
+        "eng_name":"Visual Effects",
+        "thai_name":"วิชวลเอฟเฟกส์",
+        "credit":3,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418383-65",
+        "eng_name":"Extended Reality",
+        "thai_name":"ความจริงขยาย",
+        "credit":3,
+        "condition":"01418113-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418390-65",
+        "eng_name":"Cooperative Education Preparation",
+        "thai_name":"การเตรียมความพร้อมสหกิจศึกษา",
+        "credit":1,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418421-65",
+        "eng_name":"User Experience and User Interface Design",
+        "thai_name":"การออกแบบประสบการณ์และส่วนเชื่อมประสานผู้ใช้",
+        "credit":3,
+        "condition":"01418221-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418441-65",
+        "eng_name":"Web Technology and Web Services",
+        "thai_name":"เว็บเทคโนโลยีและเว็บบริการ",
+        "credit":3,
+        "condition":"01418211-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418451-65",
+        "eng_name":"Network Design and Administration",
+        "thai_name":"การออกแบบและการบริหารเครือข่าย",
+        "credit":3,
+        "condition":"01418235-65 และ 01418351-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418471-65",
+        "eng_name":"Software Design and Development",
+        "thai_name":"การออกแบบและพัฒนาซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418211-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418472-65",
+        "eng_name":"Integrated Agile Process and DevOps",
+        "thai_name":"การบูรณาการกระบวนการเชิงอไจล์และเดฟอ็อปส์",
+        "credit":3,
+        "condition":"01418211-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418473-65",
+        "eng_name":"Computer Control and Audit",
+        "thai_name":"การควบคุมและการตรวจสอบงานคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418321-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418474-65",
+        "eng_name":"Software Testing and Verification",
+        "thai_name":"การทดสอบและทวนสอบซอฟต์แวร์",
+        "credit":3,
+        "condition":"01418211-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418490-65",
+        "eng_name":"Cooperative Education",
+        "thai_name":"สหกิจศึกษา",
+        "credit":6,
+        "condition":"01418390-65"
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะเลือก",
+        "code":"01418496-65",
+        "eng_name":"Selected Topic in Computer Science",
+        "thai_name":"เรื่องเฉพาะทางวิทยาการคอมพิวเตอร์",
+        "credit":3,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418497-65",
+        "eng_name":"Seminar",
+        "thai_name":"สัมมนา",
+        "credit":1,
+        "condition":""
+    },
+    {
+        "str":65,
+        "field":"เฉพาะ",
+        "tag":"เฉพาะบังคับ",
+        "code":"01418499-65",
+        "eng_name":"Computer Science Project",
+        "thai_name":"โครงงานวิทยาการคอมพิวเตอร์",
+        "credit":3,
+        "condition":"01418321-65"
+    }
+]

@@ -11,4 +11,4 @@ class Category(models.Model) :
     curriculum_fk = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'course csategory: {self.category_name}'
+        return f'course category: {self.category_name}'

@@ -50,21 +50,21 @@ class CalculateTestCase(TestCase) :
         )
         
         self.c1 = Course.objects.create(
-            course_id='01175111-65',
+            course_id='01177111-65',
             credit=1,
             course_name_th='กรีฑาลู่-ลาน เพื่อสุขภาพ',
             course_name_en='Track and Field for Health',
             subcategory_fk=self.subcate2
         )
         self.c2 = Course.objects.create(
-            course_id='01361101-65',
+            course_id='01371101-65',
             credit=3,
             course_name_th='ภาษากับการสื่อสาร',
             course_name_en='English for Everyday Life',
             subcategory_fk=self.subcate1
         )
         self.c3 = Course.objects.create(
-            course_id='01417111-65',
+            course_id='01417112-65',
             credit=3,
             course_name_th='แคลคูลัส',
             course_name_en='Calculus',

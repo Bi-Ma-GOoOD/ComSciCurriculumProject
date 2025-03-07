@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Registration</title>
+</head>
+<body>
+    <h2>Complete Registration</h2>
+    {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </p>
+        <p>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+        </p>
+        <p>
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="student">Student</option>
+                <option value="inspector">Inspector</option>
+            </select>
+        </p>
+        <p id="student-code-field" style="display: none;">
+            <label for="student-code">Student Code:</label>
+            <input type="text" id="student-code" name="student-code">
+        </p>
+        <p id="key-code-field" style="display: none;">
+            <label for="key-code">Key Code:</label>
+            <input type="text" id="key-code" name="key-code">
+        </p>
+        <button type="submit">Complete Registration</button>
+    </form>
+    <script>
+        document.getElementById('role').addEventListener('change', function() {
+            var role = this.value;
+            if (role === 'student') {
+                document.getElementById('student-code-field').style.display = 'block';
+                document.getElementById('key-code-field').style.display = 'none';
+            } else if (role === 'inspector') {
+                document.getElementById('student-code-field').style.display = 'none';
+                document.getElementById('key-code-field').style.display = 'block';
+            } else {
+                document.getElementById('student-code-field').style.display = 'none';
+                document.getElementById('key-code-field').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
