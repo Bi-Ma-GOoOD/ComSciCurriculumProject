@@ -122,9 +122,19 @@ class CalculatorService() :
             subcategory.subcategory_name: {'subcategory': subcategory, 'matchEnrollment':{}, 'sumCredit':0} for subcategory in subcategories
         }
         
+        print()
+        print(f">>>> mappedEnrollments: {mappedEnrollments}")
+        
         for enrollment in enrollments :
             subcategoryName = enrollment.enrollment.course_fk.subcategory_fk.subcategory_name
             matchSubcategory = mappedEnrollments.get(subcategoryName)
+            
+            print()
+            print(f"subcategoryName: {subcategoryName}")
+            print(f"matchSubcategory: {matchSubcategory}")
+            print(f"mappedEnrollments: {mappedEnrollments}")
+            print()
+            
             if matchSubcategory :
                 matchSubcategory['matchEnrollment'][enrollment.enrollment.course_fk.course_id] = enrollment
                 matchSubcategory['sumCredit'] += enrollment.enrollment.course_fk.credit

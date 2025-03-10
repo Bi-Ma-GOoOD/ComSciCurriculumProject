@@ -34,7 +34,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[1], 'A', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
         self.assertTrue(result['is_complete'].value)
         
     def test_checking_result_with_F_subject(self) :
@@ -45,7 +45,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[1], 'F', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
         
         self.assertFalse(result['is_complete'].value)
         
@@ -57,7 +57,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[1], 'D+', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
 
         self.assertFalse(result['is_complete'].value)
 
@@ -69,7 +69,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[1], 'A', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
 
         self.assertFalse(result['is_complete'].value)
 
@@ -84,7 +84,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[3], 'N', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
             
         self.assertFalse(result['is_complete'].value)
         
@@ -97,7 +97,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[2], 'W', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
             
         self.assertTrue(result['is_complete'].value)
         
@@ -109,7 +109,7 @@ class AssignResult(TestCase) :
         enrollments.append((self.courses[1], 'W', 2566))
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
-        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses)
+        result = self.calculator.verify(self.curriculum, self.studiedCourse, self.categories, self.subcategories, self.courses, isTesting=True)
             
         self.assertFalse(result['is_complete'].value)
         

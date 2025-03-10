@@ -5,22 +5,22 @@ subjectNames = [
     {
         'name-th':'ศิลปะการอยู่ร่วมกับผู้อื่น',
         'name-en':'The Art of Living with Others',
-        'code':'01387101-65',
+        'code':'01387xx1-65',
     },
     {
         'name-th':'ปรัชญาเศรษฐกิจพอเพียงกับพุทธศาสนา',
         'name-en':'Philosophy of Sufficiency Economics and Buddhism',
-        'code':'01387103-65',
+        'code':'01387xx3-65',
     },
     {
         'name-th':'อาหารเพื่อมนุษยชาติ',
         'name-en':'Food for Mankind',
-        'code':'01999011-65',
+        'code':'01999xx1-65',
     },
     {
         'name-th':'เปตองเพื่อสุขภาพ',
         'name-en':'Petanque for Health',
-        'code':'01175119-65',
+        'code':'01175xx9-65',
     },
 ]
 

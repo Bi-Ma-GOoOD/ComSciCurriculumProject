@@ -1,6 +1,6 @@
 from typing import List
 
-from ..models import Curriculum, Enrollment, CaluculatedEnrollment
+from ..models import Curriculum, Enrollment, Category, Subcategory
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
 
@@ -105,12 +105,13 @@ class EducationEvaluationService() :
         totalWeightedGrade = 0
         totalCredit = 0
         
-        for subcategory in subcategoriesDetail :
+        for subcategory in subcategoriesDetail :            
             checked = self.getSubcategoryDetail(subcategory, categorizeCoursesReformat, restudyRequire)
-            subcategories.append(checked)
-            isComplete &= checked['isComplete'] and (checked['totalWeightedGrade'] > 0)
-            totalCredit += checked['totalCredit']
-            totalWeightedGrade += checked['totalWeightedGrade']
+            if checked :
+                subcategories.append(checked)
+                isComplete &= checked['isComplete'] and (checked['totalWeightedGrade'] > 0)
+                totalCredit += checked['totalCredit']
+                totalWeightedGrade += checked['totalWeightedGrade']
         
         return {
             'category': categoryDetail,
@@ -122,11 +123,17 @@ class EducationEvaluationService() :
         }
         
     def getSubcategoryDetail(self, subcategory, categorizeCourses, restudyRequire) :
+        if not categorizeCourses.get(subcategory.subcategory_name) :
+            return []
+        
         studied = []
         totalWeightedGrade = 0
         totalCredit = 0
         
         for enrollment in categorizeCourses[subcategory.subcategory_name] :
+            if enrollment.enrollment.course_fk.subcategory_fk.subcategory_id != subcategory.subcategory_id :
+                raise RuntimeError('Studied course doesn\'n match with subcategory in curriculum\'s subcategory.')
+            
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
             
@@ -155,29 +162,45 @@ class EducationEvaluationService() :
             'totalCredit': totalCredit,
         }
     
-    def verify(self, curriculum: Curriculum, enrollments: List[Enrollment], *args) :
-        # TODO: use only in testing
-        if not len(args) == 3 :
-            return None
-        categories, subcategories, courses = args
-        
+    def verify(self, curriculum: Curriculum, enrollments: List[Enrollment], *args, **param) :
         subcategoriesReformate = {}
-        for subcategory in subcategories :
-            categoryId = subcategory.category_fk.category_name
-            if subcategoriesReformate.get(categoryId) :
-                subcategoriesReformate[categoryId].append(subcategory)
-            else :
-                subcategoriesReformate[categoryId] = [subcategory] 
         
+        if param.get('isTesting') and len(args) == 3 :
+            categories, subcategories, courses = args
+            
+            categories = [[categories[0]], categories[1]]
+        
+            for subcategory in subcategories :
+                categoryId = subcategory.category_fk.category_name
+                if subcategoriesReformate.get(categoryId) :
+                    subcategoriesReformate[categoryId].append(subcategory)
+                else :
+                    subcategoriesReformate[categoryId] = [subcategory] 
+        
+        else :
+            subcategories = []
+            
+            categories = Category.objects.filter(curriculum_fk=curriculum.curriculum_id)
+            
+            allSubcategories = Subcategory.objects.all()
+            for category in categories :
+                if category.category_name == 'หมวดวิชาเลือกเสรี' :
+                    continue
+                
+                subcategories.extend(e for e in allSubcategories.filter(category_fk=category.category_id))
+                
+                subcategoriesReformate[category.category_name] = [e for e in subcategories]
+                
+            categories = [[e for e in categories.exclude(category_name='หมวดวิชาเลือกเสรี')], categories.get(category_name='หมวดวิชาเลือกเสรี')]              
   
-        cleanEnrollment = self.caculator.GPACalculate(enrollments)
+        cleanEnrollment = self.caculator.GPACalculate(enrollments)        
         mappingResult = self.caculator.map(subcategories, cleanEnrollment)
 
         studyResult = self.getCurriculumData(
             curriculum=curriculum,
             mappingResult=mappingResult,
             freeElectiveDetail = categories[1],
-            nonElectiveCategoryDetail = [categories[0]],
+            nonElectiveCategoryDetail = categories[0],
             subCategoryDetail = subcategoriesReformate,
         )
         

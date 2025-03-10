@@ -12,6 +12,7 @@ class VerificationResult(models.Model) :
     verification_result_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     result_status = models.IntegerField(choices=VerificationResult.choices, default=VerificationResult.NOT_PASS)
     activity_status = models.IntegerField(choices=VerificationResult.choices, default=VerificationResult.NOT_PASS)
+    fee_status = models.IntegerField(choices=VerificationResult.choices, default=VerificationResult.NOT_PASS)
 
     form_fk = models.ForeignKey(Form, on_delete=models.CASCADE)
     
