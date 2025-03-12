@@ -7,9 +7,9 @@ from django.conf import settings
 class OCRResult(TestCase):
     def setUp(self):
         self.ocr = OCRService()
-        self.grade_text = self.ocr.extract_text_from_pdf(settings.BASE_DIR/"main/utils/OCR_transcript_test1.pdf")
-        self.activity_text = self.ocr.extract_text_from_pdf(settings.BASE_DIR/"main/utils/activity_transcript_test.pdf")
-        self.invoice_text = self.ocr.extract_text_from_pdf(settings.BASE_DIR/"main/utils/invoice_test.pdf")
+        self.grade_text = self.ocr.extract_text_from_file_path(settings.BASE_DIR/"main/utils/OCR_transcript_test.pdf")
+        self.activity_text = self.ocr.extract_text_from_file_path(settings.BASE_DIR/"main/utils/activity_transcript_test.pdf")
+        self.invoice_text = self.ocr.extract_text_from_file_path(settings.BASE_DIR/"main/utils/invoice_test.pdf")
         self.soodlor = User.objects.create(
             email = "soodlorlnwza@gmail.com",
             password = "lorpainhai081",

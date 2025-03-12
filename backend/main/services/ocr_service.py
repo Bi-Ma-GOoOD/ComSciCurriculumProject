@@ -9,13 +9,13 @@ class OCRService():
         self.semester_mapping = {"Summer":0, "First":1, "Second":2}
         self.grade_mapping = {'A':4, 'B':3, 'B+':3.5, 'C':2, 'C+':2.5, 'D':1, 'D+':1.5, 'F':0} #NOTE: handle DecimalField
         
-    """def extract_text_from_pdf(self, file_path):
+    def extract_text_from_file_path(self, file_path):
         with open(file_path, 'rb') as file:
             doc = fitz.open(file)
             text = ""
             for page in doc:
                 text += page.get_text("text") + "\n"
-            return text.split("\n")"""
+            return text.split("\n")
         
     def extract_text_from_pdf(self, uploaded_file):
         file_stream = BytesIO(uploaded_file.read())  # โหลดไฟล์เข้า memory
