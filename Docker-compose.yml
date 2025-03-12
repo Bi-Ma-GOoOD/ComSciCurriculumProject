@@ -3,7 +3,7 @@ services:
     container_name: cs_curriculum_minio
     image: minio/minio
     env_file:
-      - ./backend/.env
+      - .env.example
     ports:
       - "9000:9000"
       - "9001:9001"
