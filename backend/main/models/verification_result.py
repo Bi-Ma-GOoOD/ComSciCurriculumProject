@@ -16,3 +16,6 @@ class VerificationResult(models.Model) :
 
     form_fk = models.ForeignKey(Form, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return f'result_status: {self.result_status}, activity_status: {self.activity_status}, fee_status: {self.fee_status}'
+    

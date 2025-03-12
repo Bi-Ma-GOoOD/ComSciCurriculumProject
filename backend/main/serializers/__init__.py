@@ -1,1 +1,2 @@
 from .credit_verify_response import CreditVerifySerializer, NotPassCourseSerializer
+from .verification_response import StudyVerificationSerializer

@@ -3,8 +3,6 @@ from typing import List
 from ..models import Curriculum, Enrollment, Category, Subcategory, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
-from ..serializers import NotPassCourseSerializer
-
 
 class EducationEvaluationService() :
     def __init__(self):
@@ -205,68 +203,39 @@ class EducationEvaluationService() :
             subCategoryDetail = subcategoriesReformate,
         )).data            
             
-        # try :
-        #     credit_detail = CreditDetail.objects.create(
-        #         credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
-        #         verification_result_fk = verificationResult,
-        #     )     
+        try :
+            credit_detail = CreditDetail.objects.create(
+                credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
+                verification_result_fk = verificationResult,
+            )     
             
-        #     for category in studyResult['categories'] :
-        #         if category.get('subcategories') :
-        #             # TODO saving data into database
-        #             for subcategory in category['subcategories'] :
-        #                 SubcategoryDetails.objects.create(
-        #                     acquired_credit = subcategory['total_credit'],
-        #                     subcateory_fk = allSubcategories.get(subcategory_id=subcategory['subcategory_id']),
-        #                     category_fk = allCategory.get(category_id=category['category_id']),
-        #                     credit_details_fk = credit_detail,
-        #                 )
-        #         else :
-        #             SubcategoryDetails.objects.create(
-        #                 acquired_credit = category['total_credit'],
-        #                 subcateory_fk = None,
-        #                 category_fk = allCategory.get(category_id=category['category_id']),
-        #                 credit_details_fk = credit_detail,
-        #             )
-                    
-        #     for course in studyResult['restudy_require'] :
-        #         NotPassCourse.objects.create(
-        #             credit_detail_fk = credit_detail,
-        #             subcategory_fk = course,
-        #         )
-                
-        
-        # except Exception as e :
-        #     print('Exception occurred:', e)
-        # finally :
-        #     return studyResult
-        
-        credit_detail = CreditDetail.objects.create(
-            credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
-            verification_result_fk = verificationResult,
-        )     
-        
-        for category in studyResult['categories'] :
-            if category.get('subcategories') :
-                # TODO saving data into database
-                for subcategory in category['subcategories'] :
+            for category in studyResult['categories'] :
+                if category.get('subcategories') :
+                    for subcategory in category['subcategories'] :
+                        SubcategoryDetails.objects.create(
+                            acquired_credit = subcategory['total_credit'],
+                            is_pass = subcategory['is_complete'],
+                            subcateory_fk = allSubcategories.get(subcategory_id=subcategory['subcategory_id']),
+                            category_fk = allCategory.get(category_id=category['category_id']),
+                            credit_detail_fk = credit_detail,
+                        )
+                else :
                     SubcategoryDetails.objects.create(
-                        acquired_credit = subcategory['total_credit'],
-                        subcateory_fk = allSubcategories.get(subcategory_id=subcategory['subcategory_id']),
+                        acquired_credit = category['total_credit'],
+                        is_pass = subcategory['is_complete'],
+                        subcateory_fk = None,
                         category_fk = allCategory.get(category_id=category['category_id']),
-                        credit_details_fk = credit_detail,
+                        credit_detail_fk = credit_detail,
                     )
-            else :
-                SubcategoryDetails.objects.create(
-                    acquired_credit = category['total_credit'],
-                    subcateory_fk = None,
-                    category_fk = allCategory.get(category_id=category['category_id']),
-                    credit_details_fk = credit_detail,
+                    
+            for course in studyResult['restudy_require'] :
+                NotPassCourse.objects.create(
+                    credit_detail_fk = credit_detail,
+                    enrollment_fk = Enrollment.objects.get(enrollment_id=course['enrollment_id']),
                 )
                 
-        for course in studyResult['restudy_require'] :
-            NotPassCourse.objects.create(
-                credit_detail_fk = credit_detail,
-                enrollment_fk = Enrollment.objects.get(enrollment_id=course['enrollment_id']),
-            )
-        return studyResult
+        
+        except Exception as e :
+            print('Exception occurred:', e)
+        finally :
+            return studyResult

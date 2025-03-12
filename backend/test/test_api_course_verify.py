@@ -1,12 +1,12 @@
-import uuid
-from django.test import TestCase
+from rest_framework.test import APITestCase
 
-from main.models import Curriculum, Category, Subcategory, Course, Enrollment, Form, User
+from main.models import Curriculum, Category, Subcategory, Course, Enrollment
 from main.utils import mock_data
-from main.services import EducationEvaluationService
+from main.services import EducationEvaluationService, GradeVerificationService
 
-class AssignResultWithDB(TestCase) :
-    def setUp(self) :        
+class APICourseVerify(APITestCase) :
+    def setUp(self) :
+        self.apiUrl = '/api/credit-verify/'
         self.user, _, self.verificationResult = mock_data.mockUser()
                 
         self.curriculum = Curriculum.objects.get(curriculum_year=2565)
@@ -27,11 +27,15 @@ class AssignResultWithDB(TestCase) :
             
         self.service = EducationEvaluationService()
         
-    def test_func(self) :         
-        result = self.service.verify(curriculum=self.curriculum, enrollments=self.enrollment, verificationResult=self.verificationResult)
+    def test_api(self) :
+        self.service.verify(
+            curriculum=self.curriculum,
+            enrollments=self.enrollment,
+            verificationResult=self.verificationResult
+        )
+        
+        response = self.client.get(self.apiUrl, {'uid': self.user.user_id})
         
         with open('output.txt', 'w', encoding='utf-8') as f :
-            f.write(str(result))
+            f.write(str(response.data))
         
-        print()
-        print(result)

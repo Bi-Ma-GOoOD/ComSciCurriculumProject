@@ -9,3 +9,6 @@ class NotPassCourse(models.Model) :
     
     credit_detail_fk = models.ForeignKey(CreditDetail, on_delete=models.CASCADE)
     enrollment_fk = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'credit_detail_fk: {self.credit_detail_fk}, enrollment_fk: {self.enrollment_fk}'

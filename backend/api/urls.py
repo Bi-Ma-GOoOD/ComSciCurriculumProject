@@ -1,7 +1,7 @@
 from django.urls import path
 
-from main.views import CreditVerifyView
+from main.views import GradeVerifyView
 
 urlpatterns = [
-    path('credit-verify/', CreditVerifyView.as_view(), name='credit-verify-view')
+    path('credit-verify/', GradeVerifyView.as_view(), name='credit-verify-view')
 ]
