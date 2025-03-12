@@ -25,7 +25,7 @@ class OCRResult(TestCase):
         print(self.invoice_text)
         
     def test_activity_status(self):
-        print("activity status: ", self.ocr.is_valid_activity(self.activity_text, "6510450861"))
+        print("activity status: ", self.ocr.get_studentId_activity(self.activity_text, "6510450861"))
         
     def test_student_info(self):
         print(self.ocr.get_student_info(self.grade_text))

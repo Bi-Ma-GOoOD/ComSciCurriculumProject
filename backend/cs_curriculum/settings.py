@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'main.apps.MainConfig',
     'test',
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -62,6 +63,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'cs_curriculum.urls'

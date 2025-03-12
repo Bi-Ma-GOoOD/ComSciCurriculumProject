@@ -176,7 +176,7 @@ class OCRService():
             
         print("Total courses:", count)
     
-    def is_valid_activity(self, text, uid):
+    def get_studentId_activity(self, text, uid):
         id_match = re.match(r".+\s+(\d{10})", text[1])
         if id_match:
             matched_uid = id_match.group(1)
@@ -206,6 +206,12 @@ class OCRService():
             
         return True
         
+    def is_valid_activity_format(self, text):
+        return "Activity Record" in text and "Student ID:" in text
+
+    def is_valid_receipt_format(self, text):
+        return bool(re.search(r"ใบเสร็จรับเงิน\.*", text[2]))
+
     #NOTE: parameter user_id and form_id
     def check_validation(self, files):
             user = User(student_code="6510450861")
@@ -222,38 +228,40 @@ class OCRService():
                 transcript = self.extract_text_from_pdf(files[0])
                 st_info = self.get_student_info(transcript)
                 
-                if st_info["id"] == user.student_code:
-                    if self.is_valid_transcript(transcript):
+                if self.is_valid_transcript(transcript):
+                    if st_info["id"] == user.student_code:
                         if st_info["field"].lower() == "computer science":
                             response["transcript"]["valid"] = True
-                            upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
                         else:
                             response["transcript"]["message"] = "Invalid field in transcript (should be 'Computer Science')."
                     else:
-                        response["transcript"]["message"] = "Invalid transcript format."
+                        response["transcript"]["message"] = "Student ID in transcript does not match."
                 else:
-                    response["transcript"]["message"] = "Student ID in transcript does not match."
+                    response["transcript"]["message"] = "Invalid transcript format."
 
             if files[1]:
                 activity = self.extract_text_from_pdf(files[1])
                 
-                if self.is_valid_activity(activity, user.student_code) == user.student_code:
+                if self.get_studentId_activity(activity, user.student_code) == user.student_code:
                     response["activity"]["valid"] = True
-                    upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
                 else:
                     response["activity"]["message"] = "Invalid or mismatched activity data."
 
             if files[2]:
                 receipt = self.extract_text_from_pdf(files[2])
-                
-                if self.extract_receipt_info(receipt)["id"] == user.student_code:
-                    response["receipt"]["valid"] = True
-                    upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
+                if self.is_valid_receipt_format(receipt):
+                    if self.extract_receipt_info(receipt)["id"] == user.student_code:
+                        response["receipt"]["valid"] = True
+                    else:
+                        response["receipt"]["message"] = "Receipt ID does not match student ID."
                 else:
-                    response["receipt"]["message"] = "Receipt ID does not match student ID."
+                    response["receipt"]["message"] = "Invalid receipt format."
 
 
             if all(file["valid"] for file in response.values()):
+                upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
+                upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
+                upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
                 VerificationResult.objects.create(
                     result_status=VerificationResult.VerificationResult.NOT_PASS,
                     activity_status=VerificationResult.VerificationResult.NOT_PASS,
