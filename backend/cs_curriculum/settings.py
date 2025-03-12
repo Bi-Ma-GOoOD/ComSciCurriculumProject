@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'main.apps.MainConfig',
     'test',
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -62,6 +63,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'cs_curriculum.urls'
@@ -102,6 +110,11 @@ DATABASES = {
     }
 }
 
+# Minio settings
+MINIO_ACCESS_KEY = ENVIRON('MINIO_ACCESS_KEY')
+MINIO_SECRET_KEY = ENVIRON('MINIO_SECRET_KEY')
+MINIO_ENDPOINT = ENVIRON('MINIO_ENDPOINT')
+MINIO_BUCKET = ENVIRON('MINIO_BUCKET')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

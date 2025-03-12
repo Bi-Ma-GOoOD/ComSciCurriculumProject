@@ -1,0 +1,108 @@
+.grad-file-page .content {
+  padding-top: 138px; /* Height of the header */
+}
+
+.grad-file-page .grad-file-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  width: 80vw; /* 80% of viewport width */
+  height: 60vh; /* 60% of viewport height */
+  border-radius: 9px;
+  background-color: #006664;
+  margin: auto;
+  color: white;
+  position: relative;
+}
+
+.grad-file-page .grad-file-container input[type="file"],
+.grad-file-page .grad-file-container .button {
+  margin: 1em auto; /* Center buttons horizontally */
+}
+
+.grad-file-page .button-container {
+  position: absolute;
+  top: 1.3em;
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+}
+
+.upload-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.1em;
+}
+
+.upload-section span {
+  flex-shrink: 0; /* Prevent the text from shrinking */
+  width: 250px; /* Set a fixed width for alignment */
+  text-align: left; /* Align text to the right */
+}
+
+.upload-text {
+  margin-right: 16px;
+  font-size: 16px;
+  color: white;
+}
+
+.message-container {
+  padding: 1em;
+  width: 100%;
+  border-radius: 0px;
+  margin-top: 1em;
+  text-align: center;
+  color: white;
+  position: fixed; /* Make it a popup */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Ensure it is above other elements */
+  background-color: rgba(255, 255, 255, 0); /* Adjust transparency */
+}
+
+.confirm-popup {
+  background-color: #FFFFFF;
+  color: #006664;
+  font-size: 1.5em;
+  align-content: center;
+  top: 36.5%;
+  left: 25%;
+  justify-content: center;
+  position: fixed;
+  margin-top: 1em;
+  text-align: center;
+  z-index: 1100;
+  border: 25px solid; /* Define border width and style */
+  border-color: #B2BB1E; /* Define border color separately */
+  border-radius: 9px;
+  padding: 1em; /* Add padding to the popup */
+}
+
+.confirm-popup .confirm-button,
+.confirm-popup .cancel-button {
+  margin: 0.5em; /* Add margin between buttons */
+  padding: 0.5em 1em; /* Add padding to the buttons */
+}
+
+.warning-icon{
+  font-size: 2em; /* Set the icon size */
+  color: #FF0000; /* Set the icon color */
+}
+
+.error-message {
+  background-color: #e10505b8;
+  color: white;
+  font-size: 3.5em;
+  margin-top: 1em;
+  text-align: center;
+}
+
+.success-message {
+  background-color: #00ca39b8;
+  color: white;
+  font-size: 3.5em;
+  margin-top: 1em;
+  text-align: center;
+}
