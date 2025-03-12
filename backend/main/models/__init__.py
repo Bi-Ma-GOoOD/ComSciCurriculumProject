@@ -9,3 +9,4 @@ from .credit_detail import CreditDetail
 from .form import Form
 from .subcategory_details import SubcategoryDetails
 from .verification_result import VerificationResult
+from .not_pass_course import NotPassCourse

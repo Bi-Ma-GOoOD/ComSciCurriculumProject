@@ -23,10 +23,12 @@ class SubcategorySerializer(serializers.Serializer) :
             raise serializers.ValidationError('unexpected object type in SubcategorySerializer class')
         
         return {
+            'subcategory_id': str(instance['subcategory'].subcategory_id),
             'subcategory_name': instance['subcategory'].subcategory_name,
             'min_credit': instance['subcategory'].subcateory_min_credit,
             'is_complete': instance['isComplete'],
-            'total_weighted_grade': instance['totalWeightedGrade']/instance['totalCredit'] if instance['totalCredit'] != 0 else 0,
+            'gpax': instance['totalWeightedGrade']/instance['totalCredit'] if instance['totalCredit'] != 0 else 0,
+            'total_credit': instance['totalCredit'],
             'courses': self.get_courses(instance['courses']),
         }
         

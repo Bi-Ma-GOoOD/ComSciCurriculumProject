@@ -1,5 +1,5 @@
 from typing import List
-from ..models import User, Curriculum, Category, Subcategory, Course, Enrollment
+from ..models import User, Curriculum, Category, Subcategory, Course, Enrollment, Form, VerificationResult
 
 subjectNames = [
     {
@@ -24,14 +24,22 @@ subjectNames = [
     },
 ]
 
-def mockUser() -> User :
-    return User.objects.create(
+def mockUser() :
+    user = User.objects.create(
         email='abc@gmail.com',
         password='1234',
         name='doe',
         student_code='6510450000',
         role=User.Role.STUDENT,
     )
+    form = Form.objects.create(
+        user_fk=user,
+    )
+    verification_result = VerificationResult.objects.create(
+        form_fk=form,
+    )
+
+    return user, form, verification_result
     
 def mockCurriculum() -> Curriculum :
     return Curriculum.objects.create(

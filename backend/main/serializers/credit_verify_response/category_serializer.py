@@ -29,18 +29,22 @@ class CategorySerializer(serializers.Serializer) :
         if instance['isFreeElective'] :
             # incase of have no subcategory ex. หมวดวิชาเสรี
             return {
+                'category_id': str(instance['category'].category_id),
                 'category_name': instance['category'].category_name,
                 'min_credit': instance['category'].category_min_credit,
                 'is_complete': instance['isComplete'],
                 'gpax': instance['totalWeightedGrade']/instance['totalCredit']  if instance['totalCredit'] != 0 else 0,
+                'total_credit': instance['totalCredit'],
                 'courses': self.get_courses(instance['courses_or_subcategories']),
             }
         
         return {
+            'category_id': str(instance['category'].category_id),
             'category_name': instance['category'].category_name,
             'min_credit': instance['category'].category_min_credit,
             'is_complete': instance['isComplete'],
             'gpax': instance['totalWeightedGrade']/instance['totalCredit'] if instance['totalCredit'] != 0 else 0,
+            'total_credit': instance['totalCredit'],
             'subcategories': self.get_subcategories(instance['courses_or_subcategories']),
         }
         

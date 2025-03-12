@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .course_serializer import CourseSerializer
+from .not_pass_course_serializer import NotPassCourseSerializer
 from .category_serializer import CategorySerializer
 from .curriculum_serializer import CurriculumSerializer
 
@@ -38,4 +38,4 @@ class CreditVerifySerializer(serializers.Serializer) :
         return CategorySerializer(obj, many=True).data
     
     def get_restudyRequire(self, obj) :
-        return CourseSerializer(obj, many=True).data
+        return NotPassCourseSerializer(obj, many=True).data
