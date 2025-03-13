@@ -1,15 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
+import OtpPage from './components/OtpPage';
+import SignUpPass from './components/SignUpPass';
 
-const App: React.FC = () => {
+function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/SignUpPage" element={<SignUpPage />} />
+        <Route path="/OtpPage" element={<OtpPage />} />
+       <Route path="/SignUpPass" element={<SignUpPass />} />
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
