@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 138px; 
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+}
+
+.logo {
+  height: 110px;
+  width: 120px;
+}
+
+.header-line {
+  width: 100%;
+  height: 18px;
+  background-color: #006664;
+}

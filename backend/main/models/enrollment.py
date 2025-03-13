@@ -15,11 +15,20 @@ class Enrollment(models.Model) :
     semester = models.IntegerField(choices=Semester.choices)
     year = models.IntegerField()
     
-    # can be null in case of N/NP/P/U/S/I
-    grade = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    grade = models.CharField(max_length=2)
     
     user_fk = models.ForeignKey(User, on_delete=models.CASCADE)
     course_fk = models.ForeignKey(Course, on_delete=models.CASCADE)
     
     def __str__(self):
         return f'course id {self.course_fk.course_id}, ({self.semester, self.year}), {self.grade}'
+    
+class CaluculatedEnrollment() :    
+    def __init__(self, *args, **kwargs):
+        if 'enrollment' in kwargs.keys() and 'totalGrade' in kwargs.keys() and 'charGrade' in kwargs.keys() :
+            self.enrollment = kwargs['enrollment']
+            self.totalGrade = kwargs['totalGrade']
+            self.charGrade = kwargs['charGrade']
+
+        else :
+            raise RuntimeError('CalculatedEnrollment class required following named argument {"enrollment", "totalGrade"}')

@@ -1,4 +1,15 @@
 services:
+  minio:
+    container_name: cs_curriculum_minio
+    image: minio/minio
+    env_file:
+      - .env.example
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
   db:
     container_name: cs_curriculum
     image: mysql:latest
@@ -23,3 +34,4 @@ services:
 
 volumes:
   csc_db_data:
+  minio_data:
