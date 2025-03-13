@@ -186,4 +186,7 @@ pyrightconfig.json
 pyvenv.cfg
 pip-selfcheck.json
 
+### Testing Output File ###
+output.txt
+
 # End of https://www.toptal.com/developers/gitignore/api/python,virtualenv

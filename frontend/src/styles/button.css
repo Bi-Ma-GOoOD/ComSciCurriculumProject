@@ -1,0 +1,91 @@
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  border-color: black;
+  background-color: Gainsboro;
+  color: black;
+}
+
+.button:hover {
+  background-color: #9e9e9e;
+  color: white; 
+}
+
+.error-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  border-color: black;
+  background-color: red;
+  color: white;
+}
+
+.error-button:hover {
+  background-color: #b70000;
+}
+
+.accept-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  border-color: black;
+  background-color: forestgreen;
+  color: white;
+}
+
+.accept-button:hover {
+  background-color: #006400;
+}
+
+.confirm-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 0.7em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  border-color: black;
+  background-color: red;
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: #b70000;
+}
+
+.cancel-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 0.7em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
+  border-color: black;
+  background-color: Gainsboro;
+  color: black;
+}
+
+.cancel-button:hover {
+  background-color: #9e9e9e;
+  color: white; 
+}
