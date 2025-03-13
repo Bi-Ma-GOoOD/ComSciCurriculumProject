@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './components/LoginPage';
-import SignUpPage from './components/SignUpPage';
-import OtpPage from './components/OtpPage';
-import SignUpPass from './components/SignUpPass';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
+import OtpPage from './pages/OtpPage';
+import SignUpPass from './pages/SignUpPass';
 import CreditCheckPage from "./pages/creditCheck";
 import InsertGradFile from "./pages/insertGradFile";
 

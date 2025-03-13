@@ -33,7 +33,7 @@
 // export default LoginPage;
 
 import React, { useState } from 'react'
-import './LoginPage.css'
+import '../styles/LoginPage.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -60,14 +60,14 @@ function LoginPage() {
       });
 
       if (response.data.success) {
-        // Show success message
-        alert('Login successful! ' + response.data.message);
+        // // Show success message
+        // alert('Login successful! ' + response.data.message);
         
         // Store user data in localStorage or context if needed
         localStorage.setItem('user', JSON.stringify(response.data.user));
         
         // Redirect to the appropriate page
-        // navigate(response.data.redirect_url);
+        navigate('/insertGradFile');
       } else {
         setError(response.data.message);
       }

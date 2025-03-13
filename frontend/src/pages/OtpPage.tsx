@@ -69,7 +69,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import './OtpPage.css';
+import '../styles/OtpPage.css';
 
 function OtpPage() {
   const [otp, setOtp] = useState(new Array(6).fill(""));

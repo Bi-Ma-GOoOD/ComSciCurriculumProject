@@ -40,7 +40,7 @@
 // export default SignUpPage;
 
 import React, { useState } from 'react';
-import './SignUpPage.css';
+import '../styles/SignUpPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
