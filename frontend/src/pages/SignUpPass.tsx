@@ -1,69 +1,8 @@
-// import React, { useState } from 'react';
-// import './SignUpPass.css';
-
-// function SignUpPass() {
-//   const [role, setRole] = useState("Roles");
-//   const [isOpen, setIsOpen] = useState(false);
-//   const roles = ["นิสิต", "ผู้ตรวจสอบหลักฐาน"];
-  
-//   // กำหนด placeholder ตาม role ที่เลือก
-//   const getPlaceholder = () => {
-//     if (role === "นิสิต") {
-//       return "รหัสนิสิต";
-//     } else if (role === "ผู้ตรวจสอบหลักฐาน") {
-//       return "key";
-//     }
-//     return "";
-//   };
-
-//   return (
-//     <div className='container'>
-//       <div className="left-tab"></div>
-//       <div className='content'>
-//         <div className="ku-logo"></div>
-//         <div className="bottom-tab"></div>
-//         <div className='title'>KU ComSci Graduate’s Check</div>
-//       </div>
-//       <div className='signup-password'>
-//         <div className='title2'>ลงทะเบียนตรวจสอบหน่วยกิตและเช็คจบ</div>
-//         <div className='password-title'>Password</div>
-//         <input type="password" id="password" placeholder="1234abcd" className="password-input" />
-//         <div className='confirm-password-title'>Confirm Password</div>
-//         <input type="password" id="confirm-password" placeholder="1234abcd" className="confirm-password-input" />
-        
-//         <div className="input-group">
-//           <div className="dropdown-container">
-//             <button className="dropdown-button" onClick={() => setIsOpen(!isOpen)}>
-//               <span>{role}</span>
-//               <span className="dropdown-icon">▼</span>
-//             </button>
-//             {isOpen && (
-//               <ul className="dropdown-menu">
-//                 {roles.map((option) => (
-//                   <li key={option} onClick={() => { setRole(option); setIsOpen(false); }}>
-//                     {option}
-//                   </li>
-//                 ))}
-//               </ul>
-//             )}
-//           </div>
-          
-//           <input type="text" className="id-student-input" placeholder={getPlaceholder()} />
-//         </div>
-
-//         <button className='register-button'>สมัคร</button>
-//       </div>
-//       <div className="right-tab"></div>
-//     </div>
-//   );
-// }
-
-// export default SignUpPass;
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SignUpPass.css';
+import Swal from 'sweetalert2';
 
 function SignUpPass() {
   const navigate = useNavigate();
@@ -110,19 +49,19 @@ function SignUpPass() {
   };
   
   // Handle field changes
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
   };
   
   // Handle role selection
-  const handleRoleSelect = (role) => {
+  const handleRoleSelect = (role: string) => {
     setFormData(prev => ({ ...prev, role, studentCode: '', keyCode: '' }));
     setIsOpen(false);
   };
   
   // Handle code/key input based on role
-  const handleCodeChange = (e) => {
+  const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (formData.role === "นิสิต") {
       setFormData(prev => ({ ...prev, studentCode: value }));
@@ -138,32 +77,62 @@ function SignUpPass() {
     
     // Validate form
     if (!formData.email) {
-      setError('Email is required');
+      Swal.fire({
+        title: 'กรุณากรอกอีเมล',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
     
     if (!formData.password) {
-      setError('Password is required');
+      Swal.fire({
+        title: 'กรุณากรอกรหัสผ่าน',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
     
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      Swal.fire({
+        title: 'กรุณากรอกรหัสผ่านให้ตรงกัน',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
     
     if (formData.role === 'Roles') {
-      setError('Please select a role');
+      Swal.fire({
+        title: 'กรุณาเลือก Role',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
     
     if (formData.role === "นิสิต" && !formData.studentCode) {
-      setError('Student code is required');
+      Swal.fire({
+        title: 'กรุณากรอกรหัสนิสิต',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
     
     if (formData.role === "ผู้ตรวจสอบหลักฐาน" && !formData.keyCode) {
-      setError('Key code is required');
+      Swal.fire({
+        title: 'กรุณากรอก Key Code',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
     
@@ -185,11 +154,15 @@ function SignUpPass() {
         localStorage.removeItem('signupEmail');
         localStorage.removeItem('signupReference');
         
-        // Show success message
-        alert('Registration successful!');
-        
-        // Redirect to login page
-        navigate('/');
+        Swal.fire({
+          title: 'ลงทะเบียนสำเร็จ!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: "#B2BB1E"
+        }).then(() => {
+          // Redirect to login page
+          navigate('/');
+        });
       }
     } catch (err) {
       console.error('Registration error:', err);
