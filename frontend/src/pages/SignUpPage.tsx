@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 function SignUpPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+
 
   const handleNext = async () => {
     // Validate email
@@ -49,15 +49,32 @@ function SignUpPage() {
           confirmButtonColor: "#B2BB1E"
         });
       } else {
-       
-        setError(response.data.message || 'Signup failed');
+        Swal.fire({
+          title: "เกิดข้อผิดพลาด",
+          text: response.data.message || 'Signup failed',
+          icon: "error",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#B2BB1E"
+        });
       }
     } catch (err) {
       console.error(err);
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message || 'Signup failed');
+        Swal.fire({
+          title: "เกิดข้อผิดพลาด",
+          text: err.response?.data?.message || 'Signup failed',
+          icon: "error",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#B2BB1E"
+        });
       } else {
-        setError('Signup failed');
+        Swal.fire({
+          title: "เกิดข้อผิดพลาด",
+          text: 'Signup failed',
+          icon: "error",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#B2BB1E"
+        });
       }
     }
   };
@@ -86,8 +103,6 @@ function SignUpPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        {error && <div className="error-message">{error}</div>}
 
         <button 
           className='next-signup-button' 

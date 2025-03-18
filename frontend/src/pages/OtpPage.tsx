@@ -7,7 +7,6 @@ import '../styles/OtpPage.css';
 function OtpPage() {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +21,13 @@ function OtpPage() {
       setEmail(location.state.email);
       localStorage.setItem('signupEmail', location.state.email);
     } else {
-      setError("Email information missing. Please go back to the signup page.");
+      Swal.fire({
+        title: "ข้อมูล Email ไม่ถูกต้อง",
+        text: "กรุณากลับไปที่หน้าลงทะเบียนเพื่อกรอกข้อมูลใหม่",
+        icon: "error",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#B2BB1E"
+      });
     }
   }, [location]);
 
@@ -49,8 +54,6 @@ function OtpPage() {
   };
 
   const handleNext = async () => {
-    // Clear previous errors
-    setError("");
     
     // Check if all OTP fields are filled
     const otpString = otp.join("");
@@ -64,15 +67,14 @@ function OtpPage() {
       });
       return;
     }
-    console.log("OTP being submitted:", otpString, typeof otpString);
-    if (otpString.length !== 6) {
-      setError("Please enter all 6 digits of the OTP");
-      return;
-    }
-
-    // Check if email is available
     if (!email) {
-      setError("Email information missing. Please go back to signup page.");
+      Swal.fire({
+        title: "ข้อมูล Email ไม่ถูกต้อง",
+        text: "กรุณากลับไปที่หน้าลงทะเบียนเพื่อกรอกข้อมูลใหม่",
+        icon: "error",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#B2BB1E"
+      });
       return;
     }
 
@@ -106,16 +108,18 @@ function OtpPage() {
         });
       }
       }catch (err) {
-      console.error('OTP verification error:', err);
-      if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message || 'OTP verification failed');
-      } else {
-        setError('OTP verification failed');
+        console.error('OTP verification error:', err);
+        Swal.fire({
+          title: "เกิดข้อผิดพลาด",
+          text: "ไม่สามารถยืนยัน OTP ได้ กรุณาลองใหม่อีกครั้ง",
+          icon: "error",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#B2BB1E"
+        });
+      } finally {
+        setIsSubmitting(false);
       }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    };
 
   return (
     <div className='container'>
@@ -127,11 +131,6 @@ function OtpPage() {
       </div>
       <div className='otp'>
         <div className='titleOtp'>OTP verification</div>
-        {email && (
-          <div className="email-display">
-            Code sent to: {email}
-          </div>
-        )}
         <div className="otp-container">
           <div className='otp-input'>
             {otp.map((digit, index) => (
@@ -148,8 +147,6 @@ function OtpPage() {
             ))}
           </div>
         </div>
-        
-        {error && <div className="error-message">{error}</div>}
         
         <button 
           className='next-otp-button' 
