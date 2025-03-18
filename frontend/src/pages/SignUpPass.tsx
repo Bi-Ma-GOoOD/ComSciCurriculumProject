@@ -15,7 +15,7 @@ function SignUpPass() {
     role: 'Roles',
     studentCode: '',
     keyCode: '',
-    name: ''  // You can add name field if needed
+    name: ''  
   });
   
   const [isOpen, setIsOpen] = useState(false);
