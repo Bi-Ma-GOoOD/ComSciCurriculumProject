@@ -1,127 +1,241 @@
 from typing import List
 
-from ..models import Curriculum, Enrollment
+from ..models import Curriculum, Enrollment, Category, Subcategory, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
-
 
 class EducationEvaluationService() :
     def __init__(self):
         self.caculator = CalculatorService()
         
-    def getCurriculumData(self, curriculum: Curriculum, mappingResult, **param) :
+    def getCurriculumData(self, curriculum: Curriculum, mappingResult, freeElectiveDetail, nonElectiveCategoryDetail, subCategoryDetail) :
         # TODO freeElectiveDetail use only test before query
         # TODO nonElectiveCategoryDetail use only test before query (1. query category)
         # TODO subCategoryDetail use only test before query (2. query subcategory)
-        if not (param and param.get('freeElectiveDetail')) : return
-        if not (param and param.get('nonElectiveCategoryDetail')) : return # want [ categories, ... ]
-        if not (param and param.get('subCategoryDetail')) : return # want { category: [subcategories, ...] }
+        
+        restudyRequire = []
         
         isComplete = True
         categories = []
+        totalWeightedGrade = 0
+        totalCredit = 0
         
-        subcategoryDetailParam = dict(param.get('subCategoryDetail'))
         # no elective category course
-        for category in param.get('nonElectiveCategoryDetail') :
+        for category in nonElectiveCategoryDetail :
             checked = self.getCategorizeCategoryDetail(
                 categorizeCourses=mappingResult['categorize course'],
                 categoryDetail=category,
-                subcategoriesDetail=subcategoryDetailParam.get(category.category_name),
+                subcategoriesDetail=subCategoryDetail.get(category.category_name),
+                restudyRequire=restudyRequire,
             )
             isComplete &= checked['isComplete']
+            totalWeightedGrade += checked['totalWeightedGrade']
+            totalCredit += checked['totalCredit']
             categories.append(checked)
             
         # elective category course
         freeElectiveCheck = self.getFreeElectionCategoryDetal(
-            freeElectiveDetail=param.get('freeElectiveDetail'), 
+            freeElectiveDetail=freeElectiveDetail, 
             freeElectiveEnrollment=mappingResult['free elective'],
+            restudyRequire=restudyRequire,
         )
         isComplete &= freeElectiveCheck['isComplete']
+        totalWeightedGrade += freeElectiveCheck['totalWeightedGrade']
+        totalCredit += freeElectiveCheck['totalCredit']
         categories.append(freeElectiveCheck)
+        
+        gpax = totalWeightedGrade/float(totalCredit) if totalCredit != 0 else 0
         
         return {
             'curriculum': curriculum,
-            'isComplete': isComplete,
+            'isComplete': isComplete and (gpax >= 2.00),
             'categories': categories,
+            'gpax': gpax,
+            'credit': totalCredit,
+            'restudyRequire': restudyRequire,
         }
         
-    def getFreeElectionCategoryDetal(self, freeElectiveEnrollment, freeElectiveDetail) :
+    def getFreeElectionCategoryDetal(self, freeElectiveEnrollment, freeElectiveDetail, restudyRequire) :
         studied = []
         totalCredit = 0
+        totalWeightedGrade = 0
+        
         for enrollment in freeElectiveEnrollment :
-            totalCredit += enrollment.course_fk.credit
+            credit = enrollment.enrollment.course_fk.credit
+            grade = enrollment.totalGrade
+            
+            if grade != None :
+                # no need to calculate further if result grade is F, N, I
+                totalWeightedGrade += grade * credit
+                
+                totalCredit += credit
+                
+            if grade == None or grade == 0.0 :
+                restudyRequire.append(enrollment.enrollment)
+            
             studied.append({
-                'course': enrollment.course_fk,
+                'course': enrollment.enrollment.course_fk,
                 'studyResult': enrollment,
             })
         
         return {
             'category': freeElectiveDetail,
-            'isComplete': totalCredit >= freeElectiveDetail.category_min_credit,
+            'isComplete': totalWeightedGrade > 0 and (totalCredit >= freeElectiveDetail.category_min_credit),
+            'totalCredit': totalCredit,
+            'totalWeightedGrade': totalWeightedGrade if totalWeightedGrade != 0 else 0.0,
             'isFreeElective': True,
             'courses_or_subcategories': studied,
         }
         
-    def getCategorizeCategoryDetail(self, categorizeCourses, categoryDetail, subcategoriesDetail) :
+    def getCategorizeCategoryDetail(self, categorizeCourses, categoryDetail, subcategoriesDetail, restudyRequire) :
         categorizeCoursesReformat = {}
         for categorizeCourse in categorizeCourses :
             categorizeCoursesReformat[categorizeCourse['subcategory'].subcategory_name] = list(categorizeCourse['matchEnrollment'].values())
             
         isComplete = True
         subcategories = []
-        for subcategory in subcategoriesDetail :
-            checked = self.getSubcategoryDetail(subcategory, categorizeCoursesReformat)
-            subcategories.append(checked)
-            isComplete &= checked['isComplete']
+        totalWeightedGrade = 0
+        totalCredit = 0
+        
+        for subcategory in subcategoriesDetail :            
+            checked = self.getSubcategoryDetail(subcategory, categorizeCoursesReformat, restudyRequire)
+            
+            if checked :
+                subcategories.append(checked)
+                isComplete &= checked['isComplete'] and (checked['totalWeightedGrade'] > 0)
+                totalCredit += checked['totalCredit']
+                totalWeightedGrade += checked['totalWeightedGrade']
         
         return {
             'category': categoryDetail,
             'isComplete': isComplete,
+            'totalCredit': totalCredit,
+            'totalWeightedGrade': totalWeightedGrade if totalWeightedGrade != 0 else 0.0,
             'isFreeElective': False,
-            'courses_or_subcategories': [
-                self.getSubcategoryDetail(subcategory, categorizeCoursesReformat) for subcategory in subcategoriesDetail
-            ]
+            'courses_or_subcategories': subcategories,
         }
         
-    def getSubcategoryDetail(self, subcategory, categorizeCourses) :
+    def getSubcategoryDetail(self, subcategory, categorizeCourses, restudyRequire) :
+        if not categorizeCourses.get(subcategory.subcategory_name) :
+            return {
+                'subcategory': subcategory,
+                'isComplete': False,
+                'courses': [],
+                'totalWeightedGrade': 0.0,
+                'totalCredit': 0,
+            }
+        
         studied = []
+        totalWeightedGrade = 0
         totalCredit = 0
+        
         for enrollment in categorizeCourses[subcategory.subcategory_name] :
-            totalCredit += enrollment.course_fk.credit
+            if enrollment.enrollment.course_fk.subcategory_fk.subcategory_id != subcategory.subcategory_id :
+                raise RuntimeError('Studied course doesn\'n match with subcategory in curriculum\'s subcategory.')
+            
+            credit = enrollment.enrollment.course_fk.credit
+            grade = enrollment.totalGrade
+            
+            if isinstance(grade, float) :
+                # no need to calculate further if result grade is F, N, I
+                totalWeightedGrade += grade * credit
+                
+                totalCredit += credit
+                
+            if grade == None or grade == 0.0 :
+                restudyRequire.append(enrollment.enrollment)
+            
             studied.append({
-                'course': enrollment.course_fk,
+                'course': enrollment.enrollment.course_fk,
                 'studyResult': enrollment,
             })
-            
+        
         return {
             'subcategory': subcategory,
-            'isComplete': totalCredit >= subcategory.subcateory_min_credit,
+            'isComplete': totalWeightedGrade > 0 and totalCredit >= subcategory.subcateory_min_credit,
             'courses': studied,
+            'totalWeightedGrade': totalWeightedGrade if totalWeightedGrade != 0 else 0.0,
+            'totalCredit': totalCredit,
         }
     
-    def verify(self, curriculum: Curriculum, enrollments: List[Enrollment], *args) :
-        # TODO: use only in testing
-        if not len(args) == 3 :
-            return None
-        categories, subcategories, courses = args
-        
+    def verify(self, curriculum: Curriculum, enrollments: List[Enrollment], verificationResult: VerificationResult, *args, **param) :
         subcategoriesReformate = {}
-        for subcategory in subcategories :
-            categoryId = subcategory.category_fk.category_name
-            if subcategoriesReformate.get(categoryId) :
-                subcategoriesReformate[categoryId].append(subcategory)
-            else :
-                subcategoriesReformate[categoryId] = [subcategory] 
         
+        allCategory = Category.objects.all()
+        allSubcategories = Subcategory.objects.all()
+        
+        if param.get('isTesting') and len(args) == 3 :
+            categories, subcategories, courses = args
+            
+            categories = [[categories[0]], categories[1]]
+        
+            for subcategory in subcategories :
+                categoryId = subcategory.category_fk.category_name
+                if subcategoriesReformate.get(categoryId) :
+                    subcategoriesReformate[categoryId].append(subcategory)
+                else :
+                    subcategoriesReformate[categoryId] = [subcategory] 
+        
+        else :
+            subcategories = []
+            
+            categories = allCategory.filter(curriculum_fk=curriculum.curriculum_id)
+            
+            for category in categories :
+                if category.category_name == 'หมวดวิชาเลือกเสรี' :
+                    continue
+                
+                s = allSubcategories.filter(category_fk=category.category_id)
+                subcategories.extend(e for e in s)
+                
+                subcategoriesReformate[category.category_name] = [e for e in s]
+                
+            categories = [[e for e in categories.exclude(category_name='หมวดวิชาเลือกเสรี')], categories.get(category_name='หมวดวิชาเลือกเสรี')]              
+  
         cleanEnrollment = self.caculator.GPACalculate(enrollments)
         mappingResult = self.caculator.map(subcategories, cleanEnrollment)
 
-        studyResult = self.getCurriculumData(
+        studyResult = CreditVerifySerializer(self.getCurriculumData(
             curriculum=curriculum,
             mappingResult=mappingResult,
             freeElectiveDetail = categories[1],
-            nonElectiveCategoryDetail = [categories[0]],
+            nonElectiveCategoryDetail = categories[0],
             subCategoryDetail = subcategoriesReformate,
-        )
+        )).data            
+            
+        try :
+            credit_detail = CreditDetail.objects.create(
+                credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
+                verification_result_fk = verificationResult,
+            )     
+            
+            for category in studyResult['categories'] :
+                if category.get('subcategories') :
+                    for subcategory in category['subcategories'] :
+                        SubcategoryDetails.objects.create(
+                            acquired_credit = subcategory['total_credit'],
+                            is_pass = subcategory['is_complete'],
+                            subcateory_fk = allSubcategories.get(subcategory_id=subcategory['subcategory_id']),
+                            category_fk = allCategory.get(category_id=category['category_id']),
+                            credit_detail_fk = credit_detail,
+                        )
+                else :
+                    SubcategoryDetails.objects.create(
+                        acquired_credit = category['total_credit'],
+                        is_pass = subcategory['is_complete'],
+                        subcateory_fk = None,
+                        category_fk = allCategory.get(category_id=category['category_id']),
+                        credit_detail_fk = credit_detail,
+                    )
+                    
+            for course in studyResult['restudy_require'] :
+                NotPassCourse.objects.create(
+                    credit_detail_fk = credit_detail,
+                    enrollment_fk = Enrollment.objects.get(enrollment_id=course['enrollment_id']),
+                )
+                
         
-        return CreditVerifySerializer(studyResult)
+        except Exception as e :
+            print('Exception occurred:', e)
+        finally :
+            return studyResult

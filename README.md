@@ -38,10 +38,11 @@ To activate backend run the following command
 ### setup environment
 1. `python -m venv .venv`
 2. __activate virtual environment__ -> `source .venv/Scripts/activate`
-3. `pip install -r requirement.txt`
-4. `cp .env.example backend/.env`
-5. `python backend/manage.py makemigrations`
-6. `python backend/manage.py migrate`
+3. `cd ./backend`
+4. `pip install -r requirement.txt`
+5. `cp .env.example backend/.env`
+6. `python backend/manage.py makemigrations`
+7. `python backend/manage.py migrate`
 
 ### run server
 1. `python backend/manage.py runserver`

@@ -1,8 +1,9 @@
 from typing import Dict, List
 from ortools.linear_solver import pywraplp
 
+from ..utils import utils
 from ..serializers import CreditVerifySerializer
-from ..models import Enrollment, Curriculum, Subcategory
+from ..models import Enrollment, Curriculum, Subcategory, CaluculatedEnrollment
 
 
 class CalculatorService() :
@@ -22,33 +23,39 @@ class CalculatorService() :
             List[Enrollment]: final study result grade (with no duplicate course)
         """
         
-        calculatedEnrollments :Dict[str, Enrollment] = {}
+        calculatedEnrollments :Dict[str, CaluculatedEnrollment] = {}
         encounter :Dict[str, int] = {}
         
         for enrollment in stEnrollments :
             key = enrollment.course_fk.course_id
-            newGrade = enrollment.grade
+            newGrade, charGrade = utils.getGrade(enrollment.grade)
             if calculatedEnrollments.get(key) :
                 # if duplicate course will add total grade
-                oldGrade = calculatedEnrollments[key].grade if calculatedEnrollments[key].grade != None else 0
-                calculatedEnrollments[key].grade += enrollment.grade if newGrade != None else 0
+                if newGrade != None :
+                    calculatedEnrollments[key].totalGrade += newGrade
+                    calculatedEnrollments[key].charGrade = None
                 
                 # DONE:  implement update recently year and semester
-                if enrollment.year > calculatedEnrollments[key].year :
-                    calculatedEnrollments[key].year = enrollment.year
-                    calculatedEnrollments[key].semester = enrollment.semester
+                if enrollment.year > calculatedEnrollments[key].enrollment.year :
+                    calculatedEnrollments[key].enrollment.year = enrollment.year
+                    calculatedEnrollments[key].enrollment.semester = enrollment.semester
                 elif enrollment.semester == Enrollment.Semester.SECOND :
-                    calculatedEnrollments[key].year = enrollment.year
-                    calculatedEnrollments[key].semester = enrollment.semester
+                    calculatedEnrollments[key].enrollment.year = enrollment.year
+                    calculatedEnrollments[key].enrollment.semester = enrollment.semester
                 elif enrollment.semester == Enrollment.Semester.FIRST :
-                    calculatedEnrollments[key].year = enrollment.year
-                    calculatedEnrollments[key].semester = enrollment.semester
+                    calculatedEnrollments[key].enrollment.year = enrollment.year
+                    calculatedEnrollments[key].enrollment.semester = enrollment.semester
                 else :
                     raise RuntimeError("should not study the same subject in the same semester and year")
                 
             else :
                 # if first encounter add fresh data
-                calculatedEnrollments[key] = enrollment
+                calculatedEnrollments[key] = CaluculatedEnrollment(
+                    enrollment=enrollment,
+                    totalGrade=newGrade,
+                    charGrade=charGrade,
+                )
+                
                 encounter[key] = 0
             
             if newGrade != None :
@@ -57,11 +64,12 @@ class CalculatorService() :
             
         # averaging the gpa for every courses
         for key in list(calculatedEnrollments.keys()) :
-            calculatedEnrollments[key].grade /= encounter[key]
+            if calculatedEnrollments[key].totalGrade != None :
+                calculatedEnrollments[key].totalGrade /= encounter[key]
             
         return list(calculatedEnrollments.values())
         
-    def map(self, subcategories: List[Subcategory], enrollments: List[Enrollment]) :
+    def map(self, subcategories: List[Subcategory], enrollments: List[CaluculatedEnrollment]) :
         """mapping and categorize the studied courses to categories
 
         Args:
@@ -79,7 +87,7 @@ class CalculatorService() :
         for mappedEnrollment in mappedEnrollments.values() :
             if mappedEnrollment['subcategory'].subcateory_min_credit < mappedEnrollment['sumCredit'] :
                 # เกลี่ยรายวิชา
-                formatedData = {course.course_fk.course_id: self.convertEnrollment(course) for course in mappedEnrollment['matchEnrollment'].values()}
+                formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in mappedEnrollment['matchEnrollment'].values()}
                 optimalAns = self.optimization('SAT', formatedData, mappedEnrollment['subcategory'].subcateory_min_credit)
                 
                 if not optimalAns :
@@ -88,7 +96,7 @@ class CalculatorService() :
                 for courseId, selection in optimalAns :
                     if selection == 0 :
                         removedCourse = mappedEnrollment['matchEnrollment'].pop(courseId)
-                        mappedEnrollment['sumCredit'] -= removedCourse.course_fk.credit
+                        mappedEnrollment['sumCredit'] -= removedCourse.enrollment.course_fk.credit
                         
                         result['free elective'].append(removedCourse)
 
@@ -96,7 +104,7 @@ class CalculatorService() :
                         
         return result
     
-    def categorizeSubject(self, subcategories: List[Subcategory], enrollments: List[Enrollment]) -> map :
+    def categorizeSubject(self, subcategories: List[Subcategory], enrollments: List[CaluculatedEnrollment]) -> map :
         """categorize the studied courses match with subcategories
 
         Args:
@@ -115,17 +123,18 @@ class CalculatorService() :
         }
         
         for enrollment in enrollments :
-            subcategoryName = enrollment.course_fk.subcategory_fk.subcategory_name
+            subcategoryName = enrollment.enrollment.course_fk.subcategory_fk.subcategory_name
             matchSubcategory = mappedEnrollments.get(subcategoryName)
+            
             if matchSubcategory :
-                matchSubcategory['matchEnrollment'][enrollment.course_fk.course_id] = enrollment
-                matchSubcategory['sumCredit'] += enrollment.course_fk.credit
+                matchSubcategory['matchEnrollment'][enrollment.enrollment.course_fk.course_id] = enrollment
+                matchSubcategory['sumCredit'] += enrollment.enrollment.course_fk.credit
             else :
                 raise RuntimeError('inserted enrollment got unexpexted subject or category')
 
         return mappedEnrollments
         
-    def convertEnrollment(self, enrollment: Enrollment) -> map :
+    def convertEnrollment(self, enrollment: CaluculatedEnrollment) -> map :
         """grouping data of studied course
 
         Args:
@@ -137,8 +146,8 @@ class CalculatorService() :
         
         return {
             'enrollment': enrollment,
-            'credit': enrollment.course_fk.credit,
-            'courseId': enrollment.course_fk.course_id,
+            'credit': enrollment.enrollment.course_fk.credit,
+            'courseId': enrollment.enrollment.course_fk.course_id,
         }
         
     def optimization(self, model: str, convertedEnrollment: map, minCredit: int) -> List[tuple[str, int]]|None :
@@ -157,7 +166,11 @@ class CalculatorService() :
         solver: pywraplp.Solver = pywraplp.Solver.CreateSolver(model)
         
         # variable
-        variables = [solver.IntVar(0, 1, enrollment['enrollment'].course_fk.course_id) for enrollment in convertedEnrollment.values()]
+        variables = []
+        for enrollment in convertedEnrollment.values() :
+            if isinstance(enrollment['enrollment'].totalGrade, float) :
+                variable = solver.IntVar(0, 1, enrollment['enrollment'].enrollment.course_fk.course_id)
+                variables.append(variable)
         
         # constraint
         constraint = sum([v*convertedEnrollment[v.name()]['credit'] for v in variables])

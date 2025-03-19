@@ -26,17 +26,22 @@ class SignupService() :
     @staticmethod
     def send_otp_email(email, otp, reference):
         """Send OTP email to the user"""
-        try:
-            send_mail(
-                'Your Sign Up OTP',
-                f'Your One-Time Password #{reference} is: {otp}\nIt will expire in 10 minutes.',
-                'xxxxxxxxxx@gmail.com',  # SENDER EMAIL
-                [email],
-                fail_silently=False,
-            )
-            return True, None
-        except Exception as e:
-            return False, str(e)
+        
+        # Check if email is a KU email
+        if email.endswith('@ku.th') and email.count('@') == 1:
+            try:
+                send_mail(
+                    'Your Sign Up OTP',
+                    f'Your One-Time Password #{reference} is: {otp}\nIt will expire in 10 minutes.',
+                    'xxxxxxxxxxxx@gmail.com',  # SENDER EMAIL
+                    [email],
+                    fail_silently=False,
+                )
+                return True, None
+            except Exception as e:
+                return False, str(e)
+        else:
+            return False, "Only @ku.th email addresses are allowed for registration"
     
     @staticmethod
     def verify_otp(email, entered_otp, expiration_minutes=10):
@@ -79,7 +84,7 @@ class SignupService() :
         if role == 'inspector' and not key_code:
             return False, "Key code is required for inspectors"
             
-        if role == 'inspector' and not SignupService    .validate_key_code(key_code):
+        if role == 'inspector' and not SignupService.validate_key_code(key_code):
             return False, "Invalid key code"
             
         return True, None
@@ -103,7 +108,7 @@ class SignupService() :
             )
             
             # Create new form for student
-            SignupService   .create_graduation_check_form(user)
+            SignupService.create_graduation_check_form(user)
             
         elif role == 'inspector':
             user = User.objects.create(

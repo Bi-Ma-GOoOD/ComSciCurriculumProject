@@ -75,28 +75,28 @@ class CalculateTestCase(TestCase) :
         self.st_enrollment1 = Enrollment.objects.create(
             semester=Enrollment.Semester.FIRST,
             year=2565,
-            grade=0,
+            grade='F',
             user_fk=self.u,
             course_fk=self.c3,
         )
         self.st_enrollment2 = Enrollment.objects.create(
             semester=Enrollment.Semester.SECOND,
             year=2565,
-            grade=3.5,
+            grade='B+',
             user_fk=self.u,
             course_fk=self.c3,
         )
         self.st_enrollment3 = Enrollment.objects.create(
             semester=Enrollment.Semester.FIRST,
             year=2566,
-            grade=4,
+            grade='A',
             user_fk=self.u,
             course_fk=self.c3,
         )
         self.st_enrollment4 = Enrollment.objects.create(
             semester=Enrollment.Semester.FIRST,
             year=2565,
-            grade=4,
+            grade='A',
             user_fk=self.u,
             course_fk=self.c2,
         )
@@ -108,8 +108,8 @@ class CalculateTestCase(TestCase) :
         calculatedEnrollments: List[Enrollment] = calculatorService.GPACalculate(enrollments)
         
         self.assertEqual(len(calculatedEnrollments), 2)
-        self.assertAlmostEqual(calculatedEnrollments[0].grade, 3.50)
-        self.assertAlmostEqual(calculatedEnrollments[1].grade, 4.00)
+        self.assertAlmostEqual(calculatedEnrollments[0].totalGrade, 3.50)
+        self.assertAlmostEqual(calculatedEnrollments[1].totalGrade, 4.00)
     
     def test_calculate_duplicate_grade(self) :
         calculatorService = CalculatorService()
@@ -118,5 +118,5 @@ class CalculateTestCase(TestCase) :
         calculatedEnrollments: List[Enrollment] = calculatorService.GPACalculate(enrollments)
         
         self.assertEqual(len(calculatedEnrollments), 1)
-        self.assertAlmostEqual(calculatedEnrollments[0].grade, 2.50)
+        self.assertAlmostEqual(calculatedEnrollments[0].totalGrade, 2.50)
         

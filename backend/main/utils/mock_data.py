@@ -1,15 +1,45 @@
 from typing import List
-from ..models import User, Curriculum, Category, Subcategory, Course, Enrollment
+from ..models import User, Curriculum, Category, Subcategory, Course, Enrollment, Form, VerificationResult
 
+subjectNames = [
+    {
+        'name-th':'ศิลปะการอยู่ร่วมกับผู้อื่น',
+        'name-en':'The Art of Living with Others',
+        'code':'01387xx1-65',
+    },
+    {
+        'name-th':'ปรัชญาเศรษฐกิจพอเพียงกับพุทธศาสนา',
+        'name-en':'Philosophy of Sufficiency Economics and Buddhism',
+        'code':'01387xx3-65',
+    },
+    {
+        'name-th':'อาหารเพื่อมนุษยชาติ',
+        'name-en':'Food for Mankind',
+        'code':'01999xx1-65',
+    },
+    {
+        'name-th':'เปตองเพื่อสุขภาพ',
+        'name-en':'Petanque for Health',
+        'code':'01175xx9-65',
+    },
+]
 
-def mockUser() -> User :
-    return User.objects.create(
+def mockUser() :
+    user = User.objects.create(
         email='abc@gmail.com',
         password='1234',
         name='doe',
         student_code='6510450000',
         role=User.Role.STUDENT,
     )
+    form = Form.objects.create(
+        user_fk=user,
+    )
+    verification_result = VerificationResult.objects.create(
+        form_fk=form,
+    )
+
+    return user, form, verification_result
     
 def mockCurriculum() -> Curriculum :
     return Curriculum.objects.create(
@@ -32,23 +62,23 @@ def mockCategories(curriculum: Curriculum) -> List[Category] :
         ),   
     ]
     
-def mockSubcategories(category: Category, name_and_credit: List[tuple]) -> List[Subcategory] :
+def mockSubcategories(category: Category) -> List[Subcategory] :
     return [
         Subcategory.objects.create(
-            subcategory_name=name,
-            subcateory_min_credit=credit,
+            subcategory_name='กลุ่มสาระอยู่ดีมีสุข',
+            subcateory_min_credit=4,
             category_fk=category,
         )
-        for name, credit in name_and_credit
     ]
     
 def mockCourses(subcategory: Subcategory, credits: List[int]) -> List[Course] :
+    
     return [
         Course.objects.create(
-            course_id=str(i),
+            course_id=subjectNames[i]['code'],
             credit=credits[i],
-            course_name_th=f'วิชา {ord("A") + i}',
-            course_name_en=f'subject {ord("A") + i}',
+            course_name_th=subjectNames[i]['name-th'],
+            course_name_en=subjectNames[i]['name-en'],
             subcategory_fk=subcategory,
         )
         for i in range(len(credits))

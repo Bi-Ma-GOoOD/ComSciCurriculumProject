@@ -6,14 +6,14 @@ from main.services import SignupService
 class SignupServiceTest(TestCase):
     def setUp(self):
         OTPVerification.objects.all().delete()  # Clear any old OTP records
-        self.email = "test@example.com"
+        self.email = "test@ku.th"
         self.student_code = "STU123"
         self.inspector_key = "INSPECTOR123"
         self.user = User.objects.create(email=self.email, role="student", student_code=self.student_code)
     
     def test_generate_and_save_otp(self):
         """Test OTP generation and saving to database"""
-        email = "test@example.com"
+        email = "test@ku.th"
         otp, reference = SignupService.generate_and_save_otp(email)
         
         # Check that OTP is saved in the database
@@ -21,7 +21,7 @@ class SignupServiceTest(TestCase):
 
     def test_send_otp_email(self):
         """Test OTP email sending"""
-        email = "test@example.com"
+        email = "test@ku.th"
         otp, reference = "123456", "ABC123"
         success, error = SignupService.send_otp_email(email, otp, reference)
         
@@ -30,7 +30,7 @@ class SignupServiceTest(TestCase):
 
     def test_verify_otp(self):
         """Test OTP verification"""
-        email = "test@example.com"
+        email = "test@ku.th"
         otp, reference = SignupService.generate_and_save_otp(email)
         
         # Verify the OTP
@@ -41,14 +41,14 @@ class SignupServiceTest(TestCase):
     def test_create_user(self):
         """Test user creation"""
         user = SignupService.create_user(
-            email="student@example.com",
+            email="student@ku.th",
             password="securepassword",
             name="John Doe",
             role=User.Role.STUDENT,
             student_code="ST12345"
         )
         
-        self.assertEqual(user.email, "student@example.com")
+        self.assertEqual(user.email, "student@ku.th")
         self.assertEqual(user.role, User.Role.STUDENT)
         
         # Check if graduation form is created
@@ -84,7 +84,7 @@ class SignupServiceTest(TestCase):
 
     def test_validate_registration_student_code_already_exists(self):
         """Test registration validation when student code is already in use"""
-        User.objects.create(email="another@example.com", role="student", student_code="STU123")
+        User.objects.create(email="another@ku.th", role="student", student_code="STU123")
 
         is_valid, error = SignupService.validate_registration_data(
             "password123", "password123", "student", "STU123", None
@@ -143,3 +143,50 @@ class SignupServiceTest(TestCase):
         self.assertEqual(form.form_status, Form.FormStatus.DRAFT)
         self.assertEqual(form.form_type, Form.FormType.GRADUATION_CHECK)
 
+    def test_send_otp_email_valid_ku_email(self):
+        """Test sending OTP with a valid @ku.th email"""
+        email = "student@ku.th"
+        otp, reference = "123456", "ABC123"
+        success, error = SignupService.send_otp_email(email, otp, reference)
+        
+        self.assertTrue(success)
+        self.assertIsNone(error)
+
+    def test_send_otp_email_invalid_email_domain(self):
+        """Test sending OTP with an invalid email domain"""
+        invalid_emails = [
+            "student@gmail.com",
+            "student@eng.ku.th",
+            "student@something.ku.th"
+        ]
+        
+        for email in invalid_emails:
+            otp, reference = "123456", "ABC123"
+            success, error = SignupService.send_otp_email(email, otp, reference)
+            
+            self.assertFalse(success, f"Should fail for email: {email}")
+            self.assertEqual(error, "Only @ku.th email addresses are allowed for registration")
+
+    def test_send_otp_email_similar_but_invalid_domain(self):
+        """Test sending OTP with an email that looks similar but is not @ku.th"""
+        email = "student@faku.th"
+        otp, reference = "123456", "ABC123"
+        success, error = SignupService.send_otp_email(email, otp, reference)
+        
+        self.assertFalse(success)
+        self.assertEqual(error, "Only @ku.th email addresses are allowed for registration")
+        
+    def test_send_otp_email_multiple_at_symbols(self):
+        """Test sending OTP with emails containing multiple @ symbols"""
+        invalid_emails = [
+            "student@something@ku.th",
+            "invalid@email@ku.th",
+            "multiple@@ku.th"
+        ]
+        
+        for email in invalid_emails:
+            otp, reference = "123456", "ABC123"
+            success, error = SignupService.send_otp_email(email, otp, reference)
+            
+            self.assertFalse(success, f"Should fail for email: {email}")
+            self.assertEqual(error, "Only @ku.th email addresses are allowed for registration")

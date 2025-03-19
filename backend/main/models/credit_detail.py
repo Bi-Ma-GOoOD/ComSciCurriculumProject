@@ -13,3 +13,6 @@ class CreditDetail(models.Model) :
     credit_status = models.IntegerField(choices=CreditStatus.choices, default=CreditStatus.INCOMPLETE)
     
     verification_result_fk = models.ForeignKey(VerificationResult, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'credit_status: {self.credit_status}'
