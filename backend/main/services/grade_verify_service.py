@@ -2,7 +2,7 @@ from typing import List
 import uuid
 
 from ..models import Form, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse
-from ..serializers import StudyVerificationSerializer
+from ..serializers import StudyVerificationSerializer, OverallVerificationSerializer
 
 class GradeVerificationService() :
     def __init__(self):
@@ -24,9 +24,21 @@ class GradeVerificationService() :
         # get not pass course
         not_pass_course = NotPassCourse.objects.filter(credit_detail_fk=cd.credit_details_id)
         
-        data = StudyVerificationSerializer(self.getDataSerializer(cd, sd, not_pass_course))
+        studyResult = self.getDataSerializer(cd, sd, not_pass_course)
+        feeResult = vr.fee_status
+        activityResult = vr.activity_status
         
-        return data.data
+        if form.form_type == 'credit check' :
+            return OverallVerificationSerializer({
+                'studyResult': studyResult,
+                'feeResult': feeResult,
+                'activityResult': activityResult
+            }).data
+        else :
+            return StudyVerificationSerializer(
+                studyResult
+            ).data
+                
         
     def getDataSerializer(self, creditDetail: CreditDetail, subcategoryDetails: List[SubcategoryDetails], not_pass_course: List[NotPassCourse]) :
         cleanData = {}

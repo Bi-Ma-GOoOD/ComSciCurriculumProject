@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'rest_framework',
     'main.apps.MainConfig',
     'test',
@@ -56,6 +55,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # ต้องอยู่บรรทัดแรกสุดของ middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,6 +71,12 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # อนุญาตเฉพาะ frontend ที่รันอยู่
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'cs_curriculum.urls'
 
@@ -161,5 +167,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'xxxxxxxxxx@gmail.com'  # sender's email
+EMAIL_HOST_USER = 'xxxxxxxxxxxxx@gmail.com'  # sender's email
 EMAIL_HOST_PASSWORD = 'xxxxxxxxxxxxxxxx'  # sender's app password
