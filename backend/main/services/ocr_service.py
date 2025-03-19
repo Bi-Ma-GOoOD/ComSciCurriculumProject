@@ -122,7 +122,7 @@ class OCRService():
             return f"0/{int(year) - 1 + 543}"
         return None
     
-    #NOTE: Grading in Char   
+    #NOTE: Grading in Char , DONE   
     def extract_course_info(self, text, user):
         start_year = int(str(user.student_code)[:2])
         courses = {course.course_id: course for course in Course.objects.all() if self.get_valid_course(course, start_year)}
@@ -156,8 +156,8 @@ class OCRService():
                 while j < len(text):
                     next_item = text[j].strip()
                     if next_item in ['A', 'B', 'B+', 'C', 'C+', 'D', 'D+', 'F', 'P', 'NP', 'N']:
-                        grading = self.grade_mapping.get(next_item, -1) #NOTE: handle DecimalField
-                        # grading = next_item
+                        # grading = self.grade_mapping.get(next_item, -1) #NOTE: handle DecimalField
+                        grading = next_item
                         break
                     j += 1  
 
@@ -212,8 +212,23 @@ class OCRService():
         return bool(re.search(r"ใบเสร็จรับเงิน\.*", text[2]))
 
     def check_validation(self, files):
-            user = User.objects.get(user_id="a88b17bb18724a63b54d10ab555ecd34") #mock
-            form = Form.objects.get(form_id="be66b73b5cc14d8e9da1805da5cb4e20") #mock
+            """user = User.objects.create(
+                email = "moradop.h@ku.th",
+                password = "123456",
+                name = "Moradop",
+                student_code = "6510450861",
+                role = "student"
+            )
+            form = Form.objects.create(
+                form_type = Form.FormType.CREDIT_CHECK,
+                user_fk = user
+            )
+            Form.objects.create(
+                form_type = Form.FormType.GRADUATION_CHECK,
+                user_fk = user
+            )"""
+            user = User.objects.get(user_id="e6c70c9292b547f19c2446e12df63004") #mock
+            form = Form.objects.get(form_id="1feff2db39a5478f819e6031d9002d1a") #mock
 
             response = {
                 "transcript": {"valid": False, "message": ""},
@@ -270,9 +285,6 @@ class OCRService():
                     
                 if check:
                     VerificationResult.objects.create(
-                        result_status=VerificationResult.VerificationResult.NOT_PASS,
-                        activity_status=VerificationResult.VerificationResult.NOT_PASS,
-                        # fee_status=VerificationResult.VerificationResult.NOT_PASS,
                         form_fk=form
                     )
                     form.status = Form.FormStatus.READY_TO_CALC
