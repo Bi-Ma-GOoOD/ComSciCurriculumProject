@@ -274,6 +274,8 @@ class OCRService():
                         # fee_status=VerificationResult.VerificationResult.NOT_PASS,
                         form_fk=form
                     )
+                    form.status = Form.FormStatus.READY_TO_CALC
+                    form.save()
                     return {"status": "success", "message": "All files are valid."}
                     # file = download_from_minio(f"{user.student_code}/transcript.pdf")
             return {
@@ -281,4 +283,5 @@ class OCRService():
                 "message": "Some files failed validation.",
                 "errors": response
             }
-        
+    
+    
