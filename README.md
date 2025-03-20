@@ -35,12 +35,15 @@ To activate backend run the following command
     - username : root
     - password : 1234
 
+> [!IMPORTANT]
+> Python version should be (or more than) 3.10.x
+
 ### setup environment
 1. `python -m venv .venv`
 2. __activate virtual environment__ -> `source .venv/Scripts/activate`
 3. `cd ./backend`
 4. `pip install -r requirement.txt`
-5. `cp .env.example backend/.env`
+5. `cp ../.env.example .env`
 6. `python backend/manage.py makemigrations`
 7. `python backend/manage.py migrate`
 

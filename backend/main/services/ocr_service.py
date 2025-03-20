@@ -271,6 +271,7 @@ class OCRService():
                 
                 if self.get_studentId_activity(activity, user.student_code) == user.student_code:
                     response["activity"]["valid"] = True
+                    upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
                 else:
                     response["activity"]["message"] = "Invalid or mismatched activity data."
 
