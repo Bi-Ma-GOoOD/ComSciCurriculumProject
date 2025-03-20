@@ -156,8 +156,8 @@ class OCRService():
                 while j < len(text):
                     next_item = text[j].strip()
                     if next_item in ['A', 'B', 'B+', 'C', 'C+', 'D', 'D+', 'F', 'P', 'NP', 'N']:
-                        grading = self.grade_mapping.get(next_item, -1) #NOTE: handle DecimalField
-                        # grading = next_item
+                        # grading = self.grade_mapping.get(next_item, -1) #NOTE: handle DecimalField
+                        grading = next_item
                         break
                     j += 1  
 
@@ -205,15 +205,16 @@ class OCRService():
             
         return True
         
-    def is_valid_activity_format(self, text):
-        return "Activity Record" in text and "Student ID:" in text
+    def check_pass_activity(self, text):
+        return True if "PASS" in text else False
 
     def is_valid_receipt_format(self, text):
         return bool(re.search(r"ใบเสร็จรับเงิน\.*", text[2]))
 
     def check_validation(self, files):
-            user = User.objects.get(user_id="a88b17bb18724a63b54d10ab555ecd34") #mock
-            form = Form.objects.get(form_id="be66b73b5cc14d8e9da1805da5cb4e20") #mock
+        try:
+            user = User.objects.get(user_id="e6c70c9292b547f19c2446e12df63004") #mock
+            form = Form.objects.get(form_id="be12d9fb14de48de928dc867419a15b3") #mock
 
             response = {
                 "transcript": {"valid": False, "message": ""},
@@ -247,8 +248,9 @@ class OCRService():
 
             if files[2]:
                 receipt = self.extract_text_from_pdf(files[2])
+                receipt_info = self.extract_receipt_info(receipt)
                 if self.is_valid_receipt_format(receipt):
-                    if self.extract_receipt_info(receipt)["id"] == user.student_code:
+                    if receipt_info["id"] == user.student_code:
                         response["receipt"]["valid"] = True
                     else:
                         response["receipt"]["message"] = "Receipt ID does not match student ID."
@@ -256,16 +258,22 @@ class OCRService():
                     response["receipt"]["message"] = "Invalid receipt format."
             
             if any(file["valid"] for file in response.values()):
-                check = 0
+                check = 0 # 0: no check, 1: credit check, 2: graduation check
                 if form.form_type == Form.FormType.CREDIT_CHECK and response["transcript"]["valid"] and not response["activity"]["valid"] and not response["receipt"]["valid"]:
                     upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
                     check = 1
                     
                 if form.form_type == Form.FormType.GRADUATION_CHECK and all(file["valid"] for file in response.values()):
-                    upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
-                    upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
-                    upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
-                    check = 1
+                    if self.check_pass_activity(activity):
+                        if receipt_info["year"] == st_info["recent_year"] and receipt_info["semester"] == st_info["recent_semester"]:
+                            upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
+                            upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
+                            upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
+                            check = 2
+                        else:
+                            response["receipt"]["message"] += "Invalid semester/year in receipt."
+                    else:
+                        response["activity"]["message"] += "Activity status is not PASS."
                     
                 if check:
                     VerificationResult.objects.create(
@@ -283,5 +291,6 @@ class OCRService():
                 "message": "Some files failed validation.",
                 "errors": response
             }
-    
+        except ObjectDoesNotExist as e:
+            return {"status": "failure", "message": "User or form not found."}
     
