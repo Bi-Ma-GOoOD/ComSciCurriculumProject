@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; 
+  }
+  
+  .container {
+    display: flex;
+    flex-grow: 1;
+    min-height: 100vh;
+  }
+  
+  .left-tab, 
+  .right-tab {
+    width: 35px;
+    height: 100vh;
+    background-color: #B2BB1E;
+    position: absolute;
+    top: 0;
+  }
+  
+  .left-tab {
+    left: 0;
+  }
+  
+  .right-tab {
+    right: 0;
+  }
+  
+  .content {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #ffffff;
+  }
+  
+  .ku-logo {
+    background-image: url('src/assets/KU_logo.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 109px; 
+    height: 126px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .bottom-tab {
+    width: 100vw; 
+    height: 28px;
+    background-color: #006664;
+    position: fixed; 
+    top: 143px; 
+    left: 0; 
+  }
+
+  .back-arrow {
+    position: absolute;
+    width: 62px !important;
+    height: 62px !important;
+    top: 187px;
+    left: 55px;
+    color: #34C759;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .status-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.verified-text {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.status-result {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.verification-status.pass .status-result {
+  color: #34C759;
+}
+
+.verification-status.fail .status-result {
+  color: #FF3B30;
+}
+
+.verification-status {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.verification-status.pass {
+    top: 371px;
+    left: 842px;
+}
+
+.verification-status.fail {
+    top: 182px;
+    left: 900px;
+}
+
+.status-icon {
+    font-size: 65px;
+    width: 65px !important;
+    height: 65px !important;
+    color: #34C759;
+}
+
+.verification-status.fail .status-icon {
+    font-size: 72px;
+    width: 72px !important;
+    height: 72px !important;
+    color: #FF3B30;
+}
+
+.credits-container {
+    position: absolute;
+    width: 311px;
+    height: 480px;
+    top: 298px;
+    left: 284px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.credits-section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.section-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.section-item > span {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.sub-items {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sub-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-circle {
+    font-size: 12px;
+}
+
+.status-circle.pass {
+    color: #34C759;
+}
+
+.status-circle.fail {
+    color: #FF3B30;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.activity-credits {
+    position: absolute;
+    width: 390px;
+    height: 24px;
+    top: 298px;
+    left: 723px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.activity-item, .activity-hours {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.activity-item .status-circle, 
+.activity-hours .status-circle {
+    font-size: 12px;
+}
+
+.activity-item span, 
+.activity-hours span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.activity-credits .status-circle {
+    font-size: 12px;
+}
+
+.activity-credits span {
+    font-size: 16px;
+    font-weight: 500;
+}
+

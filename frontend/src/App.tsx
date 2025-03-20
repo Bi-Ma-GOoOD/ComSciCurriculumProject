@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
 import CreditCheckPage from "./pages/creditCheck";
 import InsertGradFile from "./pages/insertGradFile";
+import GradVerifiedPage from "./pages/grad_verified";
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<GradVerifiedPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/creditcheck" element={<CreditCheckPage />} />
         <Route path="/insertgradfile" element={<InsertGradFile />} />
