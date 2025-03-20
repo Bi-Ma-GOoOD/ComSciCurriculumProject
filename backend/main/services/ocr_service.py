@@ -1,10 +1,16 @@
 import fitz, re
+from enum import Enum
 from ..models import Enrollment, User, Course, Form, VerificationResult
 from django.core.exceptions import ObjectDoesNotExist
 from io import BytesIO
 from ..minio_client import upload_to_minio, download_from_minio
 
 class OCRService():
+    class CheckType(Enum):
+        INVALID = 0
+        CRED_VALID = 1
+        GRAD_VALID = 2
+        
     def __init__(self):
         self.semester_mapping = {"Summer":0, "First":1, "Second":2}
         self.grade_mapping = {'A':4, 'B':3, 'B+':3.5, 'C':2, 'C+':2.5, 'D':1, 'D+':1.5, 'F':0} #NOTE: handle DecimalField
@@ -147,8 +153,8 @@ class OCRService():
                 if matching_courses:
                     selected_course = max(matching_courses, key=lambda c: int(c.course_id.split('-')[-1]) if '-' in c.course_id else 0)
                     course = selected_course
-                else:
-                    raise ValueError(f"course with {course_id} not found.")
+                # else:
+                #     raise ValueError(f"course with {course_id} not found.")
                     
                 # ถ้าไม่มีเกรดข้ามเรื่อยๆจนกว่าจะเจอเกรด
                 grading = None
@@ -265,6 +271,7 @@ class OCRService():
             if files[2]:
                 receipt = self.extract_text_from_pdf(files[2])
                 receipt_info = self.extract_receipt_info(receipt)
+                
                 if self.is_valid_receipt_format(receipt):
                     if receipt_info["id"] == user.student_code:
                         response["receipt"]["valid"] = True
@@ -274,10 +281,11 @@ class OCRService():
                     response["receipt"]["message"] = "Invalid receipt format."
             
             if any(file["valid"] for file in response.values()):
-                check = 0 # 0: no check, 1: credit check, 2: graduation check
+                check = self.CheckType.INVALID
+                
                 if form.form_type == Form.FormType.CREDIT_CHECK and response["transcript"]["valid"] and not response["activity"]["valid"] and not response["receipt"]["valid"]:
                     upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
-                    check = 1
+                    check = self.CheckType.CRED_VALID
                     
                 if form.form_type == Form.FormType.GRADUATION_CHECK and all(file["valid"] for file in response.values()):
                     if self.check_pass_activity(activity):
@@ -285,20 +293,26 @@ class OCRService():
                             upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
                             upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
                             upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
-                            check = 2
+                            check = self.CheckType.GRAD_VALID
                         else:
                             response["receipt"]["message"] += "Invalid semester/year in receipt."
                     else:
                         response["activity"]["message"] += "Activity status is not PASS."
                     
-                if check:
-                    VerificationResult.objects.create(
-                        form_fk=form
-                    )
+                if check != self.CheckType.INVALID:
+                    if check == self.CheckType.CRED_VALID:
+                        VerificationResult.objects.create(
+                            form_fk=form
+                        )
+                    elif check == self.CheckType.GRAD_VALID:
+                        VerificationResult.objects.create(
+                            activity_status=VerificationResult.VerificationResult.PASS,
+                            fee_status=VerificationResult.VerificationResult.PASS,
+                            form_fk=form
+                        )
                     form.status = Form.FormStatus.READY_TO_CALC
                     form.save()
                     return {"status": "success", "message": "All files are valid."}
-                    # file = download_from_minio(f"{user.student_code}/transcript.pdf")
             return {
                 "status": "failure",
                 "message": "Some files failed validation.",
