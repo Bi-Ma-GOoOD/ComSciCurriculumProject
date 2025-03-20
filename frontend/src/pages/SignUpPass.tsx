@@ -19,7 +19,6 @@ function SignUpPass() {
   });
   
   const [isOpen, setIsOpen] = useState(false);
-  const [, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const roles = ["นิสิต", "ผู้ตรวจสอบหลักฐาน"];
@@ -34,7 +33,13 @@ function SignUpPass() {
       setFormData(prev => ({ ...prev, email: location.state.email }));
       localStorage.setItem('signupEmail', location.state.email);
     } else {
-      setError("Email information missing. Please restart the signup process.");
+      Swal.fire({
+        title: 'ข้อมูลอีเมลไม่ถูกต้อง',
+        text: 'กรุณาเริ่มกระบวนการลงทะเบียนใหม่',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      })
     }
   }, [location]);
   
@@ -72,8 +77,6 @@ function SignUpPass() {
   
   // Submit registration
   const handleRegister = async () => {
-    // Reset error
-    setError('');
     
     // Validate form
     if (!formData.email) {
@@ -185,7 +188,13 @@ function SignUpPass() {
         });
       }
     } else {
-      setError('Registration failed');
+      Swal.fire({
+        title: 'เกิดข้อผิดพลาด',
+        text: 'ไม่สามารถลงทะเบียนได้ กรุณาลองใหม่อีกครั้ง',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: "#B2BB1E"
+      });
     }
     } finally {
       setIsSubmitting(false);
