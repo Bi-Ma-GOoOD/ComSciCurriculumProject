@@ -128,6 +128,20 @@ function SignUpPass() {
       });
       return;
     }
+
+    if (formData.role === "นิสิต") {
+      const studentCodeRegex = /^[0-9]{10}$/;
+      if (!studentCodeRegex.test(formData.studentCode)) {
+        Swal.fire({
+          title: 'รหัสนิสิตไม่ถูกต้อง',
+          text: 'รหัสนิสิตต้องเป็นตัวเลข 10 หลัก',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+          confirmButtonColor: "#B2BB1E"
+        });
+        return;
+      }
+    }
     
     if (formData.role === "ผู้ตรวจสอบหลักฐาน" && !formData.keyCode) {
       Swal.fire({
@@ -168,7 +182,6 @@ function SignUpPass() {
         });
       }
     } catch (err) {
-      console.error('Registration error:', err);
       if (axios.isAxiosError(err)) {
       if (err.response?.data?.message?.includes('Student code already exists')) {
         Swal.fire({
