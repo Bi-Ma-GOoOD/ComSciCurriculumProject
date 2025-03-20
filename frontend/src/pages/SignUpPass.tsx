@@ -19,7 +19,7 @@ function SignUpPass() {
   });
   
   const [isOpen, setIsOpen] = useState(false);
-  const [error, setError] = useState('');
+  const [, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const roles = ["นิสิต", "ผู้ตรวจสอบหลักฐาน"];
@@ -167,10 +167,26 @@ function SignUpPass() {
     } catch (err) {
       console.error('Registration error:', err);
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message || 'Registration failed');
-      } else {
-        setError('Registration failed');
+      if (err.response?.data?.message?.includes('Student code already exists')) {
+        Swal.fire({
+          title: 'รหัสนิสิตนี้ถูกใช้งานแล้ว',
+          text: 'กรุณาตรวจสอบรหัสนิสิตใหม่อีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: "#B2BB1E"
+        });
+      } else if (err.response?.data?.message?.includes('Key already exists')) {
+        Swal.fire({
+          title: 'Key นี้ถูกใช้งานแล้ว',
+          text: 'กรุณาตรวจสอบ Key ใหม่อีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: "#B2BB1E"
+        });
       }
+    } else {
+      setError('Registration failed');
+    }
     } finally {
       setIsSubmitting(false);
     }
@@ -240,7 +256,6 @@ function SignUpPass() {
           />
         </div>
         
-        {error && <div className="error-message">{error}</div>}
         
         <button 
           className='register-button'
