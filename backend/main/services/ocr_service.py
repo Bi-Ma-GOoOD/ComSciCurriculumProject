@@ -290,7 +290,7 @@ class OCRService():
                 check = self.CheckType.INVALID
                 
                 if form.form_type == Form.FormType.CREDIT_CHECK and response["transcript"]["valid"] and not response["activity"]["valid"] and not response["receipt"]["valid"]:
-                    upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
+                    upload_to_minio(files[0], f"{form.form_id}/transcript.pdf")
                     check = self.CheckType.CRED_VALID
                     
                 if form.form_type == Form.FormType.GRADUATION_CHECK and all(file["valid"] for file in response.values()):
