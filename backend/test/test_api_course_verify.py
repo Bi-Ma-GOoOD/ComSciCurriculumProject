@@ -6,8 +6,10 @@ from main.services import EducationEvaluationService, GradeVerificationService
 
 class APICourseVerify(APITestCase) :
     def setUp(self) :
-        self.apiUrl = '/api/credit-verify/'
-        self.user, form, self.verificationResult = mock_data.mockUser()
+        self.gradeVerifyURL = '/api/credit-verify/'
+        self.calculaterURL = '/api/calculate/'
+        
+        self.user, form, self.verificationResult = mock_data.mockUser('6510450000')
         
         form.form_type = Form.FormStatus.READY_TO_CALC
         form.save()
@@ -30,28 +32,21 @@ class APICourseVerify(APITestCase) :
             
         self.service = EducationEvaluationService()
         
-    def test_api(self) :
-        self.service.verify(
-            curriculum=self.curriculum,
-            enrollments=self.enrollment,
-            verificationResult=self.verificationResult
-        )
-        
-        response = self.client.get(self.apiUrl, {'uid': self.user.user_id})
+    def test_api(self) :        
+        calResponse = self.client.post(f'{self.calculaterURL}?uid={self.user.user_id}')
+        response = self.client.get(self.gradeVerifyURL, {'uid': self.user.user_id})
         
         print()
-        print(response.json())
+        print('display calculating data:', calResponse.json())
+        print('display calculated data:', response.json())
         
     def test_api_delete(self) :
-        self.service.verify(
-            curriculum=self.curriculum,
-            enrollments=self.enrollment,
-            verificationResult=self.verificationResult
-        )
-        response = self.client.delete(f'{self.apiUrl}?uid={self.user.user_id}')
+        calResponse = self.client.post(f'{self.calculaterURL}?uid={self.user.user_id}')
+        response = self.client.delete(f'{self.gradeVerifyURL}?uid={self.user.user_id}')
         
         print()
-        print(response.json())
+        print('display calculating data:', calResponse.json())
+        print('display delete status:', response.json())
         
         self.assertEqual(response.json()['success'], True)
         self.assertEqual(len(Enrollment.objects.filter(user_fk=self.user.user_id)), 0)

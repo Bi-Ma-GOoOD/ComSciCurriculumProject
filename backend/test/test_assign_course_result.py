@@ -36,9 +36,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
@@ -56,9 +54,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
@@ -81,9 +77,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
@@ -101,9 +95,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
@@ -124,9 +116,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
@@ -148,9 +138,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
@@ -171,9 +159,7 @@ class AssignResult(TestCase) :
         self.studiedCourse = mockEnrollments(self.student, enrollments)
         
         result = self.calculator.verify(
-            self.curriculum,
-            self.studiedCourse,
-            self.verificationResult,
+            str(self.student.user_id),
             self.categories,
             self.subcategories,
             self.courses,
