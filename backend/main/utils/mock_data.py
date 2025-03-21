@@ -24,12 +24,12 @@ subjectNames = [
     },
 ]
 
-def mockUser() :
+def mockUser(student_code='7010450000') :
     user = User.objects.create(
         email='abc@gmail.com',
         password='1234',
         name='doe',
-        student_code='6510450000',
+        student_code=student_code,
         role=User.Role.STUDENT,
     )
     form = Form.objects.create(
@@ -45,7 +45,7 @@ def mockCurriculum() -> Curriculum :
     return Curriculum.objects.create(
         curriculum_name='หลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชาวิทยาการคอมพิวเตอร์',
         total_credit=124,
-        curriculum_year=2565,
+        curriculum_year=2570,
     )
     
 def mockCategories(curriculum: Curriculum) -> List[Category] :

@@ -1,12 +1,16 @@
 from typing import List
 import uuid
 
+from ..utils import utils
 from ..models import Form, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse
 from ..serializers import StudyVerificationSerializer, OverallVerificationSerializer
 
 class GradeVerificationService() :
     def __init__(self):
         pass
+    
+    def deleteVerification(self, uid: uuid.UUID) :
+        return utils.resetForm(uid)  
     
     def getVerification(self, uid: uuid.UUID) :
         # get form
@@ -37,8 +41,7 @@ class GradeVerificationService() :
         else :
             return StudyVerificationSerializer(
                 studyResult
-            ).data
-                
+            ).data   
         
     def getDataSerializer(self, creditDetail: CreditDetail, subcategoryDetails: List[SubcategoryDetails], not_pass_course: List[NotPassCourse]) :
         cleanData = {}
