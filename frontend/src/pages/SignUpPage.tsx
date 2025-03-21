@@ -39,43 +39,26 @@ function SignUpPage() {
           localStorage.setItem('signupEmail', email.trim());
           navigate('/OtpPage', { state: { email: email.trim() } });
         });
-      } else if (response.data.message === "Email already exists") {
-        
+      } else if (response.data.message === "Email already registered") {
         Swal.fire({
-          title: "อีเมลนี้มีอยู่ในระบบแล้ว",
-          text: "กรุณาใช้อีเมลอื่น",
+          title: "Email นี้มีอยู่ในระบบแล้ว",
+          text: "กรุณาใช้ Email อื่น",
           icon: "error",
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E"
         });
-      } else {
-        Swal.fire({
-          title: "เกิดข้อผิดพลาด",
-          text: response.data.message || 'Signup failed',
-          icon: "error",
-          confirmButtonText: "OK",
-          confirmButtonColor: "#B2BB1E"
-        });
-      }
+      } 
     } catch (err) {
       console.error(err);
       if (axios.isAxiosError(err)) {
         Swal.fire({
           title: "เกิดข้อผิดพลาด",
-          text: err.response?.data?.message || 'Signup failed',
+          text: 'ไม่สามารถลงทะเบียนได้ กรุณาลองใหม่อีกครั้ง',
           icon: "error",
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E"
         });
-      } else {
-        Swal.fire({
-          title: "เกิดข้อผิดพลาด",
-          text: 'Signup failed',
-          icon: "error",
-          confirmButtonText: "OK",
-          confirmButtonColor: "#B2BB1E"
-        });
-      }
+      } 
     }
   };
 

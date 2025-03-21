@@ -34,7 +34,7 @@ function SignUpPass() {
       localStorage.setItem('signupEmail', location.state.email);
     } else {
       Swal.fire({
-        title: 'ข้อมูลอีเมลไม่ถูกต้อง',
+        title: 'Email ไม่ถูกต้อง',
         text: 'กรุณาเริ่มกระบวนการลงทะเบียนใหม่',
         icon: 'error',
         confirmButtonText: 'OK',
@@ -81,7 +81,7 @@ function SignUpPass() {
     // Validate form
     if (!formData.email) {
       Swal.fire({
-        title: 'กรุณากรอกอีเมล',
+        title: 'กรุณากรอก Email',
         icon: 'warning',
         confirmButtonText: 'OK',
         confirmButtonColor: "#B2BB1E"

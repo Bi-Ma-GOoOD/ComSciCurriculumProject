@@ -156,7 +156,7 @@ function OtpPage() {
           onClick={handleNext}
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Verifying...' : 'ถัดไป'}
+          {isSubmitting ? 'กำลังตรวจสอบ...' : 'ถัดไป'}
         </button>
       </div>
       <div className="right-tab"></div>

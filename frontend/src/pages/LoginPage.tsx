@@ -41,7 +41,7 @@ function LoginPage() {
       if (response.data.success) {
         Swal.fire({
           title: "เข้าสู่ระบบสำเร็จ!",
-          text: response.data.message,
+          text: "ยินดีต้อนรับเข้าสู่ระบบ",
           icon: "success",
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E",
@@ -56,7 +56,7 @@ function LoginPage() {
         
         Swal.fire({
           title: "เข้าสู่ระบบไม่สำเร็จ",
-          text: response.data.message,
+          text: "Email หรือ รหัสผ่านไม่ถูกต้อง",
           icon: "error",
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E",
@@ -66,8 +66,8 @@ function LoginPage() {
       if (axios.isAxiosError(error) && error.response) {
       if (error.response.data.message.includes('Email not registered')) {
         Swal.fire({
-          title: "อีเมลยังไม่ได้ลงทะเบียน",
-          text: "กรุณาตรวจสอบอีเมลของคุณหรือสมัครสมาชิกใหม่",
+          title: "Email ยังไม่ได้ลงทะเบียน",
+          text: "กรุณาตรวจสอบ Email ของคุณใหม่",
           icon: "warning",
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E",
@@ -75,7 +75,7 @@ function LoginPage() {
       } else {
         Swal.fire({
           title: "เข้าสู่ระบบไม่สำเร็จ",
-          text: error.response.data.message || "Email หรือ Password ไม่ถูกต้อง",
+          text: "Email หรือ Password ไม่ถูกต้อง",
           icon: "error",
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E",
