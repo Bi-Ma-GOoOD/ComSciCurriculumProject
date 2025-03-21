@@ -83,8 +83,10 @@ function OtpPage() {
     try {
       const response = await axios.post('http://localhost:8000/api/verify-otp/', {
         email: email,
-        otp: otpString.toString()
+        otp: otpString.toString(),
+        reference: localStorage.getItem('signupReference')
       });
+      
 
       if (response.data.success) {
         Swal.fire({
@@ -130,6 +132,7 @@ function OtpPage() {
         <div className='title'>KU ComSci Graduate's Check</div>
       </div>
       <div className='otp'>
+      <div className='reference'>Reference: {localStorage.getItem('signupReference')}</div>
         <div className='titleOtp'>OTP verification</div>
         <div className="otp-container">
           <div className='otp-input'>
