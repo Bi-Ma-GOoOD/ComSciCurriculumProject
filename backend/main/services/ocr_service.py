@@ -271,7 +271,6 @@ class OCRService():
                 
                 if self.get_studentId_activity(activity, user.student_code) == user.student_code:
                     response["activity"]["valid"] = True
-                    upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
                 else:
                     response["activity"]["message"] = "Invalid or mismatched activity data."
 
@@ -297,9 +296,9 @@ class OCRService():
                 if form.form_type == Form.FormType.GRADUATION_CHECK and all(file["valid"] for file in response.values()):
                     if self.check_pass_activity(activity):
                         if receipt_info["year"] == st_info["recent_year"] and receipt_info["semester"] == st_info["recent_semester"]:
-                            upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
-                            upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
-                            upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
+                            upload_to_minio(files[0], f"{form.form_id}/transcript.pdf")
+                            upload_to_minio(files[1], f"{form.form_id}/activity.pdf")
+                            upload_to_minio(files[2], f"{form.form_id}/receipt.pdf")
                             check = self.CheckType.GRAD_VALID
                         else:
                             response["receipt"]["message"] += "Invalid semester/year in receipt."

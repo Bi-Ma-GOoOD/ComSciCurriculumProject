@@ -39,6 +39,17 @@ def download_from_minio(file_name):
         print(f"Error downloading file from MinIO: {e}")
         return None
     
+def delete_from_minio(folder_name):
+    try:
+        objects = minio_client.list_objects(settings.MINIO_BUCKET, prefix=f"{folder_name}/", recursive=True)
+        for obj in objects:
+            minio_client.remove_object(settings.MINIO_BUCKET, obj.object_name)
+        print(f"Deleted folder {folder_name} from MinIO")
+        return True
+    except S3Error as e:
+        print(f"Error deleting folder {folder_name}: {e}")
+        return False
+    
 def generate_presigned_url(file_name):
     try:
         return minio_client.presigned_get_object(settings.MINIO_BUCKET, file_name)
