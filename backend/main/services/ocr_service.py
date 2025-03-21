@@ -153,8 +153,8 @@ class OCRService():
                 if matching_courses:
                     selected_course = max(matching_courses, key=lambda c: int(c.course_id.split('-')[-1]) if '-' in c.course_id else 0)
                     course = selected_course
-                # else:
-                #     raise ValueError(f"course with {course_id} not found.") #NOTE: บางวิชาไม่มีในระบบ
+                else:
+                    raise ValueError(f"course with {course_id} not found.") #NOTE: บางวิชาไม่มีในระบบ
                     
                 # ถ้าไม่มีเกรดข้ามเรื่อยๆจนกว่าจะเจอเกรด
                 grading = None
