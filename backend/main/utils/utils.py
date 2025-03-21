@@ -1,7 +1,7 @@
 import uuid
 
 from ..models import Form, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse, Enrollment
-
+from ..minio_client import delete_from_minio
 
 def getGrade(charGrade: str) -> tuple[float|None, str|None] :
     charGrade = charGrade.upper()
@@ -46,5 +46,5 @@ def resetForm(uid: uuid.UUID) :
     form.save()
     
     # TODO: delete files
-    
+    delete_from_minio(str(form.form_id))
     return 'Delete success'
