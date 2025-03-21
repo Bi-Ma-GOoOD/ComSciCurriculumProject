@@ -260,15 +260,15 @@ class OCRService():
             if any(file["valid"] for file in response.values()):
                 check = 0 # 0: no check, 1: credit check, 2: graduation check
                 if form.form_type == Form.FormType.CREDIT_CHECK and response["transcript"]["valid"] and not response["activity"]["valid"] and not response["receipt"]["valid"]:
-                    upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
+                    upload_to_minio(files[0], f"{form.form_id}/transcript.pdf")
                     check = 1
                     
                 if form.form_type == Form.FormType.GRADUATION_CHECK and all(file["valid"] for file in response.values()):
                     if self.check_pass_activity(activity):
                         if receipt_info["year"] == st_info["recent_year"] and receipt_info["semester"] == st_info["recent_semester"]:
-                            upload_to_minio(files[0], f"{user.student_code}/transcript.pdf")
-                            upload_to_minio(files[1], f"{user.student_code}/activity.pdf")
-                            upload_to_minio(files[2], f"{user.student_code}/receipt.pdf")
+                            upload_to_minio(files[0], f"{form.form_id}/transcript.pdf")
+                            upload_to_minio(files[1], f"{form.form_id}/activity.pdf")
+                            upload_to_minio(files[2], f"{form.form_id}/receipt.pdf")
                             check = 2
                         else:
                             response["receipt"]["message"] += "Invalid semester/year in receipt."
