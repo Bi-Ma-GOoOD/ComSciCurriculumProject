@@ -191,9 +191,9 @@ function SignUpPass() {
           confirmButtonText: 'OK',
           confirmButtonColor: "#B2BB1E"
         });
-      } else if (err.response?.data?.message?.includes('Key already exists')) {
+      } else if (err.response?.data?.message?.includes('Invalid key code')) {
         Swal.fire({
-          title: 'Key นี้ถูกใช้งานแล้ว',
+          title: 'Key ไม่ถูกต้อง',
           text: 'กรุณาตรวจสอบ Key ใหม่อีกครั้ง',
           icon: 'error',
           confirmButtonText: 'OK',
