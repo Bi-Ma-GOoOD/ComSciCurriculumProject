@@ -33,7 +33,7 @@ class SignupService() :
                 send_mail(
                     'Your Sign Up OTP',
                     f'Your One-Time Password #{reference} is: {otp}\nIt will expire in 10 minutes.',
-                    'xxxxxxxxxxxx@gmail.com',  # SENDER EMAIL
+                    'panuwits89@gmail.com',  # SENDER EMAIL
                     [email],
                     fail_silently=False,
                 )
@@ -44,14 +44,14 @@ class SignupService() :
             return False, "Only @ku.th email addresses are allowed for registration"
     
     @staticmethod
-    def verify_otp(email, entered_otp, expiration_minutes=10):
+    def verify_otp(email, entered_otp, reference):
         """Verify if OTP is valid and not expired"""
         # Check if OTP matches and is not expired
-        otp_obj = OTPVerification.objects.filter(
+        otp_obj = OTPVerification.objects.get(
             email=email,
-            created_at__gte=timezone.now() - timedelta(minutes=expiration_minutes)
-        ).last()
-        
+            reference_otp=reference
+        )
+                
         if not otp_obj:
             return False, "OTP expired or not found"
             
