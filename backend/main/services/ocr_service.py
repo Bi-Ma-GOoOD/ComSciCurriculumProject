@@ -1,8 +1,9 @@
 import fitz, re
-from enum import Enum
-from ..models import Enrollment, User, Course, Form, VerificationResult
 from django.core.exceptions import ObjectDoesNotExist
+from enum import Enum
 from io import BytesIO
+from googletrans import Translator
+from ..models import Enrollment, User, Course, Form, VerificationResult, Subcategory, Category, Curriculum
 from ..minio_client import upload_to_minio, download_from_minio
 
 class OCRService():
@@ -129,7 +130,7 @@ class OCRService():
         return None
     
     #NOTE: Grading in Char , DONE   
-    def extract_course_info(self, text, user):
+    def extract_course_info(self, text, st_info, user):
         start_year = int(str(user.student_code)[:2])
         courses = {course.course_id: course for course in Course.objects.all() if self.get_valid_course(course, start_year)}
         count = 0
@@ -147,15 +148,52 @@ class OCRService():
             course_match = re.match(r"(\d{8})\s+(.+)", item) 
             if course_match and current_semester:
                 course_id = course_match.group(1)
-
+                course_name_en = course_match.group(2)
+                
                 matching_courses = [course for course in courses.values() if course.course_id.startswith(course_id)]
                 
                 if matching_courses:
                     selected_course = max(matching_courses, key=lambda c: int(c.course_id.split('-')[-1]) if '-' in c.course_id else 0)
                     course = selected_course
-                else:
-                    raise ValueError(f"course with {course_id} not found.") #NOTE: บางวิชาไม่มีในระบบ
-                    
+                
+                else: #NOTE: บางวิชาไม่มีในระบบ
+                    translator = Translator()
+                    course_name_th = translator.translate(course_name_en, dest='th').text
+                    curriculum_year = (start_year - (start_year % 5))
+                    course_id = f"{course_id}-{curriculum_year}"
+                    credit = None
+                    j = i + 1
+                    while j < len(text):
+                        next_item = text[j].strip()
+                        if next_item.isdecimal():
+                            credit = int(next_item)
+                            break
+                        j += 1 
+                        
+                    if course_id.startswith("01418"):
+                        year = (st_info["start_year"] - (st_info["start_year"] % 5))
+                        curriculum = Curriculum.objects.get(curriculum_year=str(year))
+                        category = Category.objects.get(category_name="หมวดวิชาเฉพาะ", curriculum_fk=curriculum)
+                        subcategory = Subcategory.objects.get(subcategory_name="เฉพาะเลือก", category_fk=category)
+                        print(course_id, course_name_en,  "was added in to database.")
+                        course = Course.objects.create(
+                            course_id=course_id,
+                            credit=credit,
+                            course_name_th=course_name_th,
+                            course_name_en=course_name_en,
+                            subcategory_fk=subcategory
+                        )
+                        print(course)
+                    else:
+                        print(course_id, course_name_en, "was added in to database.")
+                        course = Course.objects.create(
+                            course_id=course_id,
+                            credit=credit,
+                            course_name_th=course_name_th,
+                            course_name_en=course_name_en,
+                            subcategory_fk=None
+                        ) 
+                
                 # ถ้าไม่มีเกรดข้ามเรื่อยๆจนกว่าจะเจอเกรด
                 grading = None
                 j = i + 1
@@ -258,7 +296,7 @@ class OCRService():
                     if st_info["id"] == user.student_code:
                         if st_info["field"].lower() == "computer science":
                             response["transcript"]["valid"] = True
-                            self.extract_course_info(transcript, user)
+                            self.extract_course_info(transcript, st_info, user)
                         else:
                             response["transcript"]["message"] = "Invalid field in transcript (should be 'Computer Science')."
                     else:
