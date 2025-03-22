@@ -199,6 +199,22 @@ function SignUpPass() {
           confirmButtonText: 'OK',
           confirmButtonColor: "#B2BB1E"
         });
+      } else if (err.response?.data?.message?.includes('Password must be between 8 and 18 characters long')) {
+        Swal.fire({
+          title: 'กรุณากรอกรหัสผ่านใหม่',
+          text: 'รหัสผ่านต้องมีความยาวระหว่าง 8-18 ตัวอักษร',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: "#B2BB1E"
+        })
+      } else if (err.response?.data?.message?.includes('Password can only contain english letters, numbers, and special characters')) {
+        Swal.fire({
+          title: 'กรุณากรอกรหัสผ่านใหม่',
+          text: 'รหัสผ่านต้องประกอบด้วยตัวอักษรภาษาอังกฤษ ตัวเลข และอักขระพิเศษเท่านั้น',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: "#B2BB1E"
+        })
       }
     } else {
       Swal.fire({

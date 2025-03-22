@@ -39,7 +39,7 @@ function SignUpPage() {
           localStorage.setItem('signupEmail', email.trim());
           navigate('/OtpPage', { state: { email: email.trim() } });
         });
-      } else if (response.data.message === "Email already registered") {
+      } else if (response.data.message.includes('Email already registered')) {
         Swal.fire({
           title: "Email นี้มีอยู่ในระบบแล้ว",
           text: "กรุณาใช้ Email อื่น",
@@ -47,7 +47,15 @@ function SignUpPage() {
           confirmButtonText: "OK",
           confirmButtonColor: "#B2BB1E"
         });
-      } 
+      } else if (response.data.message.includes('Only @ku.th email addresses are allowed')) {
+        Swal.fire({
+          title: "Email ไม่ถูกต้อง",
+          text: "กรุณาใช้ Email ที่ลงทะเบียนด้วย @ku.th เท่านั้น",
+          icon: "error",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#B2BB1E"
+        });
+      }
     } catch (err) {
       console.error(err);
       if (axios.isAxiosError(err)) {
