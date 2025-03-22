@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from main.services.view_pending_forms_service import ViewPendingFormsService
 
 from main.models import Form, User
 
@@ -17,19 +18,8 @@ class PendingFormsView(LoginRequiredMixin, View):
         if request.user.role != User.Role.INSPECTOR:
             return HttpResponse("Unauthorized", status=403)
         
-        # Get all pending forms
-        pending_forms = Form.objects.filter(form_status=Form.FormStatus.PENDING)
-        
-        # Create a list of dictionaries with form information and student code
-        forms_data = []
-        for form in pending_forms:
-            forms_data.append({
-                'form_id': form.form_id,
-                'form_type': form.form_type,
-                'form_status': form.form_status,
-                'student_code': form.user_fk.student_code,
-                'student_name': form.user_fk.name,
-            })
+        # Get pending forms data from service
+        forms_data = ViewPendingFormsService.get_pending_forms()
         
         context = {
             'forms_data': forms_data,
