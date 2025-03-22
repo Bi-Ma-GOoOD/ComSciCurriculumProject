@@ -2,6 +2,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.core.mail import send_mail
 from main.models import OTPVerification, User, Form
+import re
 
 class SignupService() :
     """
@@ -74,6 +75,15 @@ class SignupService() :
         """Validate registration form data"""
         if password != confirm_password:
             return False, "Passwords do not match"
+        
+        # Check password length
+        if len(password) < 8 or len(password) > 18:
+            return False, "Password must be between 8 and 18 characters long"
+            
+        # Check if password contains only allowed characters
+        allowed_pattern = r'^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]|:;<>,.?/~]+$'
+        if not re.match(allowed_pattern, password):
+            return False, "Password can only contain english letters, numbers, and special characters"
             
         if role == 'student' and not student_code:
             return False, "Student code is required for students"
