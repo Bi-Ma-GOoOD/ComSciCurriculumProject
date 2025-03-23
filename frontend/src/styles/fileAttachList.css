@@ -1,0 +1,65 @@
+.grad-file-page .content {
+    padding-top: 138px; /* Height of the header */
+  }
+  
+  .grad-file-page .grad-file-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    width: 80vw; /* 80% of viewport width */
+    height: 60vh; /* 60% of viewport height */
+    border-radius: 9px;
+    background-color: #006664;
+    margin: auto;
+    color: white;
+    position: relative;
+  }
+
+  .inspect-file-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    width: 25vw; /* 80% of viewport width */
+    height: 54vh; /* 60% of viewport height */
+    border-radius: 48px;
+    background-color: #ffffff;
+    margin: auto;
+    color: white;
+    position: relative;
+  }
+  
+  .message-container {
+    padding: 1em;
+    width: 100%;
+    border-radius: 0px;
+    margin-top: 1em;
+    text-align: center;
+    color: white;
+    position: fixed; /* Make it a popup */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it is above other elements */
+    background-color: rgba(255, 255, 255, 0); /* Adjust transparency */
+  }
+
+  .left-tab, 
+  .right-tab {
+    width: 35px;
+    height: 100vh;
+    background-color: #B2BB1E;
+    position: absolute;
+    top: 0;
+  }
+
+  .page-name {
+    font-family: 'Inter', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 12px; /* Adjust margin to move the title upwards */
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 58.09px;
+    color: #006664;
+  }

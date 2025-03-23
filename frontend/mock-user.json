@@ -1,0 +1,9 @@
+{
+    "user" : {
+        "user_id" : "123ABCDFG",
+        "email" : "kitt.ki@ku.th",
+        "student_code" : "6510450208",
+        "role" : "STUDENT",
+        "password" : "123456"
+    }
+}

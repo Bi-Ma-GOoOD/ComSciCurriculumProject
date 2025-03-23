@@ -6,6 +6,8 @@ import OtpPage from './pages/OtpPage';
 import SignUpPass from './pages/SignUpPass';
 import CreditCheckPage from "./pages/creditCheck";
 import InsertGradFile from "./pages/insertGradFile";
+import FileAttachCheck from "./pages/fileAttachCheck";
+import FileAttachList from "./pages/fileAttachList";
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
        <Route path="/SignUpPass" element={<SignUpPass />} />
         <Route path="/creditcheck" element={<CreditCheckPage />} />
         <Route path="/insertgradfile" element={<InsertGradFile />} />
-        <Route path="*" element={<div>404 Not Found</div>} />
+        <Route path="/fileattachcheck" element={<FileAttachCheck />}/>
+        <Route path="/fileattachlist" element={<FileAttachList />} />
       </Routes>
     </Router>
   );

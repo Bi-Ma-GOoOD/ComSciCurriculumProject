@@ -82,3 +82,12 @@
   opacity: 0.3;
   pointer-events: none; /* Make it non-clickable */
 }
+
+.left-tab, 
+.right-tab {
+  width: 35px;
+  height: 100vh;
+  background-color: #B2BB1E;
+  position: absolute;
+  top: 0;
+}
