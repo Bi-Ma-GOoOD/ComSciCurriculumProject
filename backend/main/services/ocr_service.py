@@ -16,6 +16,7 @@ class OCRService():
     def __init__(self):
         self.semester_mapping = {"Summer":0, "First":1, "Second":2}
         self.grade_mapping = {'A':4, 'B':3, 'B+':3.5, 'C':2, 'C+':2.5, 'D':1, 'D+':1.5, 'F':0} #NOTE: handle DecimalField
+        self.form_type_mapping =  {Form.FormType.CREDIT_CHECK : "creditcheck", Form.FormType.GRADUATION_CHECK : "insertgradfile", "creditcheck" : Form.FormType.CREDIT_CHECK, "insertgradfile" : Form.FormType.GRADUATION_CHECK}
         
     def extract_text_from_file_path(self, file_path):
         with open(file_path, 'rb') as file:
@@ -380,7 +381,17 @@ class OCRService():
             "activity": activity,
             "receipt": receipt
             }
-            return {"status": "success", "files": files}
+            return {"status": "success", "files": files, "form_type" : self.form_type_mapping.get(form.form_type)}
         
+        except ObjectDoesNotExist as e:
+            return {"status": "failure", "message": "User or form not found."}
+        
+    def change_form_type(self, user_id, form_type):
+        try:
+            user = User.objects.get(user_id=user_id)
+            form = Form.objects.get(user_fk=user)
+            form.form_type = self.form_type_mapping.get(form_type)
+            form.save()
+            return {"status": "success", "message": "Form type changed."}
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}

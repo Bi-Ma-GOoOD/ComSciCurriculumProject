@@ -1,12 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
-from minio import Minio
-from minio.error import S3Error
-from ..models import Form, User
 from ..services import OCRService
 from ..serializers import FileUploadSerializer
-from django.conf import settings
 
 ocr_service = OCRService()
 
@@ -34,6 +30,15 @@ class FileUploadView(APIView):
                     return Response(response, status=HTTP_200_OK)
                 else:
                     return Response(response, status=HTTP_400_BAD_REQUEST)
+    
+    def post(self, request):
+        user_id = request.query_params.get("user_id")
+        form_type = request.query_params.get("form_type")
+        response = ocr_service.change_form_type(user_id, form_type)
+        if response.get("status") == "success":
+            return Response(response, status=HTTP_200_OK)
+        else:
+            return Response(response, status=HTTP_400_BAD_REQUEST)
                 
                 
             
