@@ -4,8 +4,7 @@ from enum import Enum
 from io import BytesIO
 from googletrans import Translator
 from ..models import Enrollment, User, Course, Form, VerificationResult, Subcategory, Category, Curriculum
-from ..minio_client import upload_to_minio, generate_presigned_url, download_from_minio
-from django.http import FileResponse
+from ..minio_client import upload_to_minio, download_from_minio
 
 class OCRService():
     class CheckType(Enum):
