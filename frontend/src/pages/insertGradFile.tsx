@@ -89,10 +89,9 @@ const InsertGradFile: React.FC = () => {
 
   useEffect(() => {
     const fetchFiles = async () => {
-      const user_id = "e6c70c9292b547f19c2446e12df63004";
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/upload/?user_id=${user_id}`
+          `http://localhost:8000/api/upload/?user_id=${userId}`
         );
         const { transcript, activity, receipt } = response.data.files;
         if (transcript) {
