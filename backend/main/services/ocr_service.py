@@ -4,7 +4,8 @@ from enum import Enum
 from io import BytesIO
 from googletrans import Translator
 from ..models import Enrollment, User, Course, Form, VerificationResult, Subcategory, Category, Curriculum
-from ..minio_client import upload_to_minio, download_from_minio
+from ..minio_client import upload_to_minio, generate_presigned_url, download_from_minio
+from django.http import FileResponse
 
 class OCRService():
     class CheckType(Enum):
@@ -367,3 +368,19 @@ class OCRService():
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}
     
+    def get_form_view(self, user_id):
+        try:
+            user = User.objects.get(user_id=user_id)
+            form = Form.objects.get(user_fk=user)
+            transcript = download_from_minio(f"{form.form_id}/transcript.pdf"),
+            activity = download_from_minio(f"{form.form_id}/activity.pdf"),
+            receipt = download_from_minio(f"{form.form_id}/receipt.pdf")
+            files = {
+            "transcript": transcript,
+            "activity": activity,
+            "receipt": receipt
+            }
+            return {"status": "success", "files": files}
+        
+        except ObjectDoesNotExist as e:
+            return {"status": "failure", "message": "User or form not found."}

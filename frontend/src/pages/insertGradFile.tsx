@@ -50,6 +50,7 @@ const InsertGradFile: React.FC = () => {
       formData.append("transcript", transcriptFile);
       formData.append("activity", activityFile);
       formData.append("receipt", receiptFile);
+      formData.append("user_id", "e6c70c9292b547f19c2446e12df63004"); // append from local storage
 
       try {
         const response = await axios.post(
@@ -72,16 +73,44 @@ const InsertGradFile: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => {
-        setMessage(null);
-        setMessageType(null);
-      }, 3000); // 3 seconds
-
-      return () => clearTimeout(timer);
+  // Convert base64 string to File object
+  const base64ToFile = (base64String: string, fileName: string): File => {
+    const byteCharacters = atob(base64String);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
-  }, [message]);
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "application/pdf" });
+    return new File([blob], fileName, { type: "application/pdf" });
+  };
+
+  useEffect(() => {
+    const fetchFiles = async () => {
+      const user_id = "e6c70c9292b547f19c2446e12df63004";
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/api/upload/?user_id=${user_id}`
+        );
+        const { transcript, activity, receipt } = response.data.files;
+        if (transcript) {
+          const file = base64ToFile(transcript, "transcript.pdf");
+          setTranscriptFile(file);
+        }
+        if (activity) {
+          const file = base64ToFile(activity, "activity.pdf");
+          setActivityFile(file);
+        }
+        if (receipt) {
+          const file = base64ToFile(receipt, "receipt.pdf");
+          setReceiptFile(file);
+        }
+      } catch (error) {
+        console.error("Error fetching files:", error);
+      }
+    };
+    fetchFiles();
+  }, []);
 
   const handleNavigate = (page: string) => {
     if (transcriptFile || activityFile || receiptFile) {
