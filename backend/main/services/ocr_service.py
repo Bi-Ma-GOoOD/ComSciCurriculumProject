@@ -372,15 +372,7 @@ class OCRService():
         try:
             user = User.objects.get(user_id=user_id)
             form = Form.objects.get(user_fk=user)
-            transcript = download_from_minio(f"{form.form_id}/transcript.pdf"),
-            activity = download_from_minio(f"{form.form_id}/activity.pdf"),
-            receipt = download_from_minio(f"{form.form_id}/receipt.pdf")
-            files = {
-            "transcript": transcript,
-            "activity": activity,
-            "receipt": receipt
-            }
-            return {"status": "success", "files": files, "form_type" : self.form_type_mapping.get(form.form_type)}
+            return {"status": "success", "form_type" : self.form_type_mapping.get(form.form_type)}
         
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}
