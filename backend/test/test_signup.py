@@ -34,7 +34,7 @@ class SignupServiceTest(TestCase):
         otp, reference = SignupService.generate_and_save_otp(email)
         
         # Verify the OTP
-        result, error = SignupService.verify_otp(email, otp)
+        result, error = SignupService.verify_otp(email, otp, reference)
         self.assertTrue(result)
         self.assertIsNone(error)
 

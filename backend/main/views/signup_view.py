@@ -30,7 +30,7 @@ def signup_view(request):
             return JsonResponse({
                 'success': False, 
                 'message': 'Only @ku.th email addresses are allowed'
-            }, status=400)
+            }, status=200)
         
         # Check if user already exists
         from main.models import User
@@ -38,7 +38,7 @@ def signup_view(request):
             return JsonResponse({
                 'success': False, 
                 'message': 'Email already registered'
-            }, status=400)
+            }, status=200)
         
         # Generate OTP
         otp, reference = SignupService.generate_and_save_otp(email)

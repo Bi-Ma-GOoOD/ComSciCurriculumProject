@@ -17,6 +17,7 @@ def otp_verify_view(request):
         data = json.loads(request.body)
         email = data.get('email', '').strip()
         otp = data.get('otp', '').strip()
+        reference = data.get('reference', '').strip()
         
         # Validate required fields
         if not email:
@@ -32,7 +33,7 @@ def otp_verify_view(request):
             }, status=400)
         
         # Verify OTP using the service
-        verified, error_message = SignupService.verify_otp(email, otp)
+        verified, error_message = SignupService.verify_otp(email, otp, reference)
         
         if not verified:
             return JsonResponse({
