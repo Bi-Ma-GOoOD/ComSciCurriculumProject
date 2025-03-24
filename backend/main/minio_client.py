@@ -1,3 +1,4 @@
+import base64
 from minio import Minio
 from django.conf import settings
 from io import BytesIO
@@ -33,8 +34,11 @@ def upload_to_minio(file_data, file_name):
 
 def download_from_minio(file_name):
     try:
-        file = minio_client.get_object(settings.MINIO_BUCKET, file_name)
-        return file
+        response = minio_client.get_object(settings.MINIO_BUCKET, file_name)
+        file_data = BytesIO(response.read())
+        file_data.seek(0)
+        encoded_file = base64.b64encode(file_data.read()).decode("utf-8")
+        return encoded_file
     except S3Error as e:
         print(f"Error downloading file from MinIO: {e}")
         return None
