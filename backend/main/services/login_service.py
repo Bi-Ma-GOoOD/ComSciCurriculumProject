@@ -49,14 +49,14 @@ class LoginService() :
         Redirect URL based on form type
         """
         if not form:   
-            return '/dashboard/'        # For INSPECTOR role
+            return '/fileAttachCheck/'        # For INSPECTOR role
             
         if form.form_type == Form.FormType.GRADUATION_CHECK:
-            return '/graduation-check/'
+            return '/insertGradFile/'
         elif form.form_type == Form.FormType.CREDIT_CHECK:
-            return '/credit-check/'
+            return '/creditCheck/'
         else:
-            return '/dashboard/'        # For INSPECTOR role
+            return '/fileAttachCheck/'        # For INSPECTOR role
     
     @staticmethod
     def get_user_files(form):
