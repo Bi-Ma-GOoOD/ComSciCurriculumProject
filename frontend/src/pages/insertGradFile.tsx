@@ -75,43 +75,16 @@ const InsertGradFile: React.FC = () => {
     }
   };
 
-  // Convert base64 string to File object
-  const base64ToFile = (base64String: string, fileName: string): File => {
-    const byteCharacters = atob(base64String);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: "application/pdf" });
-    return new File([blob], fileName, { type: "application/pdf" });
-  };
-
   useEffect(() => {
-    const fetchFiles = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8000/api/upload/?user_id=${userId}`
-        );
-        const { transcript, activity, receipt } = response.data.files;
-        if (transcript) {
-          const file = base64ToFile(transcript, "transcript.pdf");
-          setTranscriptFile(file);
-        }
-        if (activity) {
-          const file = base64ToFile(activity, "activity.pdf");
-          setActivityFile(file);
-        }
-        if (receipt) {
-          const file = base64ToFile(receipt, "receipt.pdf");
-          setReceiptFile(file);
-        }
-      } catch (error) {
-        console.error("Error fetching files:", error);
-      }
-    };
-    fetchFiles();
-  }, []);
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage(null);
+        setMessageType(null);
+      }, 3000); // 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleNavigate = (page: string) => {
     if (transcriptFile || activityFile || receiptFile) {
