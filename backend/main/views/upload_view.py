@@ -19,6 +19,7 @@ class FileUploadView(APIView):
                     request.FILES.get("activity"),
                     request.FILES.get("receipt")
                 ]
+                user_id = request.data.get("user_id")  # Retrieve user_id from the request
             # form.form_type
             # if not all(files):
             #     return Response({"message": "Files are missing.", "files": [f.name if f else None for f in files]}, status=HTTP_400_BAD_REQUEST)
@@ -31,12 +32,12 @@ class FileUploadView(APIView):
                     return Response(validation_result, status=HTTP_400_BAD_REQUEST)
             # except Form.DoesNotExist:
             #     return Response({"message": "Form not found."}, status=HTTP_400_BAD_REQUEST)
-                
-                
-            
-            
-            
 
-            
-            
+
+
+
+
+
+
+
 

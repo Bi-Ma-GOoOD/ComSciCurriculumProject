@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/header";
 import Button from "../components/button";
 import UploadFileButton from "../components/uploadfile-button";
@@ -19,6 +19,8 @@ const InsertGradFile: React.FC = () => {
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const userId = location.state?.user_id;
 
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -50,6 +52,7 @@ const InsertGradFile: React.FC = () => {
       formData.append("transcript", transcriptFile);
       formData.append("activity", activityFile);
       formData.append("receipt", receiptFile);
+      formData.append("user_id", userId); // Include user_id in the request
 
       try {
         const response = await axios.post(
