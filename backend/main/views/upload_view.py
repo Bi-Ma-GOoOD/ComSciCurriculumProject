@@ -17,6 +17,7 @@ class FileUploadView(APIView):
         
     def post(self, request):
         serializer = FileUploadSerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid():
                 files = [
                     request.FILES.get("transcript"),
@@ -30,6 +31,8 @@ class FileUploadView(APIView):
                     return Response(response, status=HTTP_200_OK)
                 else:
                     return Response(response, status=HTTP_400_BAD_REQUEST)
+                
+        return Response({'message': 'some thing went wrong...'}, status=HTTP_400_BAD_REQUEST)
                 
     def put(self, request):
         user_id = request.query_params.get("user_id")

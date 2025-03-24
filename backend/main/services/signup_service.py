@@ -1,6 +1,7 @@
 from datetime import timedelta
 from django.utils import timezone
 from django.core.mail import send_mail
+from django.conf import settings
 from main.models import OTPVerification, User, Form
 import re
 
@@ -34,7 +35,7 @@ class SignupService() :
                 send_mail(
                     'Your Sign Up OTP',
                     f'Your One-Time Password #{reference} is: {otp}\nIt will expire in 10 minutes.',
-                    'xxxxxxxxxxxx@gmail.com',  # SENDER EMAIL
+                    settings.EMAIL_HOST_USER,  # SENDER EMAIL
                     [email],
                     fail_silently=False,
                 )
