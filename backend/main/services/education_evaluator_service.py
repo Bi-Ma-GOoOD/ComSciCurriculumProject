@@ -162,6 +162,8 @@ class EducationEvaluationService() :
         uuidUID = uuid.UUID(userId)
         
         user = User.objects.get(user_id=uuidUID)
+        curriculum_year = int(user.student_code[:2]) - (int(user.student_code[:2]) % 5)
+        curriculum = Curriculum.objects.get(curriculum_year=2500+curriculum_year)
         
         form = Form.objects.get(user_fk=uuidUID)
         enrollments = []
@@ -171,7 +173,6 @@ class EducationEvaluationService() :
             enrollments.append(enrollment)
         
         verificationResult = VerificationResult.objects.get(form_fk=form.form_id)
-        curriculum = Curriculum.objects.get(curriculum_year= (2500 + int(user.student_code[:2])))
         
         subcategoriesReformate = {}
         
