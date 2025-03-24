@@ -11,7 +11,7 @@ class CalculateView(APIView):
         uid = request.query_params.get('uid')
         if uid :
             try :
-                
+              
                 response = ees.verify(
                     userId=uid,
                 )

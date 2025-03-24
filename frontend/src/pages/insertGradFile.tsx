@@ -74,6 +74,18 @@ const InsertGradFile: React.FC = () => {
     }
   };
 
+  const handleCalculationSubmit = async () => {
+    const response = await axios.post(`http://localhost:8000/api/calculate/?uid=${user?.id}`);
+    console.log(response.data)
+  }
+
+  const handleGetCalculationResult = async () => {
+    const response = await axios.get(
+        `http://localhost:8000/api/credit-verify/?uid=${user?.id}`
+    );
+    console.log(response.data)
+  }
+
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
@@ -177,6 +189,17 @@ const InsertGradFile: React.FC = () => {
             className="button"
             onClick={handleSubmit}
           />
+          <Button
+            text="calculate"
+            className="button"
+            onClick={handleCalculationSubmit}
+          />
+          <Button
+            text="get result"
+            className="button"
+            onClick={handleGetCalculationResult}
+          />
+
         </div>
       </div>
       {showConfirmPopup && (
