@@ -357,8 +357,9 @@ class OCRService():
                             fee_status=fee,
                             form_fk=form
                         )
-                    form.status = Form.FormStatus.READY_TO_CALC
+                    form.form_status = Form.FormStatus.READY_TO_CALC
                     form.save()
+                    
                     return {"status": "success", "message": "All files are valid."}
             return {
                 "status": "failure",

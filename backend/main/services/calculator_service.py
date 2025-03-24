@@ -84,7 +84,7 @@ class CalculatorService() :
         
         mappedEnrollments = self.categorizeSubject(subcategories=subcategories, enrollments=enrollments)
             
-        for mappedEnrollment in mappedEnrollments.values() :
+        for mappedEnrollment in mappedEnrollments.values() :            
             if mappedEnrollment['subcategory'].subcateory_min_credit < mappedEnrollment['sumCredit'] :
                 # เกลี่ยรายวิชา
                 formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in mappedEnrollment['matchEnrollment'].values()}
@@ -101,6 +101,10 @@ class CalculatorService() :
                         result['free elective'].append(removedCourse)
 
             result['categorize course'].append(mappedEnrollment)
+            
+        for enrollment in enrollments :
+            if enrollment.enrollment.course_fk.subcategory_fk is None :
+                result['free elective'].append(enrollment)
                         
         return result
     
@@ -123,6 +127,9 @@ class CalculatorService() :
         }
         
         for enrollment in enrollments :
+            if enrollment.enrollment.course_fk.subcategory_fk is None :
+                continue
+            
             subcategoryName = enrollment.enrollment.course_fk.subcategory_fk.subcategory_name
             matchSubcategory = mappedEnrollments.get(subcategoryName)
             

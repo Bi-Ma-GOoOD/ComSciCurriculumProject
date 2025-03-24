@@ -1,7 +1,9 @@
 from datetime import timedelta
 from django.utils import timezone
 from django.core.mail import send_mail
+from django.conf import settings
 from main.models import OTPVerification, User, Form
+import re
 
 class SignupService() :
     """
@@ -33,7 +35,7 @@ class SignupService() :
                 send_mail(
                     'Your Sign Up OTP',
                     f'Your One-Time Password #{reference} is: {otp}\nIt will expire in 10 minutes.',
-                    'xxxxxxxxxxxx@gmail.com',  # SENDER EMAIL
+                    settings.EMAIL_HOST_USER,  # SENDER EMAIL
                     [email],
                     fail_silently=False,
                 )
@@ -44,14 +46,14 @@ class SignupService() :
             return False, "Only @ku.th email addresses are allowed for registration"
     
     @staticmethod
-    def verify_otp(email, entered_otp, expiration_minutes=10):
+    def verify_otp(email, entered_otp, reference):
         """Verify if OTP is valid and not expired"""
         # Check if OTP matches and is not expired
-        otp_obj = OTPVerification.objects.filter(
+        otp_obj = OTPVerification.objects.get(
             email=email,
-            created_at__gte=timezone.now() - timedelta(minutes=expiration_minutes)
-        ).last()
-        
+            reference_otp=reference
+        )
+                
         if not otp_obj:
             return False, "OTP expired or not found"
             
@@ -74,6 +76,15 @@ class SignupService() :
         """Validate registration form data"""
         if password != confirm_password:
             return False, "Passwords do not match"
+        
+        # Check password length
+        if len(password) < 8 or len(password) > 18:
+            return False, "Password must be between 8 and 18 characters long"
+            
+        # Check if password contains only allowed characters
+        allowed_pattern = r'^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]|:;<>,.?/~]+$'
+        if not re.match(allowed_pattern, password):
+            return False, "Password can only contain english letters, numbers, and special characters"
             
         if role == 'student' and not student_code:
             return False, "Student code is required for students"

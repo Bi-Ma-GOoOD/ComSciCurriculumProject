@@ -170,3 +170,39 @@ class AssignResult(TestCase) :
         self.assertEqual(len(NotPassCourse.objects.all()), 1)
         
         NotPassCourse.objects.all().delete()
+        
+    def test_checking_result_with_none_subcategoryfk_in_curriculum(self) :
+        self.courses = mockCourses(self.subcategories[0], [4])
+        self.courses.append(
+            Course.objects.create(
+                course_id='01418xxx',
+                credit=3,
+                course_name_th='วิชาทดลอง',
+                course_name_en='Test Course',
+                subcategory_fk=None,
+            )
+        )
+        
+        # enrollments = [(c, 'A', 2565) for c in self.courses[]]
+        enrollments = [(self.courses[0], 'A', 2565)]
+        self.studiedCourse = mockEnrollments(self.student, enrollments)
+        self.studiedCourse.append(
+            Enrollment.objects.create(
+                user_fk=self.student,
+                course_fk=self.courses[-1],
+                grade='A',
+                year=2567,
+                semester=Enrollment.Semester.FIRST,
+            )
+        )
+        
+        result = self.calculator.verify(
+            str(self.student.user_id),
+            self.categories,
+            self.subcategories,
+            self.courses,
+            isTesting=True,
+        )
+
+        self.assertTrue(result['is_complete'])
+            
