@@ -48,10 +48,12 @@ function LoginPage() {
         });
 
         // เก็บข้อมูล user ลง localStorage
+        let userId = response.data.user.id;
+        userId = userId.replace(/-/g, "");
         localStorage.setItem('user', JSON.stringify(response.data.user));
 
         
-        navigate('/insertGradFile');
+        navigate("/insertGradFile", { state: { user_id: userId } });
       } else {
         
         Swal.fire({

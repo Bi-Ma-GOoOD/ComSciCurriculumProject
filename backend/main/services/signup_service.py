@@ -34,7 +34,7 @@ class SignupService() :
                 send_mail(
                     'Your Sign Up OTP',
                     f'Your One-Time Password #{reference} is: {otp}\nIt will expire in 10 minutes.',
-                    'panuwits89@gmail.com',  # SENDER EMAIL
+                    'xxxxxxxxxxxx@gmail.com',  # SENDER EMAIL
                     [email],
                     fail_silently=False,
                 )

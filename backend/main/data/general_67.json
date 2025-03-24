@@ -1,0 +1,1602 @@
+[
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01001317-67",
+  "test_code": "01001317",
+  "eng_name": "Leaders and Agricultural Sectors Development",
+  "thai_name": "ผู้นำกับการพัฒนาภาคการเกษตร",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01005101-67",
+  "test_code": "01005101",
+  "eng_name": "Modern Agricultural Technology",
+  "thai_name": "เทคโนโลยีเกษตรสมัยใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01009102-67",
+  "test_code": "01009102",
+  "eng_name": "Humans and Natural Resources",
+  "thai_name": "มนุษย์และทรัพยากรธรรมชาติ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01015202-67",
+  "test_code": "01015202",
+  "eng_name": "Thai Livelihood Agriculture",
+  "thai_name": "เกษตรวิถีไทย",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01101101-67",
+  "test_code": "01101101",
+  "eng_name": "General Economics in Globalization",
+  "thai_name": "เศรษฐศาสตร์ทั่วไปในกระแสโลกาภิวัฒน์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01131111-67",
+  "test_code": "01131111",
+  "eng_name": "Finance for Entrepreneurs",
+  "thai_name": "การเงินสำหรับผู้ประกอบการ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01173151-67",
+  "test_code": "01173151",
+  "eng_name": "AIDS Education",
+  "thai_name": "เอดส์ศึกษา",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01174123-67",
+  "test_code": "01174123",
+  "eng_name": "Recreation Camp",
+  "thai_name": "ค่ายพักแรมนันทนาการ",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01174231-67",
+  "test_code": "01174231",
+  "eng_name": "Introduction to Recreation",
+  "thai_name": "นันทนาการเบื้องต้น",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175111-67",
+  "test_code": "01175111",
+  "eng_name": "Track and Field for Health",
+  "thai_name": "กรีฑาลู่-ลาน เพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175112-67",
+  "test_code": "01175112",
+  "eng_name": "Badminton for Health",
+  "thai_name": "แบดมินตันเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175113-67",
+  "test_code": "01175113",
+  "eng_name": "Tennis for Health",
+  "thai_name": "เทนนิสเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175117-67",
+  "test_code": "01175117",
+  "eng_name": "Meditation with Archery Activity",
+  "thai_name": "ฝึกสมาธิด้วยกิจกรรมยิงธนู",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175118-67",
+  "test_code": "01175118",
+  "eng_name": "Chair Ball for Health",
+  "thai_name": "แชร์บอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175119-67",
+  "test_code": "01175119",
+  "eng_name": "Petanque for Health",
+  "thai_name": "เปตองเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175121-67",
+  "test_code": "01175121",
+  "eng_name": "Basketball for Health",
+  "thai_name": "บาสเกตบอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175122-67",
+  "test_code": "01175122",
+  "eng_name": "Soccer for Health",
+  "thai_name": "ฟุตบอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175123-67",
+  "test_code": "01175123",
+  "eng_name": "Volleyball for Health",
+  "thai_name": "วอลเลย์บอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175124-67",
+  "test_code": "01175124",
+  "eng_name": "Handball for Health",
+  "thai_name": "แฮนด์บอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175125-67",
+  "test_code": "01175125",
+  "eng_name": "Softball for Health",
+  "thai_name": "ซอฟท์บอลเพื่อสุขภาพ ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175126-67",
+  "test_code": "01175126",
+  "eng_name": "Takraw for Health",
+  "thai_name": "ตะกร้อเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175127-67",
+  "test_code": "01175127",
+  "eng_name": "Hockey for Health",
+  "thai_name": "ฮอกกี้เพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175128-67",
+  "test_code": "01175128",
+  "eng_name": "Rugby Football for Health",
+  "thai_name": "รักบี้ฟุตบอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175129-67",
+  "test_code": "01175129",
+  "eng_name": "Futsal for Health",
+  "thai_name": "ฟุตซอลเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175131-67",
+  "test_code": "01175131",
+  "eng_name": "Swimming for Health",
+  "thai_name": "ว่ายน้ำเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175144-67",
+  "test_code": "01175144",
+  "eng_name": "Thai Classical Dance for Health",
+  "thai_name": "รำไทยเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175151-67",
+  "test_code": "01175151",
+  "eng_name": "Martial Arts with Thai Sword",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยดาบไทย",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175152-67",
+  "test_code": "01175152",
+  "eng_name": "Martial Arts with Fencing",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยดาบสากล",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175153-67",
+  "test_code": "01175153",
+  "eng_name": "Martial Arts with Thai Boxing",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยมวยไทย",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175154-67",
+  "test_code": "01175154",
+  "eng_name": "Martial Arts with Boxing",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยมวยสากล ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175155-67",
+  "test_code": "01175155",
+  "eng_name": "Martial Arts with Judo",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยยูโด",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175156-67",
+  "test_code": "01175156",
+  "eng_name": "Martial Arts with Aikido",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยไอคิโด ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175157-67",
+  "test_code": "01175157",
+  "eng_name": "Martial Arts with Krabi-Krabong",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยกระบี่กระบอง",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175159-67",
+  "test_code": "01175159",
+  "eng_name": "Martial Arts with Karate",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยคาราเต้ ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175161-67",
+  "test_code": "01175161",
+  "eng_name": "Brain Training with Playing Bridge",
+  "thai_name": "ฝึกสมองด้วยการเล่นบริดจ์",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175162-67",
+  "test_code": "01175162",
+  "eng_name": "Bowling for Health",
+  "thai_name": "โบว์ลิ่งเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175163-67",
+  "test_code": "01175163",
+  "eng_name": "Golf for Health",
+  "thai_name": "กอล์ฟเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175164-67",
+  "test_code": "01175164",
+  "eng_name": "Cycling for Health",
+  "thai_name": "จักรยานเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175165-67",
+  "test_code": "01175165",
+  "eng_name": "Weight Training for Health",
+  "thai_name": "การฝึกด้วยนำหนักเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175166-67",
+  "test_code": "01175166",
+  "eng_name": "Martial Arts with Taekwondo",
+  "thai_name": "ศิลปะการป้องกันตัวและการต่อสู้ด้วยเทควันโด",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175167-67",
+  "test_code": "01175167",
+  "eng_name": "Yoga for Health",
+  "thai_name": "โยคะเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01175168-67",
+  "test_code": "01175168",
+  "eng_name": "Jogging for Health",
+  "thai_name": "การวิ่งเหยาะเพื่อสุขภาพ",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01177141-67",
+  "test_code": "01177141",
+  "eng_name": "Knowledge Acquisition",
+  "thai_name": "การแสวงหาความรู้",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01177142-67",
+  "test_code": "01177142",
+  "eng_name": "Aesthetics in Lifelong Learning",
+  "thai_name": "สุนทรียะในการเรียนรู้ตลอดชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01244101-67",
+  "test_code": "01244101",
+  "eng_name": "Design for Well-being",
+  "thai_name": "การออกแบบเพื่อความเป็นอยู่ที่ดี",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01255101-67",
+  "test_code": "01255101",
+  "eng_name": "Man and Sea",
+  "thai_name": "มนุษย์กับทะเล",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01301101-67",
+  "test_code": "01301101",
+  "eng_name": "Resources and Environmental Conservation",
+  "thai_name": "การอนุรักษ์ทรัพยากรและสิ่งแวดล้อม",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01350102-67",
+  "test_code": "01350102",
+  "eng_name": "Visual Storytelling",
+  "thai_name": " เล่าเรื่องด้วยภาพ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01354101-67",
+  "test_code": "01354101",
+  "eng_name": "Communicative Khmer I",
+  "thai_name": "ภาษาเขมรเพื่อการสื่อสาร I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01354102-67",
+  "test_code": "01354102",
+  "eng_name": "Communicative Khmer II",
+  "thai_name": "ภาษาเขมรเพื่อการสื่อสาร II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01354103-67",
+  "test_code": "01354103",
+  "eng_name": "Communicative Khmer III",
+  "thai_name": "ภาษาเขมรเพื่อการสื่อสาร III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01355104-67",
+  "test_code": "01355104",
+  "eng_name": "English for Pre-Medical Students I",
+  "thai_name": "ภาษาอังกฤษสำหรับนิสิตเตรียมแพทย์ I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01355105-67",
+  "test_code": "01355105",
+  "eng_name": "English for Pre-Medical Students II",
+  "thai_name": "ภาษาอังกฤษสำหรับนิสิตเตรียมแพทย์ II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01355106-67",
+  "test_code": "01355106",
+  "eng_name": "Communicative English in Medicine",
+  "thai_name": "การสื่อสารภาษาอังกฤษทางการแพทย์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01356101-67",
+  "test_code": "01356101",
+  "eng_name": "Elementary French I",
+  "thai_name": "ภาษาฝรั่งเศสเบื้องต้น I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01356102-67",
+  "test_code": "01356102",
+  "eng_name": "Elementary French II",
+  "thai_name": "ภาษาฝรั่งเศสเบื้องต้น II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01356103-67",
+  "test_code": "01356103",
+  "eng_name": "Elementary French III",
+  "thai_name": "ภาษาฝรั่งเศสเบื้องต้น III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01356104-67",
+  "test_code": "01356104",
+  "eng_name": "Elementary French IV",
+  "thai_name": "ภาษาฝรั่งเศสเบื้องต้น IV",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01357101-67",
+  "test_code": "01357101",
+  "eng_name": "Elementary German I",
+  "thai_name": "ภาษาเยอรมันเบื้องต้น I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01357102-67",
+  "test_code": "01357102",
+  "eng_name": "Elementary German II",
+  "thai_name": "ภาษาเยอรมันเบื้องต้น II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01357103-67",
+  "test_code": "01357103",
+  "eng_name": "Elementary German III",
+  "thai_name": "ภาษาเยอรมันเบื้องต้น III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01357104-67",
+  "test_code": "01357104",
+  "eng_name": "Elementary German IV",
+  "thai_name": "ภาษาเยอรมันเบื้องต้น IV",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01358101-67",
+  "test_code": "01358101",
+  "eng_name": "Elementary Japanese I",
+  "thai_name": "ภาษาญี่ปุ่นเบื้องต้น I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01358102-67",
+  "test_code": "01358102",
+  "eng_name": "Elementary Japanese II",
+  "thai_name": "ภาษาญี่ปุ่นเบื้องต้น II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01358103-67",
+  "test_code": "01358103",
+  "eng_name": "Elementary Japanese III",
+  "thai_name": "ภาษาญี่ปุ่นเบื้องต้น III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01361101-67",
+  "test_code": "01361101",
+  "eng_name": "Introductory Thai Usage",
+  "thai_name": "การใช้ภาษาไทยเบื้องต้น",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01361102-67",
+  "test_code": "01361102",
+  "eng_name": "Thai Practical Writing",
+  "thai_name": "การเขียนภาษาไทยเชิงปฏิบัติ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01361103-67",
+  "test_code": "01361103",
+  "eng_name": "Thai Critical Reading",
+  "thai_name": "การอ่านภาษาไทยเชิงวิจารณ์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01362101-67",
+  "test_code": "01362101",
+  "eng_name": "Chinese I",
+  "thai_name": "ภาษาจีน I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01362102-67",
+  "test_code": "01362102",
+  "eng_name": "Chinese II",
+  "thai_name": "ภาษาจีน II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01362201-67",
+  "test_code": "01362201",
+  "eng_name": "Chinese III",
+  "thai_name": "ภาษาจีน III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01362202-67",
+  "test_code": "01362202",
+  "eng_name": "Chinese IV",
+  "thai_name": "ภาษาจีน IV",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01362301-67",
+  "test_code": "01362301",
+  "eng_name": "Chinese V",
+  "thai_name": "ภาษาจีน V",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01364101-67",
+  "test_code": "01364101",
+  "eng_name": "Spanish for Communication I",
+  "thai_name": "ภาษาสเปนเพื่อการสื่อสาร I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01364102-67",
+  "test_code": "01364102",
+  "eng_name": "Spanish for Communication II",
+  "thai_name": "ภาษาสเปนเพื่อการสื่อสาร II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01364103-67",
+  "test_code": "01364103",
+  "eng_name": "Spanish for Communication III",
+  "thai_name": "ภาษาสเปนเพื่อการสื่อสาร III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01371111-67",
+  "test_code": "01371111",
+  "eng_name": "Information Media for Learning",
+  "thai_name": "สื่อสารสนเทศเพื่อการเรียนรู้",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01387102-67",
+  "test_code": "01387102",
+  "eng_name": "Philosophy for Modern Life",
+  "thai_name": "ปรัชญาสำหรับชีวิตยุคใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01387105-67",
+  "test_code": "01387105",
+  "eng_name": "Buddhist Ethics of Business Operations",
+  "thai_name": "พุทธจริยศาสตร์ในการดำเนินธุรกิจ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01390102-67",
+  "test_code": "01390102",
+  "eng_name": "Creative Tourism",
+  "thai_name": "การท่องเที่ยวเชิงสร้างสรรค์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01390103-67",
+  "test_code": "01390103",
+  "eng_name": "Tourism for Well-Being",
+  "thai_name": "การท่องเที่ยวเพื่อความผาสุก",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01390104-67",
+  "test_code": "01390104",
+  "eng_name": "Personality Development for Modern Entrepreneur",
+  "thai_name": "การพัฒนาบุคลิกภาพเพื่อการเป็นผู้ประกอบการสมัยใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01395101-67",
+  "test_code": "01395101",
+  "eng_name": "Communicative Korean I",
+  "thai_name": "ภาษาเกาหลีเพื่อการสื่อสาร I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01395102-67",
+  "test_code": "01395102",
+  "eng_name": "Communicative Korean II",
+  "thai_name": "ภาษาเกาหลีเพื่อการสื่อสาร II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01395103-67",
+  "test_code": "01395103",
+  "eng_name": "Communicative Korean III",
+  "thai_name": "ภาษาเกาหลีเพื่อการสื่อสาร III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01395104-67",
+  "test_code": "01395104",
+  "eng_name": "Communicative Korean IV",
+  "thai_name": "ภาษาเกาหลีเพื่อการสื่อสาร IV",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01399101-67",
+  "test_code": "01399101",
+  "eng_name": "Communicative Vietnamese I",
+  "thai_name": "ภาษาเวียดนามเพื่อการสื่อสาร I",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01399102-67",
+  "test_code": "01399102",
+  "eng_name": "Communicative Vietnamese II",
+  "thai_name": "ภาษาเวียดนามเพื่อการสื่อสาร II",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01399103-67",
+  "test_code": "01399103",
+  "eng_name": "Communicative Vietnamese III",
+  "thai_name": "ภาษาเวียดนามเพื่อการสื่อสาร III",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01401201-67",
+  "test_code": "01401201",
+  "eng_name": "Plants for Value of Life Creation",
+  "thai_name": "พืชเพื่อการสร้างคุณค่าชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01402101-67",
+  "test_code": "01402101",
+  "eng_name": "Beauty Products Literacy",
+  "thai_name": "การรู้เท่าทันผลิตภัณฑ์เสริมความงาม",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01416101-67",
+  "test_code": "01416101",
+  "eng_name": "Genetics in Media",
+  "thai_name": "พันธุศาสตร์ในสื่อ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01418101-67",
+  "test_code": "01418101",
+  "eng_name": "Computer Applications",
+  "thai_name": "การใช้งานคอมพิวเตอร์",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "01418104-67",
+  "test_code": "01418104",
+  "eng_name": "IT Updates",
+  "thai_name": "รู้ทันไอที",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01418105-67",
+  "test_code": "01418105",
+  "eng_name": "Digital Creative Arts",
+  "thai_name": "ศิลปะสร้างสรรค์ดิจิทัล",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01421201-67",
+  "test_code": "01421201",
+  "eng_name": "Radiation, Life and Environment",
+  "thai_name": "รังสี ชีวิต และสิ่งแวดล้อม",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01453101-67",
+  "test_code": "01453101",
+  "eng_name": "Fundamental Rights",
+  "thai_name": "สิทธิขั้นพื้นฐาน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01453102-67",
+  "test_code": "01453102",
+  "eng_name": "Law in Everyday Life",
+  "thai_name": "กฎหมายในชีวิตประจำวัน",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01453103-67",
+  "test_code": "01453103",
+  "eng_name": "Laws for New Entrepreneur",
+  "thai_name": "กฎหมายสำหรับผู้ประกอบการใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01455101-67",
+  "test_code": "01455101",
+  "eng_name": "Global Politics in Daily Life",
+  "thai_name": "การเมืองโลกในชีวิตประจำวัน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01459101-67",
+  "test_code": "01459101",
+  "eng_name": "Psychology for Modern Life",
+  "thai_name": "จิตวิทยาเพื่อชีวิตสมัยใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01459102-67",
+  "test_code": "01459102",
+  "eng_name": "Psychology and Human Diversity",
+  "thai_name": "จิตวิทยากับความหลากหลายของมนุษย์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01460101-67",
+  "test_code": "01460101",
+  "eng_name": "Contemporary Thai Society and Culture",
+  "thai_name": "สังคมและวัฒนธรรมไทยร่วมสมัย",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01999011-67",
+  "test_code": "01999011",
+  "eng_name": "Food for Mankind",
+  "thai_name": "อาหารเพื่อมนุษยชาติ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01999012-67",
+  "test_code": "01999012",
+  "eng_name": "Health for Life",
+  "thai_name": "สุขภาพเพื่อชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01999013-67",
+  "test_code": "01999013",
+  "eng_name": "Digital Citizens",
+  "thai_name": "พลเมืองดิจิทัล",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01999031-67",
+  "test_code": "01999031",
+  "eng_name": "The Heritage of Civilization",
+  "thai_name": "มรดกอารยธรรมโลก",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01999032-67",
+  "test_code": "01999032",
+  "eng_name": "Thai Studies",
+  "thai_name": "ไทยศึกษา",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01999034-67",
+  "test_code": "01999034",
+  "eng_name": "Art Perception",
+  "thai_name": "ศิลปวิจักษณ์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "01999035-67",
+  "test_code": "01999035",
+  "eng_name": "Music Culture in Life",
+  "thai_name": "วัฒนธรรมดนตรีกับชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01999036-67",
+  "test_code": "01999036",
+  "eng_name": "Happiness amongst Life Dynamics",
+  "thai_name": "ความสุขในพลวัตของชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01999041-67",
+  "test_code": "01999041",
+  "eng_name": "Economics for Better Living",
+  "thai_name": "เศรษฐศาสตร์เพื่อการดำเนินชีวิตที่ดี",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01999043-67",
+  "test_code": "01999043",
+  "eng_name": "Creativity for Value Management",
+  "thai_name": "การคิดสร้างสรรค์เพื่อการจัดการคุณค่า",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01999046-67",
+  "test_code": "01999046",
+  "eng_name": "National Security Development",
+  "thai_name": "การพัฒนาความมั่นคงแห่งชาติ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "01999051-67",
+  "test_code": "01999051",
+  "eng_name": "Development of Core Competency through One Health",
+  "thai_name": "การพัฒนาสมรรถนะหลักผ่านสุขภาพหนึ่งเดียว",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01999111-67",
+  "test_code": "01999111",
+  "eng_name": "Knowledge of the Land",
+  "thai_name": "ศาสตร์แห่งแผ่นดิน",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "01999112-67",
+  "test_code": "01999112",
+  "eng_name": "Circular Economy Concept for Sustainability",
+  "thai_name": "แนวคิดเศรษฐกิจหมุนเวียนเพื่อความยั่งยืน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "01999113-67",
+  "test_code": "01999113",
+  "eng_name": "Honest Youngsters",
+  "thai_name": "วัยใสใจสะอาด",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02032303-67",
+  "test_code": "02032303",
+  "eng_name": "Agriculture and Quality of Life",
+  "thai_name": "การเกษตรกับคุณภาพชีวิตที่ดี",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02032304-67",
+  "test_code": "02032304",
+  "eng_name": "Agriculture for Green Earth",
+  "thai_name": "เกษตรเพื่อโลกสีเขียว",
+  "credit": "2"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "02207102-67",
+  "test_code": "02207102",
+  "eng_name": "Human, Society and Climate Change",
+  "thai_name": "มนุษย์ สังคม และการเปลี่ยนแปลงสภาพภูมิอากาศ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02207103-67",
+  "test_code": "02207103",
+  "eng_name": "Home Handyman",
+  "thai_name": "ช่างประจำบ้าน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "02701011-67",
+  "test_code": "02701011",
+  "eng_name": "Thai Usage for Business, Sciences and Technology",
+  "thai_name": "การใช้ภาษาไทยเพื่อธุรกิจ วิทยาศาสตร์และเทคโนโลยี",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "02708102-67",
+  "test_code": "02708102",
+  "eng_name": "Literature and Science",
+  "thai_name": "วรรณกรรมกับวิทยาศาสตร์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "02714101-67",
+  "test_code": "02714101",
+  "eng_name": "Critical and Problem Solving",
+  "thai_name": "การคิดเชิงวิพากษ์และการแก้ปัญหา",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02717011-67",
+  "test_code": "02717011",
+  "eng_name": "Self and Self Development",
+  "thai_name": "ตนและการพัฒนาตน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "02717112-67",
+  "test_code": "02717112",
+  "eng_name": "Contemporary Thai Politics",
+  "thai_name": "การเมืองไทยร่วมสมัย",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "02721121-67",
+  "test_code": "02721121",
+  "eng_name": "Business Management for Social Sustainability",
+  "thai_name": "การจัดการธุรกิจเพื่อสังคมที่ยั่งยืน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "02724011-67",
+  "test_code": "02724011",
+  "eng_name": "Intercultural Communication",
+  "thai_name": "การสื่อสารระหว่างวัฒนธรรม",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02724012-67",
+  "test_code": "02724012",
+  "eng_name": "Personality Development",
+  "thai_name": "การพัฒนาบุคลิกภาพ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02727104-67",
+  "test_code": "02727104",
+  "eng_name": "Living Things and Natural Disasters",
+  "thai_name": "สิ่งมีชีวิตกับภัยพิบัติทางธรรมชาติ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02728101-67",
+  "test_code": "02728101",
+  "eng_name": "Chemistry in Modern Life",
+  "thai_name": "เคมีในชีวิตสมัยใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "02728102-67",
+  "test_code": "02728102",
+  "eng_name": "Pigments in art",
+  "thai_name": "สารสีในงานศิลปะ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "02999037-67",
+  "test_code": "02999037",
+  "eng_name": "Arts of Aesthetics for Happiness",
+  "thai_name": "ศิลปะแห่งสุนทรียศาสตร์เพื่อความสุข",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02999038-67",
+  "test_code": "02999038",
+  "eng_name": "Happiness in 21st Century",
+  "thai_name": "ความสุขในศตวรรษที่ 21",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "02999042-67",
+  "test_code": "02999042",
+  "eng_name": "Student Development",
+  "thai_name": "การพัฒนานิสิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02999044-67",
+  "test_code": "02999044",
+  "eng_name": "Sufficiency Economy for Living",
+  "thai_name": "เศรษฐกิจพอเพียงเพื่อการดำรงชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "02999045-67",
+  "test_code": "02999045",
+  "eng_name": "Enhancement of Living Value through Community Path",
+  "thai_name": "การเพิ่มคุณค่าชีวิตด้วยวิถีชุมชน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "02999144-67",
+  "test_code": "02999144",
+  "eng_name": "Life Skills for Undergraduate Student",
+  "thai_name": "ทักษะชีวิตการเป็นนิสิตมหาวิทยาลัย",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "02999147-67",
+  "test_code": "02999147",
+  "eng_name": "The Thai in ASEAN Dynamics",
+  "thai_name": "ไทยในพลวัตอาเซียน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "03521101-67",
+  "test_code": "03521101",
+  "eng_name": "Sea and Life",
+  "thai_name": "ทะเลกับชีวิต",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "03600012-67",
+  "test_code": "03600012",
+  "eng_name": "Green Technology",
+  "thai_name": "เทคโนโลยีสีเขียว",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03600013-67",
+  "test_code": "03600013",
+  "eng_name": "Essential Computer Tools and Skills",
+  "thai_name": "เครื่องมือและทักษะทางคอมพิวเตอร์ที่จำเป็น",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "03600014-67",
+  "test_code": "03600014",
+  "eng_name": "Creative Problem Solving and Critical Thinking Skills",
+  "thai_name": "การแก้ปัญหาเชิงสร้างสรรค์และทักษะการคิดเชิงวิพากษ์",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "สุนทรียศาสตร์",
+  "code": "03654111-67",
+  "test_code": "03654111",
+  "eng_name": "Aesthetics of Sport",
+  "thai_name": "สุนทรียศาสตร์ทางการกีฬา",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "03654112-67",
+  "test_code": "03654112",
+  "eng_name": "Thai Herbs and Benefits",
+  "thai_name": "สมุนไพรไทยให้คุณ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "03654113-67",
+  "test_code": "03654113",
+  "eng_name": "Physical Activities for Modern Life",
+  "thai_name": "กิจกรรมทางกายเพื่อชีวิตสมัยใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "03654114-67",
+  "test_code": "03654114",
+  "eng_name": "Mobile Applications for Modern Life",
+  "thai_name": "โมบายแอปพลิเคชันสำหรับชีวิตยุคใหม่",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "03751111-67",
+  "test_code": "03751111",
+  "eng_name": "Man and Environment",
+  "thai_name": "มนุษย์กับสิ่งแวดล้อม",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "03751112-67",
+  "test_code": "03751112",
+  "eng_name": "Social and Politics",
+  "thai_name": "สังคมและการเมือง",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03752111-67",
+  "test_code": "03752111",
+  "eng_name": "Information Resources for Research",
+  "thai_name": "ทรัพยากรสารสนเทศเพื่อการค้นคว้า",
+  "credit": "1"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03754221-67",
+  "test_code": "03754221",
+  "eng_name": "Basic English Pronunciation",
+  "thai_name": "การออกเสียงภาษาอังกฤษขั้นพื้นฐาน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03754231-67",
+  "test_code": "03754231",
+  "eng_name": "English Reading in Daily life",
+  "thai_name": "การอ่านภาษาอังกฤษในชีวิประจำวัน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03754241-67",
+  "test_code": "03754241",
+  "eng_name": "English Grammatical Structure",
+  "thai_name": "โครงสร้างทางไวยากรณ์ภาษาอังกฤษ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03754251-67",
+  "test_code": "03754251",
+  "eng_name": "English Paragraph Writing",
+  "thai_name": "การเขียนย่อหน้าภาษาอังกฤษ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ภาษากับการสื่อสาร",
+  "code": "03754271-67",
+  "test_code": "03754271",
+  "eng_name": "English for Careers",
+  "thai_name": "ภาษาอังกฤษเพื่องานอาชีพ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "ศาสตร์แห่งผู้ประกอบการ",
+  "code": "03757123-67",
+  "test_code": "03757123",
+  "eng_name": "Mathematics for Business",
+  "thai_name": "คณิตศาสตร์สำหรับธุรกิจ",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "04101201-67",
+  "test_code": "04101201",
+  "eng_name": "Life Style of Sufficiency Economy",
+  "thai_name": "วิถีชีวิตเศรษฐกิจพอเพียง",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "พลเมืองไทยและพลเมืองโลก",
+  "code": "04101302-67",
+  "test_code": "04101302",
+  "eng_name": "Volunteer Spirit for Community Development",
+  "thai_name": "จิตอาสาเพื่อพัฒนาชุมชน",
+  "credit": "3"
+ },
+ {
+  "str": 67,
+  "field": "ศึกษาทั่วไป",
+  "tag": "อยู่ดีมีสุข",
+  "code": "04355185-67",
+  "test_code": "04355185",
+  "eng_name": "Flying Disc for Health",
+  "thai_name": "จานร่อนเพื่อสุขภาพ",
+  "credit": "1"
+ }
+]

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/header";
 import Button from "../components/button";
 import UploadFileButton from "../components/uploadfile-button";
@@ -17,6 +17,8 @@ const CreditCheckPage: React.FC = () => {
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const [selectedPage, setSelectedPage] = useState("creditcheck");
   const navigate = useNavigate();
+  const location = useLocation();
+  const userId = location.state?.user_id;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -39,13 +41,18 @@ const CreditCheckPage: React.FC = () => {
     } else {
       const formData = new FormData();
       formData.append("transcript", file);
+      formData.append("user_id", userId); // Include user_id in the request
 
       try {
-        const response = await axios.post("http://localhost:8000/api/upload/", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const response = await axios.post(
+          "http://localhost:8000/api/upload/",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setMessage("ไฟล์ถูกต้อง");
         setMessageType("success");
         console.log("Files sent to backend:", response.data);
@@ -120,19 +127,26 @@ const CreditCheckPage: React.FC = () => {
           </div>
           <div className="upload-section">
             <span className="upload-text">แนบไฟล์ผลการเรียน*</span>
-            <UploadFileButton onChange={handleFileChange} onRemoveFile={handleRemoveFile} />
+            <UploadFileButton
+              onChange={handleFileChange}
+              onRemoveFile={handleRemoveFile}
+            />
           </div>
           <p />
           <div className="upload-section faded">
-            <span className="upload-text">
-              แนบไฟล์กิจกรรม*
-            </span>
-            <UploadFileButton onChange={handleFileChange} onRemoveFile={handleRemoveFile} />
+            <span className="upload-text">แนบไฟล์กิจกรรม*</span>
+            <UploadFileButton
+              onChange={handleFileChange}
+              onRemoveFile={handleRemoveFile}
+            />
           </div>
           <p />
           <div className="upload-section faded">
             <span className="upload-text">แนบหลักฐานการชำระค่าเทอม*</span>
-            <UploadFileButton onChange={handleFileChange} onRemoveFile={handleRemoveFile} />
+            <UploadFileButton
+              onChange={handleFileChange}
+              onRemoveFile={handleRemoveFile}
+            />
           </div>
           {message && (
             <div className="message-container">
@@ -148,7 +162,11 @@ const CreditCheckPage: React.FC = () => {
             </div>
           )}
           <p />
-          <Button text="ตรวจสอบไฟล์" className="button" onClick={handleSubmit} />
+          <Button
+            text="ตรวจสอบไฟล์"
+            className="button"
+            onClick={handleSubmit}
+          />
         </div>
       </div>
       {showConfirmPopup && (

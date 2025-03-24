@@ -1,6 +1,6 @@
-from typing import List
+import uuid
 
-from ..models import Curriculum, Enrollment, Category, Subcategory, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse
+from ..models import Curriculum, Enrollment, Category, Subcategory, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse, Form, User
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
 
@@ -158,7 +158,21 @@ class EducationEvaluationService() :
             'totalCredit': totalCredit,
         }
     
-    def verify(self, curriculum: Curriculum, enrollments: List[Enrollment], verificationResult: VerificationResult, *args, **param) :
+    def verify(self, userId :str, *args, **param) :        
+        uuidUID = uuid.UUID(userId)
+        
+        user = User.objects.get(user_id=uuidUID)
+        
+        form = Form.objects.get(user_fk=uuidUID)
+        enrollments = []
+        
+        for enrollment in Enrollment.objects.filter(user_fk=uuidUID) :
+            enrollment.semester = Enrollment.Semester(enrollment.semester)
+            enrollments.append(enrollment)
+        
+        verificationResult = VerificationResult.objects.get(form_fk=form.form_id)
+        curriculum = Curriculum.objects.get(curriculum_year= (2500 + int(user.student_code[:2])))
+        
         subcategoriesReformate = {}
         
         allCategory = Category.objects.all()
