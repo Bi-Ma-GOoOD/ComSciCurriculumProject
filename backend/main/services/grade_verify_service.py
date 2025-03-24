@@ -9,12 +9,12 @@ class GradeVerificationService() :
     def __init__(self):
         pass
     
-    def deleteVerification(self, uid: uuid.UUID) :
+    def deleteVerification(self, uid: str) :
         return utils.resetForm(uid)  
     
-    def getVerification(self, uid: uuid.UUID) :
+    def getVerification(self, uid: str) :
         # get form
-        form = Form.objects.get(user_fk=uuid.UUID(uid))
+        form = Form.objects.get(user_fk=uid)
         
         # get verification result
         vr = VerificationResult.objects.get(form_fk=form.form_id)

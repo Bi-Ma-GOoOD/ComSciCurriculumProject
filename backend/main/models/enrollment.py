@@ -32,3 +32,6 @@ class CaluculatedEnrollment() :
 
         else :
             raise RuntimeError('CalculatedEnrollment class required following named argument {"enrollment", "totalGrade"}')
+        
+    def __str__(self):
+        return f'{self.enrollment.course_fk.course_id}, {self.totalGrade}, {self.charGrade}'

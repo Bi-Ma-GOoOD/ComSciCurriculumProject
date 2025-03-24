@@ -130,7 +130,7 @@ class EducationEvaluationService() :
         totalCredit = 0
         
         for enrollment in categorizeCourses[subcategory.subcategory_name] :
-            if enrollment.enrollment.course_fk.subcategory_fk.subcategory_id != subcategory.subcategory_id :
+            if enrollment.enrollment.course_fk.subcategory_fk.subcategory_name != subcategory.subcategory_name :
                 raise RuntimeError('Studied course doesn\'n match with subcategory in curriculum\'s subcategory.')
             
             credit = enrollment.enrollment.course_fk.credit
@@ -158,17 +158,16 @@ class EducationEvaluationService() :
             'totalCredit': totalCredit,
         }
     
-    def verify(self, userId :str, *args, **param) :        
-        uuidUID = uuid.UUID(userId)
+    def verify(self, userId :str, *args, **param) :    
         
-        user = User.objects.get(user_id=uuidUID)
+        user = User.objects.get(user_id=userId)
         curriculum_year = int(user.student_code[:2]) - (int(user.student_code[:2]) % 5)
         curriculum = Curriculum.objects.get(curriculum_year=2500+curriculum_year)
         
-        form = Form.objects.get(user_fk=uuidUID)
+        form = Form.objects.get(user_fk=userId)
         enrollments = []
         
-        for enrollment in Enrollment.objects.filter(user_fk=uuidUID) :
+        for enrollment in Enrollment.objects.filter(user_fk=userId) :
             enrollment.semester = Enrollment.Semester(enrollment.semester)
             enrollments.append(enrollment)
         

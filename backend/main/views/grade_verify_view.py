@@ -9,9 +9,9 @@ gv = GV()
 
 class GradeVerifyView(APIView) :
     def get(self, request) :        
-        data = request.GET.get('uid')
+        data = request.query_params.get('uid')
         if data :
-            try :
+            # try :
                 
                 response = gv.getVerification(data)
                 return Response(
@@ -22,16 +22,16 @@ class GradeVerifyView(APIView) :
                     status=HTTP_200_OK,
                 )
             
-            except Exception as e :
-                print('\n------------------')
-                print('Exception occor:', e)
-                return Response(
-                    {
-                        'success': False,
-                        'message': str(e),
-                    },
-                    status=HTTP_400_BAD_REQUEST,
-                )
+            # except Exception as e :
+            #     print('\n------------------')
+            #     print('Exception occor:', e)
+            #     return Response(
+            #         {
+            #             'success': False,
+            #             'message': str(e),
+            #         },
+            #         status=HTTP_400_BAD_REQUEST,
+            #     )
         
         return Response(
             {
