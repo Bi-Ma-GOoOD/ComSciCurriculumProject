@@ -485,7 +485,7 @@
         "tag":"อยู่ดีมีสุข",
         "code":"01373103-64",
         "eng_name":"Narrative and Medicine",
-        "thai_name":"**เรื่องเล่ากับการแพทย์",
+        "thai_name":"เรื่องเล่ากับการแพทย์",
         "credit":"3",
         "condition":""
     },
@@ -685,7 +685,7 @@
         "tag":"อยู่ดีมีสุข",
         "code":"02207103-64",
         "eng_name":"Home Handyman",
-        "thai_name":"**ช่างประจำบ้าน",
+        "thai_name":"ช่างประจำบ้าน",
         "credit":"3",
         "condition":""
     },
@@ -815,7 +815,7 @@
         "tag":"อยู่ดีมีสุข",
         "code":"04152201-64",
         "eng_name":"New Trend Nutrition for Life",
-        "thai_name":"**วิถีโภชนาการใหม่เพื่อชีวิต",
+        "thai_name":"วิถีโภชนาการใหม่เพื่อชีวิต",
         "credit":"3",
         "condition":""
     },
@@ -875,7 +875,7 @@
         "tag":"ศาสตร์แห่งผู้ประกอบการ",
         "code":"01179101-64",
         "eng_name":"Entrepreneurial Skills",
-        "thai_name":"**ทักษะการประกอบการ",
+        "thai_name":"ทักษะการประกอบการ",
         "credit":"3",
         "condition":""
     },
@@ -1315,7 +1315,7 @@
         "tag":"ภาษากับการสื่อสาร",
         "code":"01355304-64",
         "eng_name":"English for Travel",
-        "thai_name":"**ภาษาอังกฤษสำหรับการเดินทาง",
+        "thai_name":"ภาษาอังกฤษสำหรับการเดินทาง",
         "credit":"3",
         "condition":""
     },
@@ -1325,7 +1325,7 @@
         "tag":"ภาษากับการสื่อสาร",
         "code":"01355306-64",
         "eng_name":"English for Understanding and Appreciating Thai Art and Culture",
-        "thai_name":"**ภาษาอังกฤษเพื่อความเข้าใจและซาบซึ้งในศิลปะและวัฒนธรรมไทย",
+        "thai_name":"ภาษาอังกฤษเพื่อความเข้าใจและซาบซึ้งในศิลปะและวัฒนธรรมไทย",
         "credit":"3",
         "condition":""
     },
@@ -1515,7 +1515,7 @@
         "tag":"ภาษากับการสื่อสาร",
         "code":"01364101-64",
         "eng_name":"Spanish for Communication I",
-        "thai_name":"**ภาษาสเปนเพื่อการสื่อสาร I",
+        "thai_name":"ภาษาสเปนเพื่อการสื่อสาร I",
         "credit":"3",
         "condition":""
     },
@@ -1525,7 +1525,7 @@
         "tag":"ภาษากับการสื่อสาร",
         "code":"01364102-64",
         "eng_name":"Spanish for Communication II",
-        "thai_name":"**ภาษาสเปนเพื่อการสื่อสาร II",
+        "thai_name":"ภาษาสเปนเพื่อการสื่อสาร II",
         "credit":"3",
         "condition":""
     },
@@ -1535,7 +1535,7 @@
         "tag":"ภาษากับการสื่อสาร",
         "code":"01364103-64",
         "eng_name":"Spanish for Communication III",
-        "thai_name":"**ภาษาสเปนเพื่อการสื่อสาร III",
+        "thai_name":"ภาษาสเปนเพื่อการสื่อสาร III",
         "credit":"3",
         "condition":""
     },
@@ -1935,7 +1935,7 @@
         "tag":"พลเมืองไทยและพลเมืองโลก",
         "code":"01999113-64",
         "eng_name":"Honest Youngsters",
-        "thai_name":"**วัยใสใจสะอาด",
+        "thai_name":"วัยใสใจสะอาด",
         "credit":"3",
         "condition":""
     },
@@ -1955,7 +1955,7 @@
         "tag":"พลเมืองไทยและพลเมืองโลก",
         "code":"02207102-64",
         "eng_name":"Human, Society and Climate Change)",
-        "thai_name":"**มนุษย์ สังคม และการเปลี่ยนแปลงสภาพภูมิอากาศ",
+        "thai_name":"มนุษย์ สังคม และการเปลี่ยนแปลงสภาพภูมิอากาศ",
         "credit":"3",
         "condition":""
     },
@@ -2025,7 +2025,7 @@
         "tag":"พลเมืองไทยและพลเมืองโลก",
         "code":"03999179-64",
         "eng_name":"Maritime Zones, Marine Resources and Coastal Management",
-        "thai_name":"**เขตทางทะเล และการจัดการทรัพยากรทางทะเลและชายฝั่ง",
+        "thai_name":"เขตทางทะเล และการจัดการทรัพยากรทางทะเลและชายฝั่ง",
         "credit":"3",
         "condition":""
     },
@@ -2055,7 +2055,7 @@
         "tag":"สุนทรียศาสตร์",
         "code":"01177142-64",
         "eng_name":"Aesthetics in Lifelong Learning",
-        "thai_name":"**สุนทรียะในการเรียนรู้ตลอดชีวิต",
+        "thai_name":"สุนทรียะในการเรียนรู้ตลอดชีวิต",
         "credit":"3",
         "condition":""
     },
@@ -2125,7 +2125,7 @@
         "tag":"สุนทรียศาสตร์",
         "code":"01388101-64",
         "eng_name":"Ethics for the Aesthetics of Life",
-        "thai_name":"**จริยธรรมเพื่อสุนทรียภาพแห่งชีวิต",
+        "thai_name":"จริยธรรมเพื่อสุนทรียภาพแห่งชีวิต",
         "credit":"3",
         "condition":""
     },

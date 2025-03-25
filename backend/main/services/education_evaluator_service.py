@@ -3,6 +3,7 @@ import uuid
 from ..models import Curriculum, Enrollment, Category, Subcategory, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse, Form, User
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
+from ..utils import utils
 
 class EducationEvaluationService() :
     def __init__(self):
@@ -130,7 +131,12 @@ class EducationEvaluationService() :
         totalCredit = 0
         
         for enrollment in categorizeCourses[subcategory.subcategory_name] :
-            if enrollment.enrollment.course_fk.subcategory_fk.subcategory_name != subcategory.subcategory_name :
+            enrollment_subcategory = enrollment.enrollment.course_fk.subcategory_fk.subcategory_name
+                
+            if (
+                enrollment_subcategory != subcategory.subcategory_name and
+                enrollment_subcategory not in utils.UNIVERSITY_SUBCATEGORY
+                ) :
                 raise RuntimeError('Studied course doesn\'n match with subcategory in curriculum\'s subcategory.')
             
             credit = enrollment.enrollment.course_fk.credit

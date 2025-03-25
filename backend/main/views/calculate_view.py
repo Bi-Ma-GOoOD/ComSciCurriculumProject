@@ -1,8 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+import json
 
 from ..services import EducationEvaluationService as EES
+from ..models import CreditDetail
 
 ees = EES()
 
@@ -10,11 +12,15 @@ class CalculateView(APIView):
     def post(self, request):
         uid = request.query_params.get('uid')
         if uid :
-            try :
+            # try :
               
                 response = ees.verify(
                     userId=uid,
                 )
+                
+                with open('output.txt', 'w', encoding='utf-8') as f:
+                    f.write(json.dumps(response, ensure_ascii=False, indent=4))
+                    
                 return Response(
                     {
                         'success':True,
@@ -23,16 +29,16 @@ class CalculateView(APIView):
                     status=HTTP_200_OK,
                 )
             
-            except Exception as e :
-                print('\n------------------')
-                print('Exception occor:', e)
-                return Response(
-                    {
-                        'success': False,
-                        'message': str(e),
-                    },
-                    status=HTTP_400_BAD_REQUEST,
-                )
+            # except Exception as e :
+            #     print('\n------------------')
+            #     print('Exception occor:', e)
+            #     return Response(
+            #         {
+            #             'success': False,
+            #             'message': str(e),
+            #         },
+            #         status=HTTP_400_BAD_REQUEST,
+            #     )
         
         return Response(
             {

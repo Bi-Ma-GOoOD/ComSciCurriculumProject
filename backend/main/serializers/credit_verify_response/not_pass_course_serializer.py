@@ -6,4 +6,4 @@ class NotPassCourseSerializer(serializers.ModelSerializer) :
     
     class Meta :
         model = Enrollment
-        fields = '__all__'
+        exclude = ['user_fk']

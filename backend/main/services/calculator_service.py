@@ -5,6 +5,7 @@ from ..utils import utils
 from ..serializers import CreditVerifySerializer
 from ..models import Enrollment, Curriculum, Subcategory, CaluculatedEnrollment
 
+from ..utils import utils
 
 class CalculatorService() :
     def __init__(self):
@@ -83,10 +84,37 @@ class CalculatorService() :
         result = {'free elective': [], 'categorize course': []}
         
         mappedEnrollments = self.categorizeSubject(subcategories=subcategories, enrollments=enrollments)
+        
+        # วิชา 5 กลุ่มสาระ
+        for universitySubcate in utils.UNIVERSITY_SUBCATEGORY :
+            if not mappedEnrollments.get(utils.FIVE_UNIVERSITY_SUBCATEGORY) :
+                continue
             
+            data = mappedEnrollments[universitySubcate]
+            if data['subcategory'].subcateory_min_credit < data['sumCredit'] :
+                
+                print('\n----------------------- 5 กลุ่มสาระ -----------------------')
+                
+                formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in data['matchEnrollment'].values()}
+                optimalAns = self.optimization('SAT', formatedData, data['subcategory'].subcateory_min_credit)
+                
+                if not optimalAns :
+                    optimalAns = self.optimization('GLOP', formatedData, data['subcategory'].subcateory_min_credit)
+                    
+                for courseId, selection in optimalAns :
+                    if selection == 0 :
+                        removedCourse = data['matchEnrollment'].pop(courseId)
+                        data['sumCredit'] -= removedCourse.enrollment.course_fk.credit
+                        
+                        mappedEnrollments[utils.FIVE_UNIVERSITY_SUBCATEGORY]['matchEnrollment'][removedCourse.enrollment.course_fk.course_id] = removedCourse
+                        mappedEnrollments[utils.FIVE_UNIVERSITY_SUBCATEGORY]['sumCredit'] += removedCourse.enrollment.course_fk.credit
+            
+        # วิชาเลือกเสรี
         for mappedEnrollment in mappedEnrollments.values() :            
             if mappedEnrollment['subcategory'].subcateory_min_credit < mappedEnrollment['sumCredit'] :
                 # เกลี่ยรายวิชา
+                print('\n----------------------- วิชาเลือกเสรี -----------------------')
+                
                 formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in mappedEnrollment['matchEnrollment'].values()}
                 optimalAns = self.optimization('SAT', formatedData, mappedEnrollment['subcategory'].subcateory_min_credit)
                 

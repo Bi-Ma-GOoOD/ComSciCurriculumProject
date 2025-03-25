@@ -132,7 +132,7 @@
     {
         "str":65,
         "field":"เฉพาะ",
-        "tag":"เฉพาะเลือก",
+        "tag":"เฉพาะบังคับ",
         "code":"01418141-65",
         "eng_name":"Intellectual Properties and Professional Ethics",
         "thai_name":"ทรัพย์สินทางปัญญาและจรรยาบรรณวิชาชีพ",
@@ -182,7 +182,7 @@
     {
         "str":65,
         "field":"เฉพาะ",
-        "tag":"เฉพาะเลือก",
+        "tag":"เฉพาะบังคับ",
         "code":"01418221-65",
         "eng_name":"Fundamentals of Database Systems",
         "thai_name":"ระบบฐานข้อมูลเบื้องต้น",
@@ -282,7 +282,7 @@
     {
         "str":65,
         "field":"เฉพาะ",
-        "tag":"เฉพาะเลือก",
+        "tag":"เฉพาะบังคับ",
         "code":"01418261-65",
         "eng_name":"Fundamentals of Artificial Intelligence",
         "thai_name":"หลักพื้นฐานของปัญญาประดิษฐ์",
@@ -402,7 +402,7 @@
     {
         "str":65,
         "field":"เฉพาะ",
-        "tag":"เฉพาะบังคับ",
+        "tag":"เฉพาะเลือก",
         "code":"01418341-65",
         "eng_name":"Enterprise Resource Planning System Design and Development",
         "thai_name":"การออกแบบและการพัฒนาระบบการวางแผนทรัพยากรองค์กร",
