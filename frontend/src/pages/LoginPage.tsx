@@ -49,11 +49,11 @@ function LoginPage() {
 
         // เก็บข้อมูล user ลง localStorage
         let userId = response.data.user.id;
+        let url = response.data.redirect_url;
         userId = userId.replace(/-/g, "");
         localStorage.setItem('user', JSON.stringify(response.data.user));
-
         
-        navigate("/insertGradFile", { state: { user_id: userId } });
+        navigate(url, { state: { user_id: userId } });
       } else {
         
         Swal.fire({
