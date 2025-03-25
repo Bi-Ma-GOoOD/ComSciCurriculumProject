@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center; /* Center content vertically */
     width: 80vw; /* 80% of viewport width */
-    height: 60vh; /* 60% of viewport height */
+    height: 70vh; /* 60% of viewport height */
     border-radius: 9px;
     background-color: #006664;
     margin: auto;
@@ -21,14 +21,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Center content vertically */
-    width: 25vw; /* 80% of viewport width */
-    height: 54vh; /* 60% of viewport height */
+    width: 30vw; /* 80% of viewport width */
+    height: 65vh; /* 60% of viewport height */
     border-radius: 48px;
     background-color: #ffffff;
     margin: auto;
     color: white;
     position: relative;
+    margin-top: 20px;
   }
+
+
   
   .message-container {
     padding: 1em;
@@ -62,4 +65,31 @@
     font-weight: 400;
     line-height: 58.09px;
     color: #006664;
+  }
+
+  .download-file-text {
+    font-size: 12px;
+    color: #ff0000;
+    text-decoration: underline;
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Ensure the text takes full width */
+    padding-left: 100px; /* Add padding to the left */
+  }
+
+  .download-check-text {
+    font-size: 12px;
+    color: #ff0000;
+    text-decoration: underline;
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Ensure the text takes full width */
+    padding-left: 100px; /* Add padding to the left */
+    margin-bottom: 40px;
+    margin-top: 30px;
+  }
+
+  .student-code {
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    margin-bottom: 12px;
   }
