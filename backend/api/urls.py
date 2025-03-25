@@ -1,6 +1,6 @@
 from django.urls import path
 from main.views import FileUploadView
-from main.views import GradeVerifyView, signup_view, otp_verify_view, user_signup_view, login_view, CalculateView
+from main.views import GradeVerifyView, signup_view, otp_verify_view, user_signup_view, login_view, pending_forms_view, CalculateView
 
 urlpatterns = [
     path('signup/', signup_view, name='signup'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('upload/', FileUploadView.as_view(), name='file-upload-view'),
     path('credit-verify/', GradeVerifyView.as_view(), name='credit-verify-view'),
     path('calculate/', CalculateView.as_view(), name='calculate-view'),
+    path('pending-forms/', pending_forms_view, name='pending-forms-view'),
 ]
