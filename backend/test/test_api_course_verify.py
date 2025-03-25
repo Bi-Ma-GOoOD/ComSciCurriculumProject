@@ -34,7 +34,7 @@ class APICourseVerify(APITestCase) :
         
     def test_api(self) :        
         calResponse = self.client.post(f'{self.calculaterURL}?uid={self.user.user_id}')
-        response = self.client.get(self.gradeVerifyURL, {'uid': self.user.user_id})
+        response = self.client.get(f'{self.gradeVerifyURL}?uid={self.user.user_id}')
         
         print()
         print('display calculating data:', calResponse.json())

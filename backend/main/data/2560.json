@@ -112,7 +112,7 @@
     {
         "str":60,
         "field":"เฉพาะ",
-        "tag":"เฉพาะเลือก",
+        "tag":"เฉพาะบังคับ",
         "code":"01418114-60",
         "eng_name":"Introduction to Computer Science",
         "thai_name":"วิทยาการคอมพิวเตอร์เบื้องต้น",
