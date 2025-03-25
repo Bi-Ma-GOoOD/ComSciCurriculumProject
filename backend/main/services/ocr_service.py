@@ -4,7 +4,7 @@ from enum import Enum
 from io import BytesIO
 from googletrans import Translator
 from ..models import Enrollment, User, Course, Form, VerificationResult, Subcategory, Category, Curriculum
-from ..minio_client import upload_to_minio, download_from_minio
+from ..minio_client import upload_to_minio, delete_from_minio
 
 class OCRService():
     class CheckType(Enum):
@@ -384,6 +384,8 @@ class OCRService():
             form = Form.objects.get(user_fk=user)
             form.form_type = self.form_type_mapping.get(form_type)
             form.save()
+            delete_from_minio(str(form.form_id))
+            
             return {"status": "success", "message": "Form type changed."}
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}

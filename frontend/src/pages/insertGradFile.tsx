@@ -97,19 +97,27 @@ const InsertGradFile: React.FC = () => {
     }
   }, [message]);
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = async (page: string) => {
     if (transcriptFile || activityFile || receiptFile) {
       setShowConfirmPopup(true);
       setNavigateTo(page);
     } else {
       setSelectedPage(page);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${page}`,
+      );
+      console.log(response.data)
       navigate(`/${page}`);
     }
   };
 
-  const confirmNavigation = () => {
+  const confirmNavigation = async () => {
     if (navigateTo) {
       setSelectedPage(navigateTo);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${navigateTo}`,
+      );
+      console.log(response.data)
       navigate(`/${navigateTo}`);
     }
     setShowConfirmPopup(false);

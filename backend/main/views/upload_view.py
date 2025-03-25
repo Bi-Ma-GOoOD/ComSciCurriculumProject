@@ -35,7 +35,7 @@ class FileUploadView(APIView):
         return Response({'message': 'some thing went wrong...'}, status=HTTP_400_BAD_REQUEST)
                 
     def put(self, request):
-        user_id = request.query_params.get("user_id")
+        user_id = request.query_params.get("uid")
         form_type = request.query_params.get("form_type")
         response = ocr_service.change_form_type(user_id, form_type)
         if response.get("status") == "success":
