@@ -13,6 +13,7 @@ const CreditCheckPage: React.FC = () => {
   const [messageType, setMessageType] = useState<"error" | "success" | null>(
     null
   );
+  const [showCalculateButton, setCalculateButton] = useState(false);
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const [selectedPage, setSelectedPage] = useState("creditcheck");
@@ -54,6 +55,7 @@ const CreditCheckPage: React.FC = () => {
         );
         setMessage("ไฟล์ถูกต้อง");
         setMessageType("success");
+        setCalculateButton(true);
         console.log("Files sent to backend:", response.data);
       } catch (error) {
         setMessage("เกิดข้อผิดพลาดในการอัปโหลดไฟล์");
@@ -63,6 +65,11 @@ const CreditCheckPage: React.FC = () => {
     }
   };
 
+  const handleCalculationSubmit = async () => {
+    const response = await axios.post(`http://localhost:8000/api/calculate/?uid=${user?.id}`);
+    console.log(response.data)
+  }
+  
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
@@ -169,11 +176,20 @@ const CreditCheckPage: React.FC = () => {
             </div>
           )}
           <p />
-          <Button
+          {showCalculateButton && (
+            <Button
+              text="ส่ง"
+              className="button"
+              onClick={handleCalculationSubmit}
+            />
+          )}
+          {!showCalculateButton && (
+            <Button
             text="ตรวจสอบไฟล์"
             className="button"
             onClick={handleSubmit}
           />
+          )}
         </div>
       </div>
       {showConfirmPopup && (

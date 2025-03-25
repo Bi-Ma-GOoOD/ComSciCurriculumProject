@@ -340,9 +340,16 @@ class OCRService():
                     
                 if check != self.CheckType.INVALID:
                     if check == self.CheckType.CRED_VALID:
-                        VerificationResult.objects.create(
-                            form_fk=form
-                        )
+                        if not VerificationResult.objects.filter(form_fk=form).exists():
+                            VerificationResult.objects.create(
+                                form_fk=form
+                            )
+                        else:
+                            vr = VerificationResult.objects.get(form_fk=form)
+                            vr.activity_status = VerificationResult.VerificationResult.NOT_PASS
+                            vr.fee_status = VerificationResult.VerificationResult.NOT_PASS
+                            vr.save()
+                            
                     elif check == self.CheckType.GRAD_VALID:
                         if self.check_pass_activity(activity):
                             act = VerificationResult.VerificationResult.PASS
@@ -352,11 +359,19 @@ class OCRService():
                             fee = VerificationResult.VerificationResult.PASS
                         else:
                             fee = VerificationResult.VerificationResult.NOT_PASS
-                        VerificationResult.objects.create(
-                            activity_status=act,
-                            fee_status=fee,
-                            form_fk=form
-                        )
+                            
+                        if not VerificationResult.objects.filter(form_fk=form).exists():
+                            VerificationResult.objects.create(
+                                activity_status=act,
+                                fee_status=fee,
+                                form_fk=form
+                            )
+                        else:
+                            vr = VerificationResult.objects.get(form_fk=form)
+                            vr.activity_status = act
+                            vr.fee_status = fee
+                            vr.save()
+                            
                     form.form_status = Form.FormStatus.READY_TO_CALC
                     form.save()
                     
@@ -383,6 +398,7 @@ class OCRService():
             user = User.objects.get(user_id=user_id)
             form = Form.objects.get(user_fk=user)
             form.form_type = self.form_type_mapping.get(form_type)
+            form.form_status = Form.FormStatus.DRAFT
             form.save()
             delete_from_minio(str(form.form_id))
             

@@ -16,6 +16,7 @@ const InsertGradFile: React.FC = () => {
   const [messageType, setMessageType] = useState<"error" | "success" | null>(
     null
   );
+  const [showCalculateButton, setCalculateButton] = useState(false);
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const InsertGradFile: React.FC = () => {
         );
         setMessage("ไฟล์ถูกต้อง");
         setMessageType("success");
+        setCalculateButton(true);
         console.log("Files sent to backend:", response.data);
       } catch (error) {
         setMessage("เกิดข้อผิดพลาดในการอัปโหลดไฟล์");
@@ -192,16 +194,20 @@ const InsertGradFile: React.FC = () => {
             </div>
           )}
           <p />
-          <Button
+          {showCalculateButton && (
+            <Button
+              text="ส่ง"
+              className="button"
+              onClick={handleCalculationSubmit}
+            />
+          )}
+          {!showCalculateButton && (
+            <Button
             text="ตรวจสอบไฟล์"
             className="button"
             onClick={handleSubmit}
           />
-          <Button
-            text="calculate"
-            className="button"
-            onClick={handleCalculationSubmit}
-          />
+          )}
           <Button
             text="get result"
             className="button"
