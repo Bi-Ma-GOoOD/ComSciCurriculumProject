@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Button from "../components/button";
 import UploadFileButton from "../components/uploadfile-button";
@@ -17,8 +17,7 @@ const CreditCheckPage: React.FC = () => {
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const [selectedPage, setSelectedPage] = useState("creditcheck");
   const navigate = useNavigate();
-  const location = useLocation();
-  const userId = location.state?.user_id;
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -41,7 +40,7 @@ const CreditCheckPage: React.FC = () => {
     } else {
       const formData = new FormData();
       formData.append("transcript", file);
-      formData.append("user_id", userId); // Include user_id in the request
+      formData.append("user_id", user?.id ?? ''); // Include user_id in the request
 
       try {
         const response = await axios.post(
@@ -75,19 +74,27 @@ const CreditCheckPage: React.FC = () => {
     }
   }, [message]);
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = async (page: string) => {
     if (file) {
       setShowConfirmPopup(true);
       setNavigateTo(page);
     } else {
       setSelectedPage(page);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${page}`,
+      );
+      console.log(response.data)
       navigate(`/${page}`);
     }
   };
 
-  const confirmNavigation = () => {
+  const confirmNavigation = async () => {
     if (navigateTo) {
       setSelectedPage(navigateTo);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${navigateTo}`,
+      );
+      console.log(response.data)
       navigate(`/${navigateTo}`);
     }
     setShowConfirmPopup(false);
