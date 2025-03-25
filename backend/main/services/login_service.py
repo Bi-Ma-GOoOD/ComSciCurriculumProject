@@ -52,9 +52,9 @@ class LoginService() :
             return '/dashboard/'        # For INSPECTOR role
             
         if form.form_type == Form.FormType.GRADUATION_CHECK:
-            return '/graduation-check/'
+            return '/insertGradFile/'
         elif form.form_type == Form.FormType.CREDIT_CHECK:
-            return '/credit-check/'
+            return '/creditCheck/'
         else:
             return '/dashboard/'        # For INSPECTOR role
     
