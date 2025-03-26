@@ -68,6 +68,9 @@ const CreditCheckPage: React.FC = () => {
   const handleCalculationSubmit = async () => {
     const response = await axios.post(`http://localhost:8000/api/calculate/?uid=${user?.id}`);
     console.log(response.data)
+    if (response.data.success) {
+      navigate("/verifyResult")
+    }
   }
   
   useEffect(() => {
@@ -179,7 +182,7 @@ const CreditCheckPage: React.FC = () => {
           {showCalculateButton && (
             <Button
               text="ส่ง"
-              className="button"
+              className="button calculate-button"
               onClick={handleCalculationSubmit}
             />
           )}
