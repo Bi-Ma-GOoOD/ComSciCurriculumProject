@@ -53,12 +53,7 @@ function LoginPage() {
         userId = userId.replace(/-/g, "");
         localStorage.setItem('user', JSON.stringify(response.data.user));
         
-<<<<<<< HEAD
         navigate(url, { state: { user_id: userId } });
-=======
-        // navigate("/insertGradFile", { state: { user_id: userId } });
-        navigate(response.data.redirect_url, { state: { user_id: userId } });
->>>>>>> 4f31186714d2808934353d1235b7fb716e629d21
       } else {
         
         Swal.fire({
