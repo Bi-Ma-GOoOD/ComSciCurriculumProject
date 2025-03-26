@@ -141,6 +141,7 @@ class EducationEvaluationService() :
             
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
+            charGrade = enrollment.charGrade
             
             if isinstance(grade, float) :
                 # no need to calculate further if result grade is F, N, I
@@ -148,7 +149,7 @@ class EducationEvaluationService() :
                 
                 totalCredit += credit
                 
-            if grade == None or grade == 0.0 :
+            if (grade == None and charGrade != 'P') or grade == 0.0 :
                 restudyRequire.append(enrollment.enrollment)
             
             studied.append({
@@ -221,10 +222,19 @@ class EducationEvaluationService() :
             freeElectiveDetail = categories[1],
             nonElectiveCategoryDetail = categories[0],
             subCategoryDetail = subcategoriesReformate,
-        )).data            
+        )).data        
+        
+            
             
         try :
-            credit_detail = CreditDetail.objects.create(
+            form.form_status = Form.FormStatus.PENDING
+            form.save()
+            
+            # credit_detail = CreditDetail.objects.create(
+            #     credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
+            #     verification_result_fk = verificationResult,
+            # )     
+            credit_detail = CreditDetail(
                 credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
                 verification_result_fk = verificationResult,
             )     
@@ -232,7 +242,14 @@ class EducationEvaluationService() :
             for category in studyResult['categories'] :
                 if category.get('subcategories') :
                     for subcategory in category['subcategories'] :
-                        SubcategoryDetails.objects.create(
+                        # SubcategoryDetails.objects.create(
+                        #     acquired_credit = subcategory['total_credit'],
+                        #     is_pass = subcategory['is_complete'],
+                        #     subcateory_fk = allSubcategories.get(subcategory_id=subcategory['subcategory_id']),
+                        #     category_fk = allCategory.get(category_id=category['category_id']),
+                        #     credit_detail_fk = credit_detail,
+                        # )
+                        SubcategoryDetails(
                             acquired_credit = subcategory['total_credit'],
                             is_pass = subcategory['is_complete'],
                             subcateory_fk = allSubcategories.get(subcategory_id=subcategory['subcategory_id']),
@@ -242,7 +259,16 @@ class EducationEvaluationService() :
                 else :
                     # TODO: fix this part error cuz don't do a loop through free elective category
                     
-                    SubcategoryDetails.objects.create(
+                    # SubcategoryDetails.objects.create(
+                    #     acquired_credit = category['total_credit'],
+                    #     is_pass = subcategory['is_complete'],
+                    #     subcateory_fk = None,
+                    #     category_fk = allCategory.get(category_id=category['category_id']),
+                    #     credit_detail_fk = credit_detail,
+                    # )
+                    print('category:', category)
+                    
+                    SubcategoryDetails(
                         acquired_credit = category['total_credit'],
                         is_pass = subcategory['is_complete'],
                         subcateory_fk = None,
@@ -251,11 +277,14 @@ class EducationEvaluationService() :
                     )
                     
             for course in studyResult['restudy_require'] :
-                NotPassCourse.objects.create(
+                # NotPassCourse.objects.create(
+                #     credit_detail_fk = credit_detail,
+                #     enrollment_fk = Enrollment.objects.get(enrollment_id=course['enrollment_id']),
+                # )          
+                NotPassCourse(
                     credit_detail_fk = credit_detail,
                     enrollment_fk = Enrollment.objects.get(enrollment_id=course['enrollment_id']),
-                )
-                
+                )          
         
         except Exception as e :
             print('Exception occurred:', e)

@@ -1,3 +1,4 @@
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
@@ -15,6 +16,9 @@ class CalculateView(APIView):
                 response = ees.verify(
                     userId=uid,
                 )
+                
+                with open('output.txt', 'w', encoding='utf-8') as f:
+                    f.write(json.dumps(response, ensure_ascii=False, indent=4))
                     
                 return Response(
                     {
