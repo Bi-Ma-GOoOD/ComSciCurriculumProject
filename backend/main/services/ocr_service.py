@@ -4,7 +4,7 @@ from enum import Enum
 from io import BytesIO
 from googletrans import Translator
 from ..models import Enrollment, User, Course, Form, VerificationResult, Subcategory, Category, Curriculum
-from ..minio_client import upload_to_minio, download_from_minio
+from ..minio_client import upload_to_minio, delete_from_minio
 
 class OCRService():
     class CheckType(Enum):
@@ -340,9 +340,16 @@ class OCRService():
                     
                 if check != self.CheckType.INVALID:
                     if check == self.CheckType.CRED_VALID:
-                        VerificationResult.objects.create(
-                            form_fk=form
-                        )
+                        if not VerificationResult.objects.filter(form_fk=form).exists():
+                            VerificationResult.objects.create(
+                                form_fk=form
+                            )
+                        else:
+                            vr = VerificationResult.objects.get(form_fk=form)
+                            vr.activity_status = VerificationResult.VerificationResult.NOT_PASS
+                            vr.fee_status = VerificationResult.VerificationResult.NOT_PASS
+                            vr.save()
+                            
                     elif check == self.CheckType.GRAD_VALID:
                         if self.check_pass_activity(activity):
                             act = VerificationResult.VerificationResult.PASS
@@ -352,11 +359,19 @@ class OCRService():
                             fee = VerificationResult.VerificationResult.PASS
                         else:
                             fee = VerificationResult.VerificationResult.NOT_PASS
-                        VerificationResult.objects.create(
-                            activity_status=act,
-                            fee_status=fee,
-                            form_fk=form
-                        )
+                            
+                        if not VerificationResult.objects.filter(form_fk=form).exists():
+                            VerificationResult.objects.create(
+                                activity_status=act,
+                                fee_status=fee,
+                                form_fk=form
+                            )
+                        else:
+                            vr = VerificationResult.objects.get(form_fk=form)
+                            vr.activity_status = act
+                            vr.fee_status = fee
+                            vr.save()
+                            
                     form.form_status = Form.FormStatus.READY_TO_CALC
                     form.save()
                     
@@ -373,15 +388,7 @@ class OCRService():
         try:
             user = User.objects.get(user_id=user_id)
             form = Form.objects.get(user_fk=user)
-            transcript = download_from_minio(f"{form.form_id}/transcript.pdf"),
-            activity = download_from_minio(f"{form.form_id}/activity.pdf"),
-            receipt = download_from_minio(f"{form.form_id}/receipt.pdf")
-            files = {
-            "transcript": transcript,
-            "activity": activity,
-            "receipt": receipt
-            }
-            return {"status": "success", "files": files, "form_type" : self.form_type_mapping.get(form.form_type)}
+            return {"status": "success", "form_type" : self.form_type_mapping.get(form.form_type)}
         
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}
@@ -391,7 +398,10 @@ class OCRService():
             user = User.objects.get(user_id=user_id)
             form = Form.objects.get(user_fk=user)
             form.form_type = self.form_type_mapping.get(form_type)
+            form.form_status = Form.FormStatus.DRAFT
             form.save()
+            delete_from_minio(str(form.form_id))
+            
             return {"status": "success", "message": "Form type changed."}
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}

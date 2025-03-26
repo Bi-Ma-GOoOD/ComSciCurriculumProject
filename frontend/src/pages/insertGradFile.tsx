@@ -16,6 +16,7 @@ const InsertGradFile: React.FC = () => {
   const [messageType, setMessageType] = useState<"error" | "success" | null>(
     null
   );
+  const [showCalculateButton, setCalculateButton] = useState(false);
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const InsertGradFile: React.FC = () => {
         );
         setMessage("ไฟล์ถูกต้อง");
         setMessageType("success");
+        setCalculateButton(true);
         console.log("Files sent to backend:", response.data);
       } catch (error) {
         setMessage("เกิดข้อผิดพลาดในการอัปโหลดไฟล์");
@@ -77,13 +79,9 @@ const InsertGradFile: React.FC = () => {
   const handleCalculationSubmit = async () => {
     const response = await axios.post(`http://localhost:8000/api/calculate/?uid=${user?.id}`);
     console.log(response.data)
-  }
-
-  const handleGetCalculationResult = async () => {
-    const response = await axios.get(
-        `http://localhost:8000/api/credit-verify/?uid=${user?.id}`
-    );
-    console.log(response.data)
+    if (response.data.success) {
+      navigate("/verifyResult")
+    }
   }
 
   useEffect(() => {
@@ -97,19 +95,27 @@ const InsertGradFile: React.FC = () => {
     }
   }, [message]);
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = async (page: string) => {
     if (transcriptFile || activityFile || receiptFile) {
       setShowConfirmPopup(true);
       setNavigateTo(page);
     } else {
       setSelectedPage(page);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${page}`,
+      );
+      console.log(response.data)
       navigate(`/${page}`);
     }
   };
 
-  const confirmNavigation = () => {
+  const confirmNavigation = async () => {
     if (navigateTo) {
       setSelectedPage(navigateTo);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${navigateTo}`,
+      );
+      console.log(response.data)
       navigate(`/${navigateTo}`);
     }
     setShowConfirmPopup(false);
@@ -184,21 +190,20 @@ const InsertGradFile: React.FC = () => {
             </div>
           )}
           <p />
-          <Button
+          {showCalculateButton && (
+            <Button
+              text="ส่ง"
+              className="button calculate-button"
+              onClick={handleCalculationSubmit}
+            />
+          )}
+          {!showCalculateButton && (
+            <Button
             text="ตรวจสอบไฟล์"
             className="button"
             onClick={handleSubmit}
           />
-          <Button
-            text="calculate"
-            className="button"
-            onClick={handleCalculationSubmit}
-          />
-          <Button
-            text="get result"
-            className="button"
-            onClick={handleGetCalculationResult}
-          />
+          )}
 
         </div>
       </div>
