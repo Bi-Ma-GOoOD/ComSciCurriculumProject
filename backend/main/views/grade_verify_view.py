@@ -15,9 +15,6 @@ class GradeVerifyView(APIView) :
                 
                 response, isGraduateCheck = gv.getVerification(data)
                 
-                with open('output1.txt', 'w', encoding='utf-8') as f:
-                    f.write(json.dumps(response, ensure_ascii=False, indent=4))
-                
                 return Response(
                     {
                         'success':True,

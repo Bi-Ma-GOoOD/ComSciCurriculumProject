@@ -16,9 +16,6 @@ class CalculateView(APIView):
                 response = ees.verify(
                     userId=uid,
                 )
-                
-                with open('output.txt', 'w', encoding='utf-8') as f:
-                    f.write(json.dumps(response, ensure_ascii=False, indent=4))
                     
                 return Response(
                     {
