@@ -240,6 +240,8 @@ class EducationEvaluationService() :
                             credit_detail_fk = credit_detail,
                         )
                 else :
+                    # TODO: fix this part error cuz don't do a loop through free elective category
+                    
                     SubcategoryDetails.objects.create(
                         acquired_credit = category['total_credit'],
                         is_pass = subcategory['is_complete'],
