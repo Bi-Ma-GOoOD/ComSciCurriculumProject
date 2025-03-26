@@ -1,3 +1,4 @@
+import json
 from typing import Dict, List
 from ortools.linear_solver import pywraplp
 
@@ -110,10 +111,14 @@ class CalculatorService() :
                         mappedEnrollments[utils.FIVE_UNIVERSITY_SUBCATEGORY]['sumCredit'] += removedCourse.enrollment.course_fk.credit
             
         # วิชาเลือกเสรี
-        for mappedEnrollment in mappedEnrollments.values() :            
+        for k, mappedEnrollment in mappedEnrollments.items() :            
             if mappedEnrollment['subcategory'].subcateory_min_credit < mappedEnrollment['sumCredit'] :
                 # เกลี่ยรายวิชา
                 print('\n----------------------- วิชาเลือกเสรี -----------------------')
+                    
+                print(k)
+                print(mappedEnrollment['subcategory'].subcateory_min_credit)
+                print(mappedEnrollment['sumCredit'])
                 
                 formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in mappedEnrollment['matchEnrollment'].values()}
                 optimalAns = self.optimization('SAT', formatedData, mappedEnrollment['subcategory'].subcateory_min_credit)
@@ -163,7 +168,9 @@ class CalculatorService() :
             
             if matchSubcategory :
                 matchSubcategory['matchEnrollment'][enrollment.enrollment.course_fk.course_id] = enrollment
-                matchSubcategory['sumCredit'] += enrollment.enrollment.course_fk.credit
+                
+                if enrollment.totalGrade != None :
+                    matchSubcategory['sumCredit'] += enrollment.enrollment.course_fk.credit
             else :
                 raise RuntimeError('inserted enrollment got unexpexted subject or category')
 
@@ -215,7 +222,7 @@ class CalculatorService() :
         solver.Add(constraint == minCredit)
         
         # objective   
-        objective = sum([v for v in variables])
+        objective = sum([v*convertedEnrollment[v.name()]['credit'] for v in variables])
         solver.Maximize(objective)
         
         status = solver.Solve()

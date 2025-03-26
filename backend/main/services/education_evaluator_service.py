@@ -64,14 +64,14 @@ class EducationEvaluationService() :
         for enrollment in freeElectiveEnrollment :
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
+            charGrade = enrollment.charGrade
             
             if grade != None :
                 # no need to calculate further if result grade is F, N, I
                 totalWeightedGrade += grade * credit
-                
                 totalCredit += credit
                 
-            if grade == None or grade == 0.0 :
+            if (grade == None and charGrade != 'P') or grade == 0.0 :
                 restudyRequire.append(enrollment.enrollment)
             
             studied.append({
