@@ -80,7 +80,7 @@ const InsertGradFile: React.FC = () => {
     const response = await axios.post(`http://localhost:8000/api/calculate/?uid=${user?.id}`);
     console.log(response.data)
     if (response.data.success) {
-      navigate("/verifyResult")
+      navigate("/verify-result")
     }
   }
 

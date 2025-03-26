@@ -292,7 +292,7 @@ function InspectorVerification({ status }: { status: string }) {
   if (status === "V") {
     icon = "checked-green.png";
     statusLabel = "ผ่านการตรวจสอบจากผู้ตรวจสอบ";
-    style = "verified";
+    style = "verify";
   }
 
   return (
