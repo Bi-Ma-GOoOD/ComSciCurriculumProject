@@ -27,3 +27,13 @@
   height: 18px;
   background-color: #006664;
 }
+
+.logo {
+  background-image: url('src/assets/KU_Logo_JPG.jpg'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px; 
+  height: 100px;
+  margin-top: 8px;
+  margin-bottom: 20px; /* เพิ่มระยะห่างจาก Bottom Tab */
+}

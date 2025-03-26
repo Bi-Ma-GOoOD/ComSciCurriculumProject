@@ -5,11 +5,7 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="logo-container">
-        <img
-          src="./KU_Logo_JPG.jpg"
-          alt="Logo"
-          className="logo"
-        />
+        <div className="logo"></div>
       </div>
       <div className="header-line"></div>
     </header>

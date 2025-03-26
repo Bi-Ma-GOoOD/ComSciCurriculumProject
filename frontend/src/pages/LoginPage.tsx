@@ -53,7 +53,7 @@ function LoginPage() {
         userId = userId.replace(/-/g, "");
         localStorage.setItem('user', JSON.stringify(response.data.user));
         
-        navigate(url, { state: { user_id: userId } });
+        navigate(url);
       } else {
         
         Swal.fire({

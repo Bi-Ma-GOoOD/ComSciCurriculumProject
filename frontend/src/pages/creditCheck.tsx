@@ -78,7 +78,7 @@ const CreditCheckPage: React.FC = () => {
       const timer = setTimeout(() => {
         setMessage(null);
         setMessageType(null);
-      }, 3000); // 3 seconds
+      }, 1500); // 3 seconds
 
       return () => clearTimeout(timer);
     }
