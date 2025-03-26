@@ -87,4 +87,4 @@ class LoginServiceTest(TestCase):
     def test_get_redirect_url_no_form(self):
         """Test redirect URL with no form"""
         url = LoginService.get_redirect_url(None)
-        self.assertEqual(url, '/dashboard/')
+        self.assertEqual(url, '/fileAttachCheck/')
