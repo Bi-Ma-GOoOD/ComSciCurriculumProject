@@ -71,7 +71,7 @@ class EducationEvaluationService() :
                 totalWeightedGrade += grade * credit
                 totalCredit += credit
                 
-            if (grade == None and charGrade != 'P') or grade == 0.0 :
+            if (grade == None and (charGrade not in ['P', 'S', 'U'])) or grade == 0.0 :
                 restudyRequire.append(enrollment.enrollment)
             
             studied.append({
@@ -149,7 +149,7 @@ class EducationEvaluationService() :
                 
                 totalCredit += credit
                 
-            if (grade == None and charGrade != 'P') or grade == 0.0 :
+            if (grade == None and (charGrade not in ['P', 'S', 'U'])) or grade == 0.0 :
                 restudyRequire.append(enrollment.enrollment)
             
             studied.append({
@@ -249,7 +249,7 @@ class EducationEvaluationService() :
                 else :                    
                     SubcategoryDetails.objects.create(
                         acquired_credit = category['total_credit'],
-                        is_pass = subcategory['is_complete'],
+                        is_pass = category['is_complete'],
                         subcateory_fk = None,
                         category_fk = allCategory.get(category_id=category['category_id']),
                         credit_detail_fk = credit_detail,

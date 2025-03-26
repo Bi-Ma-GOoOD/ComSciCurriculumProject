@@ -149,6 +149,22 @@ export default function VerifyResultPage() {
           <div style={{ padding: "0px 20px" }} />
 
           <div className="other-verify-element">
+            {/* occure only when verification have not pass courses */}
+            {graduateCheckResult &&
+              graduateCheckResult.study_result.not_pass_course.length === 0 && (
+                <VerifyResult
+                  status={
+                    graduateCheckResult.fee_result &&
+                    graduateCheckResult.activity_result &&
+                    graduateCheckResult.study_result.is_pass
+                  }
+                />
+              )}
+            {/* occure only when verification have not pass courses */}
+            {nonGraduateCheckResult &&
+              nonGraduateCheckResult.not_pass_course.length === 0 && (
+                <VerifyResult status={nonGraduateCheckResult.is_pass} />
+              )}
             {/* fee and activity status */}
             {graduateCheckResult && (
               <div>

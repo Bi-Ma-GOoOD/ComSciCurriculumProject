@@ -33,7 +33,7 @@ class CalculatorService() :
             newGrade, charGrade = utils.getGrade(enrollment.grade)
             if calculatedEnrollments.get(key) :
                 # if duplicate course will add total grade
-                if newGrade != None :
+                if newGrade not in [None, 0.0] : #NOTE: add 0.0 to the condition 
                     calculatedEnrollments[key].totalGrade += newGrade
                     calculatedEnrollments[key].charGrade = None
                 
