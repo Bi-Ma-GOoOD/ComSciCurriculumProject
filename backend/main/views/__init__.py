@@ -6,3 +6,4 @@ from .grade_verify_view import GradeVerifyView
 from .upload_view import FileUploadView
 from .calculate_view import CalculateView
 from .pending_forms_view import pending_forms_view
+from .file_attach_list_view import FileAttachListView
