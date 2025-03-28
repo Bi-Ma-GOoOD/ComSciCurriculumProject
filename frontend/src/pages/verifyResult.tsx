@@ -283,15 +283,13 @@ function GradeResultElement({
 }
 
 function VerifyResult({ status }: { status: boolean }) {
-  let icon: string = "src/assets/";
-  icon += status ? "check-mark.png" : "x-mark.png";
-
   const statusLabel = status ? "ผ่าน" : "ไม่ผ่าน";
   const color = status ? "status-pass" : "status-not-pass";
+  const iconClass = status ? "verify-icon pass" : "verify-icon fail";
 
   return (
     <div className="verify-result">
-      <img src={icon} />
+      <div className={iconClass} />
       <div>
         <p className="label">Verified</p>
         <p className={color}>{statusLabel}</p>
@@ -301,19 +299,19 @@ function VerifyResult({ status }: { status: boolean }) {
 }
 
 function InspectorVerification({ status }: { status: string }) {
-  let icon: string = "restore-red.png";
-  let statusLabel: string = "กำลังรอผู้ตรวจสอบยืนยันผลการตรวจสอบ";
+  let iconClass = "form-status-icon pending";
+  let statusLabel = "กำลังรอผู้ตรวจสอบยืนยันผลการตรวจสอบ";
   let style: string = "pending";
 
   if (status === "V") {
-    icon = "checked-green.png";
+    iconClass = "form-status-icon verified";
     statusLabel = "ผ่านการตรวจสอบจากผู้ตรวจสอบ";
     style = "verify";
   }
 
   return (
     <div className={`form-status ${style}`}>
-      <img src={`src/assets/${icon}`} />
+      <div className={iconClass} />
       <p>: {statusLabel}</p>
     </div>
   );
@@ -322,7 +320,7 @@ function InspectorVerification({ status }: { status: string }) {
 function NotPassCourse({ courses }: { courses: NotPassCourse[] }) {
   return (
     <div className="not-pass-course">
-      <img src="src/assets/warning-red.png" />
+      <div className="warning-icon" />
       <p>วิชาที่ไม่ผ่านเกณฑ์</p>
       <div className="horizontal-space" />
       {courses.map((course) => (

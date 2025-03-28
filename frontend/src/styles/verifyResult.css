@@ -175,3 +175,44 @@
     border-radius: 10px;
     color: black;
 }
+
+.verify-icon {
+    height: 50px;
+    width: 50px;
+    margin-right: 8px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.verify-icon.pass {
+    background-image: url("src/assets/check-mark.png");
+}
+
+.verify-icon.fail {
+    background-image: url("src/assets/x-mark.png");
+}
+
+.form-status-icon {
+    height: 23px;
+    width: 23px;
+    margin-right: 8px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.form-status-icon.pending {
+    background-image: url("src/assets/restore-red.png");
+}
+
+.form-status-icon.verified {
+    background-image: url("src/assets/checked-green.png");
+}
+
+.warning-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("src/assets/warning-red.png");
+}
