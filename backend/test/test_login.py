@@ -1,6 +1,6 @@
 import uuid
 from django.test import TestCase
-from main.models import User, Form
+from main.models import User, Form, VerificationResult, CreditDetail
 from main.services.login_service import LoginService
 
 class LoginServiceTest(TestCase):
@@ -70,7 +70,11 @@ class LoginServiceTest(TestCase):
         
     def test_get_redirect_url_graduation_check(self):
         """Test redirect URL for graduation check form"""
-        url = LoginService.get_redirect_url(self.student_form)
+        grad_form = Form.objects.create(
+            form_type=Form.FormType.GRADUATION_CHECK,
+            user_fk=self.student_user
+        )
+        url = LoginService.get_redirect_url(grad_form)
         self.assertEqual(url, '/insertGradFile/')
         
     def test_get_redirect_url_credit_check(self):
