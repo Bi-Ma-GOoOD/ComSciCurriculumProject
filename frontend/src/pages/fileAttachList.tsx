@@ -15,7 +15,7 @@
 //       <div className="left-tab"></div>
 //       <div className="content">
 //         <div className='page-name'>6510450208</div>
-//         <div className="grad-file-container">
+//         <div className="grad-file -container">
 //           <div className='inspect-file-container'>
 //             <div className='student-code'>6510450208</div>
 //             <Button
