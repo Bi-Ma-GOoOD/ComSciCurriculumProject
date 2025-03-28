@@ -13,6 +13,9 @@ def pending_forms_view(request):
             'message': 'Method not allowed'
         }, status=405)
     
+    # Optional: Mock user for testing
+    ViewPendingFormsService.mock_user_form()
+
     # Get pending forms data from service
     forms_data = ViewPendingFormsService.get_pending_forms()
         
