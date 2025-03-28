@@ -113,7 +113,7 @@ const FileAttachCheck: React.FC = () => {
                       <td className="id-column">{form.student_code}</td>
                       <td className="check-column">{form.form_status}</td>
                       <td 
-                        className="file-column cursor-pointer hover:text-blue-600"
+                        className="file-column cursor-pointer hover:text-blue-600 button-style"
                         onClick={() => handleFileClick(form)}
                       >
                         ไฟล์

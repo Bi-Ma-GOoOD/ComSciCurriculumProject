@@ -10,6 +10,7 @@ class ViewPendingFormsService:
         """Get all pending forms"""
         # Use __in to filter for multiple statuses
         pending_forms = Form.objects.filter(
+            form_type=Form.FormType.GRADUATION_CHECK,
             form_status__in=[Form.FormStatus.PENDING, Form.FormStatus.VERIFIED]
         ).select_related('user_fk')
         
