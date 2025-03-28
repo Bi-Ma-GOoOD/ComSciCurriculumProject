@@ -1,22 +1,24 @@
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
-from ..utils.mock_data import *
 from ..services import GradeVerificationService as GV
 
 gv = GV()
 
 class GradeVerifyView(APIView) :
     def get(self, request) :        
-        data = request.GET.get('uid')
+        data = request.query_params.get('uid')
         if data :
             try :
                 
-                response = gv.getVerification(data)
+                response, isGraduateCheck = gv.getVerification(data)
+                
                 return Response(
                     {
                         'success':True,
+                        'is_graduate_check': isGraduateCheck,
                         'message': response,
                     },
                     status=HTTP_200_OK,

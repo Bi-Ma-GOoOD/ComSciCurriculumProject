@@ -6,12 +6,16 @@ class StudyVerificationSerializer(serializers.Serializer):
         if not (
             isinstance(instance.get('is_pass'), bool) and
             isinstance(instance.get('result'), List) and
+            isinstance(instance.get('total_min_credit'), int) and
+            isinstance(instance.get('acquired_credit'), int) and
             isinstance(instance.get('not_pass_course'), List)
             ) :
             raise Exception('expected object with attribute name "credit_detail", "subcategory_details" and "not_pass_course" in StudyVerificationSerializer class')
             
         return {
             'is_pass': instance.get('is_pass'),
+            'total_min_credit': instance.get('total_min_credit'),
+            'acquired_credit': instance.get('acquired_credit'),
             'result': self.getResults(instance.get('result')),
             'not_pass_course': self.getNotPassCourse(instance.get('not_pass_course'))
         }
@@ -28,7 +32,8 @@ class CourseResultSerializer(serializers.Serializer) :
             isinstance(instance.get('category_name'), str) and
             isinstance(instance.get('is_pass'), bool) and
             isinstance(instance.get('acquired_credit'), int) and
-            isinstance(instance.get('subcategories'), List)
+            isinstance(instance.get('subcategories'), List) and
+            isinstance(instance.get('total_min_credit'), int)
             ) :
             raise Exception('expected object with attribute name "category_name", "is_pass", "acquired", "subcategories" in CourseResultSerializer class')
         
@@ -36,6 +41,7 @@ class CourseResultSerializer(serializers.Serializer) :
             'category_name': instance.get('category_name'),
             'is_pass': instance.get('is_pass'),
             'acquired_credit': instance.get('acquired_credit'),
+            'total_min_credit': instance.get('total_min_credit'),
             'subcategories': self.getSubcategories(instance.get('subcategories'))
         }
         
@@ -47,14 +53,16 @@ class SubcateResultSerializer(serializers.Serializer) :
         if not (
             isinstance(instance.get('subcategory_name'), str) and
             isinstance(instance.get('acquired_credit'), int) and
-            isinstance(instance.get('is_pass'), bool)
+            isinstance(instance.get('is_pass'), bool) and
+            isinstance(instance.get('total_min_credit'), int)
             ) :
             raise Exception('expected object with attribute name "subcategory_fk", "acquired_credit" and "is_pass" in SubcateResultSerializer class')
         
         return {
             'subcategory_name': instance.get('subcategory_name'),
             'acquired_credit': instance.get('acquired_credit'),
-            'is_pass': instance.get('is_pass')
+            'total_min_credit': instance.get('total_min_credit'),
+            'is_pass': instance.get('is_pass'),
         }
         
 class NotPassCourseSerializer(serializers.Serializer) :

@@ -3,6 +3,16 @@ import uuid
 from ..models import Form, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse, Enrollment
 from ..minio_client import delete_from_minio
 
+UNIVERSITY_SUBCATEGORY = [
+    'กลุ่มสาระอยู่ดีมีสุข',
+    'กลุ่มสาระศาสตร์แห่งผู้ประกอบการ',
+    'กลุ่มสาระภาษากับการสื่อสาร',
+    'กลุ่มสาระสุนทรียศาสตร์',
+    'กลุ่มสาระพลเมืองไทยและพลเมืองโลก',
+]
+
+FIVE_UNIVERSITY_SUBCATEGORY = 'และเลือกเรียนรายวิชาใน 5 กลุ่มสาระ'
+
 def getGrade(charGrade: str) -> tuple[float|None, str|None] :
     charGrade = charGrade.upper()
     

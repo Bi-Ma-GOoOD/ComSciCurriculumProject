@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Button from "../components/button";
 import UploadFileButton from "../components/uploadfile-button";
@@ -18,11 +18,11 @@ const InsertGradFile: React.FC = () => {
   const [messageType, setMessageType] = useState<"error" | "success" | null>(
     null
   );
+  const [showCalculateButton, setCalculateButton] = useState(false);
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [navigateTo, setNavigateTo] = useState<string | null>(null);
   const navigate = useNavigate();
-  const location = useLocation();
-  const userId = location.state?.user_id;
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -54,7 +54,7 @@ const InsertGradFile: React.FC = () => {
       formData.append("transcript", transcriptFile);
       formData.append("activity", activityFile);
       formData.append("receipt", receiptFile);
-      formData.append("user_id", userId); // Include user_id in the request
+      formData.append("user_id", user?.id ?? ''); // Include user_id in the request
 
       try {
         const response = await axios.post(
@@ -68,6 +68,7 @@ const InsertGradFile: React.FC = () => {
         );
         setMessage("ไฟล์ถูกต้อง");
         setMessageType("success");
+        setCalculateButton(true);
         console.log("Files sent to backend:", response.data);
       } catch (error) {
         setMessage("เกิดข้อผิดพลาดในการอัปโหลดไฟล์");
@@ -77,30 +78,46 @@ const InsertGradFile: React.FC = () => {
     }
   };
 
+  const handleCalculationSubmit = async () => {
+    const response = await axios.post(`http://localhost:8000/api/calculate/?uid=${user?.id}`);
+    console.log(response.data)
+    if (response.data.success) {
+      navigate("/verify-result")
+    }
+  }
+
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
         setMessage(null);
         setMessageType(null);
-      }, 3000); // 3 seconds
+      }, 1500); // 3 seconds
 
       return () => clearTimeout(timer);
     }
   }, [message]);
 
-  const handleNavigate = (page: string) => {
+  const handleNavigate = async (page: string) => {
     if (transcriptFile || activityFile || receiptFile) {
       setShowConfirmPopup(true);
       setNavigateTo(page);
     } else {
       setSelectedPage(page);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${page}`,
+      );
+      console.log(response.data)
       navigate(`/${page}`);
     }
   };
 
-  const confirmNavigation = () => {
+  const confirmNavigation = async () => {
     if (navigateTo) {
       setSelectedPage(navigateTo);
+      const response = await axios.put(
+        `http://localhost:8000/api/upload/?uid=${user?.id}&form_type=${navigateTo}`,
+      );
+      console.log(response.data)
       navigate(`/${navigateTo}`);
     }
     setShowConfirmPopup(false);
@@ -172,11 +189,21 @@ const InsertGradFile: React.FC = () => {
             </div>
           )}
           <p />
-          <Button
+          {showCalculateButton && (
+            <Button
+              text="ส่ง"
+              className="button calculate-button"
+              onClick={handleCalculationSubmit}
+            />
+          )}
+          {!showCalculateButton && (
+            <Button
             text="ตรวจสอบไฟล์"
             className="button"
             onClick={handleSubmit}
           />
+          )}
+
         </div>
       </div>
       {showConfirmPopup && (

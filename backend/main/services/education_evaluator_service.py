@@ -3,6 +3,7 @@ import uuid
 from ..models import Curriculum, Enrollment, Category, Subcategory, VerificationResult, CreditDetail, SubcategoryDetails, NotPassCourse, Form, User
 from ..serializers import CreditVerifySerializer
 from .calculator_service import CalculatorService
+from ..utils import utils
 
 class EducationEvaluationService() :
     def __init__(self):
@@ -63,14 +64,14 @@ class EducationEvaluationService() :
         for enrollment in freeElectiveEnrollment :
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
+            charGrade = enrollment.charGrade
             
             if grade != None :
                 # no need to calculate further if result grade is F, N, I
                 totalWeightedGrade += grade * credit
-                
                 totalCredit += credit
                 
-            if grade == None or grade == 0.0 :
+            if (grade == None and (charGrade not in ['P', 'S', 'U'])) or grade == 0.0 :
                 restudyRequire.append(enrollment.enrollment)
             
             studied.append({
@@ -130,11 +131,17 @@ class EducationEvaluationService() :
         totalCredit = 0
         
         for enrollment in categorizeCourses[subcategory.subcategory_name] :
-            if enrollment.enrollment.course_fk.subcategory_fk.subcategory_id != subcategory.subcategory_id :
+            enrollment_subcategory = enrollment.enrollment.course_fk.subcategory_fk.subcategory_name
+                
+            if (
+                enrollment_subcategory != subcategory.subcategory_name and
+                enrollment_subcategory not in utils.UNIVERSITY_SUBCATEGORY
+                ) :
                 raise RuntimeError('Studied course doesn\'n match with subcategory in curriculum\'s subcategory.')
             
             credit = enrollment.enrollment.course_fk.credit
             grade = enrollment.totalGrade
+            charGrade = enrollment.charGrade
             
             if isinstance(grade, float) :
                 # no need to calculate further if result grade is F, N, I
@@ -142,7 +149,7 @@ class EducationEvaluationService() :
                 
                 totalCredit += credit
                 
-            if grade == None or grade == 0.0 :
+            if (grade == None and (charGrade not in ['P', 'S', 'U'])) or grade == 0.0 :
                 restudyRequire.append(enrollment.enrollment)
             
             studied.append({
@@ -158,20 +165,20 @@ class EducationEvaluationService() :
             'totalCredit': totalCredit,
         }
     
-    def verify(self, userId :str, *args, **param) :        
-        uuidUID = uuid.UUID(userId)
+    def verify(self, userId :str, *args, **param) :    
         
-        user = User.objects.get(user_id=uuidUID)
+        user = User.objects.get(user_id=userId)
+        curriculum_year = int(user.student_code[:2]) - (int(user.student_code[:2]) % 5)
+        curriculum = Curriculum.objects.get(curriculum_year=2500+curriculum_year)
         
-        form = Form.objects.get(user_fk=uuidUID)
+        form = Form.objects.get(user_fk=userId)
         enrollments = []
         
-        for enrollment in Enrollment.objects.filter(user_fk=uuidUID) :
+        for enrollment in Enrollment.objects.filter(user_fk=userId) :
             enrollment.semester = Enrollment.Semester(enrollment.semester)
             enrollments.append(enrollment)
         
         verificationResult = VerificationResult.objects.get(form_fk=form.form_id)
-        curriculum = Curriculum.objects.get(curriculum_year= (2500 + int(user.student_code[:2])))
         
         subcategoriesReformate = {}
         
@@ -215,9 +222,14 @@ class EducationEvaluationService() :
             freeElectiveDetail = categories[1],
             nonElectiveCategoryDetail = categories[0],
             subCategoryDetail = subcategoriesReformate,
-        )).data            
+        )).data        
+        
+            
             
         try :
+            form.form_status = Form.FormStatus.PENDING
+            form.save()
+            
             credit_detail = CreditDetail.objects.create(
                 credit_status = CreditDetail.CreditStatus(1 if studyResult['is_complete'] else 0),
                 verification_result_fk = verificationResult,
@@ -233,10 +245,11 @@ class EducationEvaluationService() :
                             category_fk = allCategory.get(category_id=category['category_id']),
                             credit_detail_fk = credit_detail,
                         )
-                else :
+                        
+                else :                    
                     SubcategoryDetails.objects.create(
                         acquired_credit = category['total_credit'],
-                        is_pass = subcategory['is_complete'],
+                        is_pass = category['is_complete'],
                         subcateory_fk = None,
                         category_fk = allCategory.get(category_id=category['category_id']),
                         credit_detail_fk = credit_detail,
@@ -246,8 +259,7 @@ class EducationEvaluationService() :
                 NotPassCourse.objects.create(
                     credit_detail_fk = credit_detail,
                     enrollment_fk = Enrollment.objects.get(enrollment_id=course['enrollment_id']),
-                )
-                
+                )                  
         
         except Exception as e :
             print('Exception occurred:', e)

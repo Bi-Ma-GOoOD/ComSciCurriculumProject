@@ -1,3 +1,4 @@
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
@@ -11,10 +12,11 @@ class CalculateView(APIView):
         uid = request.query_params.get('uid')
         if uid :
             try :
-                
+              
                 response = ees.verify(
                     userId=uid,
                 )
+                    
                 return Response(
                     {
                         'success':True,

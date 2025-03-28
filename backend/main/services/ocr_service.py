@@ -4,7 +4,7 @@ from enum import Enum
 from io import BytesIO
 from googletrans import Translator
 from ..models import Enrollment, User, Course, Form, VerificationResult, Subcategory, Category, Curriculum
-from ..minio_client import upload_to_minio, download_from_minio
+from ..minio_client import upload_to_minio, delete_from_minio
 
 class OCRService():
     class CheckType(Enum):
@@ -15,6 +15,7 @@ class OCRService():
     def __init__(self):
         self.semester_mapping = {"Summer":0, "First":1, "Second":2}
         self.grade_mapping = {'A':4, 'B':3, 'B+':3.5, 'C':2, 'C+':2.5, 'D':1, 'D+':1.5, 'F':0} #NOTE: handle DecimalField
+        self.form_type_mapping =  {Form.FormType.CREDIT_CHECK : "creditcheck", Form.FormType.GRADUATION_CHECK : "insertgradfile", "creditcheck" : Form.FormType.CREDIT_CHECK, "insertgradfile" : Form.FormType.GRADUATION_CHECK}
         
     def extract_text_from_file_path(self, file_path):
         with open(file_path, 'rb') as file:
@@ -89,10 +90,10 @@ class OCRService():
         receipt_info["name"] = text[name_index]
         
         academic_year_match = re.search(r"(\d{4}),\s*ภาค(?:ปลาย|ต้น)", " ".join(text))
-        receipt_info["year"] = academic_year_match.group(1) 
+        receipt_info["year"] = int(academic_year_match.group(1))
 
         semester_match = re.search(r"(First|Second)( Semester| Summer Session)", " ".join(text))
-        receipt_info["semester"] = self.semester_mapping.get(semester_match.group(1), None) 
+        receipt_info["semester"] = self.semester_mapping.get(semester_match.group(1), None)
 
         total_fee_match = re.search(r"รวม\s*/\s*TOTAL\s+([\d,]+.\d{2})", " ".join(text))
         receipt_info["total_fee"] = total_fee_match.group(1) 
@@ -261,7 +262,7 @@ class OCRService():
     def is_valid_receipt_format(self, text):
         return bool(re.search(r"ใบเสร็จรับเงิน\.*", text[2]))
 
-    def check_validation(self, files):
+    def check_validation(self, files, user_id):
         try:
             """user = User.objects.create(
                 email = "moradop.h@ku.th",
@@ -279,8 +280,8 @@ class OCRService():
                 user_fk = user
             )"""
 
-            user = User.objects.get(user_id="e6c70c9292b547f19c2446e12df63004") #mock
-            form = Form.objects.get(form_id="be12d9fb14de48de928dc867419a15b3") #mock
+            user = User.objects.get(user_id=user_id) 
+            form = Form.objects.get(user_fk=user) 
 
             response = {
                 "transcript": {"valid": False, "message": ""},
@@ -332,30 +333,48 @@ class OCRService():
                     check = self.CheckType.CRED_VALID
                     
                 if form.form_type == Form.FormType.GRADUATION_CHECK and all(file["valid"] for file in response.values()):
-                    if self.check_pass_activity(activity):
-                        if receipt_info["year"] == st_info["recent_year"] and receipt_info["semester"] == st_info["recent_semester"]:
                             upload_to_minio(files[0], f"{form.form_id}/transcript.pdf")
                             upload_to_minio(files[1], f"{form.form_id}/activity.pdf")
                             upload_to_minio(files[2], f"{form.form_id}/receipt.pdf")
                             check = self.CheckType.GRAD_VALID
-                        else:
-                            response["receipt"]["message"] += "Invalid semester/year in receipt."
-                    else:
-                        response["activity"]["message"] += "Activity status is not PASS."
                     
                 if check != self.CheckType.INVALID:
                     if check == self.CheckType.CRED_VALID:
-                        VerificationResult.objects.create(
-                            form_fk=form
-                        )
+                        if not VerificationResult.objects.filter(form_fk=form).exists():
+                            VerificationResult.objects.create(
+                                form_fk=form
+                            )
+                        else:
+                            vr = VerificationResult.objects.get(form_fk=form)
+                            vr.activity_status = VerificationResult.VerificationResult.NOT_PASS
+                            vr.fee_status = VerificationResult.VerificationResult.NOT_PASS
+                            vr.save()
+                            
                     elif check == self.CheckType.GRAD_VALID:
-                        VerificationResult.objects.create(
-                            activity_status=VerificationResult.VerificationResult.PASS,
-                            fee_status=VerificationResult.VerificationResult.PASS,
-                            form_fk=form
-                        )
-                    form.status = Form.FormStatus.READY_TO_CALC
+                        if self.check_pass_activity(activity):
+                            act = VerificationResult.VerificationResult.PASS
+                        else:
+                            act = VerificationResult.VerificationResult.NOT_PASS
+                        if receipt_info["year"] == st_info["recent_year"] and receipt_info["semester"] == st_info["recent_semester"]:
+                            fee = VerificationResult.VerificationResult.PASS
+                        else:
+                            fee = VerificationResult.VerificationResult.NOT_PASS
+                            
+                        if not VerificationResult.objects.filter(form_fk=form).exists():
+                            VerificationResult.objects.create(
+                                activity_status=act,
+                                fee_status=fee,
+                                form_fk=form
+                            )
+                        else:
+                            vr = VerificationResult.objects.get(form_fk=form)
+                            vr.activity_status = act
+                            vr.fee_status = fee
+                            vr.save()
+                            
+                    form.form_status = Form.FormStatus.READY_TO_CALC
                     form.save()
+                    
                     return {"status": "success", "message": "All files are valid."}
             return {
                 "status": "failure",
@@ -365,3 +384,24 @@ class OCRService():
         except ObjectDoesNotExist as e:
             return {"status": "failure", "message": "User or form not found."}
     
+    def get_form_view(self, user_id):
+        try:
+            user = User.objects.get(user_id=user_id)
+            form = Form.objects.get(user_fk=user)
+            return {"status": "success", "form_type" : self.form_type_mapping.get(form.form_type)}
+        
+        except ObjectDoesNotExist as e:
+            return {"status": "failure", "message": "User or form not found."}
+        
+    def change_form_type(self, user_id, form_type):
+        try:
+            user = User.objects.get(user_id=user_id)
+            form = Form.objects.get(user_fk=user)
+            form.form_type = self.form_type_mapping.get(form_type)
+            form.form_status = Form.FormStatus.DRAFT
+            form.save()
+            delete_from_minio(str(form.form_id))
+            
+            return {"status": "success", "message": "Form type changed."}
+        except ObjectDoesNotExist as e:
+            return {"status": "failure", "message": "User or form not found."}

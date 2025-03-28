@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
-from main.models import User, Form
+from main.models import User, Form, VerificationResult, CreditDetail
 
 class LoginService() :
 
@@ -44,13 +44,27 @@ class LoginService() :
             return None
     
     @staticmethod
+    def check_exist_credit_detail(form):
+        try:
+            vr = VerificationResult.objects.get(form_fk=form)
+            print(vr)
+            if CreditDetail.objects.filter(verification_result_fk=vr).exists():
+                return True
+            else:
+                return False
+        except ObjectDoesNotExist:
+            return False
+        
+    @staticmethod
     def get_redirect_url(form):
         """
         Redirect URL based on form type
         """
-        if not form:   
-            return '/fileAttachCheck/'        # For INSPECTOR role
-            
+        if not form:
+            return '/fileAttachCheck/'
+        
+        if LoginService.check_exist_credit_detail(form):
+            return '/verify-result/'
         if form.form_type == Form.FormType.GRADUATION_CHECK:
             return '/insertGradFile/'
         elif form.form_type == Form.FormType.CREDIT_CHECK:

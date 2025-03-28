@@ -1,3 +1,4 @@
+import json
 from typing import Dict, List
 from ortools.linear_solver import pywraplp
 
@@ -5,6 +6,7 @@ from ..utils import utils
 from ..serializers import CreditVerifySerializer
 from ..models import Enrollment, Curriculum, Subcategory, CaluculatedEnrollment
 
+from ..utils import utils
 
 class CalculatorService() :
     def __init__(self):
@@ -31,7 +33,7 @@ class CalculatorService() :
             newGrade, charGrade = utils.getGrade(enrollment.grade)
             if calculatedEnrollments.get(key) :
                 # if duplicate course will add total grade
-                if newGrade != None :
+                if newGrade not in [None, 0.0] : #NOTE: add 0.0 to the condition 
                     calculatedEnrollments[key].totalGrade += newGrade
                     calculatedEnrollments[key].charGrade = None
                 
@@ -83,10 +85,41 @@ class CalculatorService() :
         result = {'free elective': [], 'categorize course': []}
         
         mappedEnrollments = self.categorizeSubject(subcategories=subcategories, enrollments=enrollments)
+        
+        # วิชา 5 กลุ่มสาระ
+        for universitySubcate in utils.UNIVERSITY_SUBCATEGORY :
+            if not mappedEnrollments.get(utils.FIVE_UNIVERSITY_SUBCATEGORY) :
+                continue
             
-        for mappedEnrollment in mappedEnrollments.values() :
+            data = mappedEnrollments[universitySubcate]
+            if data['subcategory'].subcateory_min_credit < data['sumCredit'] :
+                
+                print('\n----------------------- 5 กลุ่มสาระ -----------------------')
+                
+                formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in data['matchEnrollment'].values()}
+                optimalAns = self.optimization('SAT', formatedData, data['subcategory'].subcateory_min_credit)
+                
+                if not optimalAns :
+                    optimalAns = self.optimization('GLOP', formatedData, data['subcategory'].subcateory_min_credit)
+                    
+                for courseId, selection in optimalAns :
+                    if selection == 0 :
+                        removedCourse = data['matchEnrollment'].pop(courseId)
+                        data['sumCredit'] -= removedCourse.enrollment.course_fk.credit
+                        
+                        mappedEnrollments[utils.FIVE_UNIVERSITY_SUBCATEGORY]['matchEnrollment'][removedCourse.enrollment.course_fk.course_id] = removedCourse
+                        mappedEnrollments[utils.FIVE_UNIVERSITY_SUBCATEGORY]['sumCredit'] += removedCourse.enrollment.course_fk.credit
+            
+        # วิชาเลือกเสรี
+        for k, mappedEnrollment in mappedEnrollments.items() :            
             if mappedEnrollment['subcategory'].subcateory_min_credit < mappedEnrollment['sumCredit'] :
                 # เกลี่ยรายวิชา
+                print('\n----------------------- วิชาเลือกเสรี -----------------------')
+                    
+                print(k)
+                print(mappedEnrollment['subcategory'].subcateory_min_credit)
+                print(mappedEnrollment['sumCredit'])
+                
                 formatedData = {course.enrollment.course_fk.course_id: self.convertEnrollment(course) for course in mappedEnrollment['matchEnrollment'].values()}
                 optimalAns = self.optimization('SAT', formatedData, mappedEnrollment['subcategory'].subcateory_min_credit)
                 
@@ -101,6 +134,10 @@ class CalculatorService() :
                         result['free elective'].append(removedCourse)
 
             result['categorize course'].append(mappedEnrollment)
+            
+        for enrollment in enrollments :
+            if enrollment.enrollment.course_fk.subcategory_fk is None :
+                result['free elective'].append(enrollment)
                         
         return result
     
@@ -123,12 +160,17 @@ class CalculatorService() :
         }
         
         for enrollment in enrollments :
+            if enrollment.enrollment.course_fk.subcategory_fk is None :
+                continue
+            
             subcategoryName = enrollment.enrollment.course_fk.subcategory_fk.subcategory_name
             matchSubcategory = mappedEnrollments.get(subcategoryName)
             
             if matchSubcategory :
                 matchSubcategory['matchEnrollment'][enrollment.enrollment.course_fk.course_id] = enrollment
-                matchSubcategory['sumCredit'] += enrollment.enrollment.course_fk.credit
+                
+                if enrollment.totalGrade != None :
+                    matchSubcategory['sumCredit'] += enrollment.enrollment.course_fk.credit
             else :
                 raise RuntimeError('inserted enrollment got unexpexted subject or category')
 
@@ -180,7 +222,7 @@ class CalculatorService() :
         solver.Add(constraint == minCredit)
         
         # objective   
-        objective = sum([v for v in variables])
+        objective = sum([v*convertedEnrollment[v.name()]['credit'] for v in variables])
         solver.Maximize(objective)
         
         status = solver.Solve()
