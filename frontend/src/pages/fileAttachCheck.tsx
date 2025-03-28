@@ -88,7 +88,7 @@ const FileAttachCheck: React.FC = () => {
       <div className="left-tab"></div>
       <div className="content">
         <div className='page-name'>ตรวจสอบไฟล์แนบจบนิสิต</div>
-        <div className="grad-file-container">
+        <div className="file-check-container">
           <div className="list-container">
             <table className="file-list">
               <thead>
