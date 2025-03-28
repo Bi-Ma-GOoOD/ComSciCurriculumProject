@@ -17,23 +17,19 @@
   height: 110px;
 }
 
-.logo {
-  height: 110px;
-  width: 120px;
-}
 
 .header-line {
   width: 100%;
-  height: 18px;
+  height: 28px;
   background-color: #006664;
 }
 
 .logo {
-  background-image: url('src/assets/KU_Logo_JPG.jpg'); 
+  background-image: url('src/assets/KU_logo.png'); 
   background-size: contain;
   background-repeat: no-repeat;
   width: 100px; 
-  height: 100px;
+  height: 110px;
   margin-top: 8px;
   margin-bottom: 20px; /* เพิ่มระยะห่างจาก Bottom Tab */
 }

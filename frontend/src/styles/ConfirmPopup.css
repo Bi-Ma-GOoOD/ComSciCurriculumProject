@@ -1,0 +1,28 @@
+.confirm-popup {
+  background-color: #FFFFFF;
+  color: #006664;
+  font-size: 1.5em;
+  align-content: center;
+  top: 25%;
+  left: 29%;
+  justify-content: center;
+  position: fixed;
+  margin-top: 1em;
+  text-align: center;
+  z-index: 1100;
+  border: 25px solid; /* Define border width and style */
+  border-color: #B2BB1E; /* Define border color separately */
+  border-radius: 9px;
+  padding: 1em; /* Add padding to the popup */
+}
+
+.confirm-popup .confirm-button,
+.confirm-popup .cancel-button {
+  margin: 0.5em; /* Add margin between buttons */
+  padding: 0.5em 1em; /* Add padding to the buttons */
+}
+
+.warning-icon {
+  font-size: 2em; /* Set the icon size */
+  color: #FF0000; /* Set the icon color */
+}

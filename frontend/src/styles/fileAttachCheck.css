@@ -1,0 +1,91 @@
+.grad-file-page .content {
+    padding-top: 138px; /* Height of the header */
+  }
+  
+  .file-check-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    width: 80vw; /* 80% of viewport width */
+    height: 70vh; /* 60% of viewport height */
+    border-radius: 9px;
+    background-color: #006664;
+    margin: auto;
+    color: white;
+    position: relative;
+  }
+  
+  .message-container {
+    padding: 1em;
+    width: 100%;
+    border-radius: 0px;
+    margin-top: 1em;
+    text-align: center;
+    color: white;
+    position: fixed; /* Make it a popup */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it is above other elements */
+    background-color: rgba(255, 255, 255, 0); /* Adjust transparency */
+  }
+
+  .left-tab, 
+  .right-tab {
+    width: 35px;
+    height: 100vh;
+    background-color: #B2BB1E;
+    position: absolute;
+    top: 0;
+  }
+
+  .page-name {
+    font-family: 'Inter', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 12px; /* Adjust margin to move the title upwards */
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 58.09px;
+    color: #006664;
+  }
+
+  .list-container {
+    width: 75%;
+    background-color: white;
+    border-radius: 16px; /* Add border radius to the container */
+    padding: 0px;
+    overflow: hidden; /* Ensure the content fits within the container */
+  }
+
+  .file-list {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 6px;
+  }
+
+  .file-list th,
+  .file-list td {
+    border: none; /* Remove border between columns */
+    padding: 12px;
+    text-align: left;
+  }
+
+  .file-list tr {
+    border-bottom: 1px solid #000000; /* Add border between rows */
+  }
+
+  .id-column th {
+    background-color: white;
+    color: #000000;
+  }
+
+  .check-column td {
+    background-color: white;
+    color: #000000;
+  }
+
+  .file-column {
+    color: #0026ff;
+    text-decoration: underline;
+  }

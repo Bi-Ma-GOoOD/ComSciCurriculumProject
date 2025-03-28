@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import GradeVerifyView, signup_view, otp_verify_view, user_signup_view, login_view, CalculateView, FileUploadView, fillCurriculumCheckingView
+from main.views import GradeVerifyView, signup_view, otp_verify_view, user_signup_view, login_view, pending_forms_view, CalculateView, FileUploadView, fillCurriculumCheckingView, FileAttachListView
 
 urlpatterns = [
     path('signup/', signup_view, name='signup'),
@@ -10,4 +10,6 @@ urlpatterns = [
     path('credit-verify/', GradeVerifyView.as_view(), name='credit-verify-view'),
     path('calculate/', CalculateView.as_view(), name='calculate-view'),
     path('curriculum-checking/', fillCurriculumCheckingView, name='curriculum-checking-view'),
+    path('pending-forms/', pending_forms_view, name='pending-forms-view'),
+    path('file-attach-list/', FileAttachListView.as_view(), name='file-attach-list-view')
 ]

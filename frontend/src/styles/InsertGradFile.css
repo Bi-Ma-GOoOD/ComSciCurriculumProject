@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center; /* Center content vertically */
   width: 80vw; /* 80% of viewport width */
-  height: 60vh; /* 60% of viewport height */
+  height: 70vh; /* 60% of viewport height */
   border-radius: 9px;
   background-color: #006664;
   margin: auto;
@@ -21,12 +21,13 @@
   margin: 1em auto; /* Center buttons horizontally */
 }
 
-.grad-file-page .button-container {
+.button-container {
   position: absolute;
   top: 1.3em;
   display: flex;
   flex-direction: row;
   gap: 3em;
+  vertical-align: middle;
 }
 
 .upload-section {
@@ -109,4 +110,13 @@
 
 .calculate-button {
   width: 132px;
+}
+
+.left-tab, 
+.right-tab {
+  width: 35px;
+  height: 100vh;
+  background-color: #B2BB1E;
+  position: absolute;
+  top: 0;
 }

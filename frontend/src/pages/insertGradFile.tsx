@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Button from "../components/button";
 import UploadFileButton from "../components/uploadfile-button";
+import ErrorMessage from "../components/ErrorMessage";
+import SuccessMessage from "../components/SuccessMessage";
+import ConfirmPopup from "../components/ConfirmPopup";
 import "../styles/insertGradFile.css";
-import { IoWarningOutline } from "react-icons/io5";
 import axios from "axios";
 
 const InsertGradFile: React.FC = () => {
@@ -129,6 +131,7 @@ const InsertGradFile: React.FC = () => {
   return (
     <div className="grad-file-page">
       <Header />
+      <div className="left-tab"></div>
       <div className="content">
         <div className="grad-file-container">
           <div className="button-container">
@@ -178,15 +181,11 @@ const InsertGradFile: React.FC = () => {
           </div>
           {message && (
             <div className="message-container">
-              <p
-                className={
-                  messageType === "success"
-                    ? "success-message"
-                    : "error-message"
-                }
-              >
-                {message}
-              </p>
+              {messageType === "success" ? (
+                <SuccessMessage message={message} />
+              ) : (
+                <ErrorMessage message={message} />
+              )}
             </div>
           )}
           <p />
@@ -208,24 +207,13 @@ const InsertGradFile: React.FC = () => {
         </div>
       </div>
       {showConfirmPopup && (
-        <div className="confirm-popup">
-          <IoWarningOutline className="warning-icon" />
-          <p>
-            หากเปลี่ยนเป็นฟอร์ม ไฟล์ที่แนบไว้จะหายไป
-            คุณต้องการดำเนินการต่อหรือไม่?
-          </p>
-          <Button
-            text="ยืนยัน"
-            className="confirm-button"
-            onClick={confirmNavigation}
-          />
-          <Button
-            text="ยกเลิก"
-            className="cancel-button"
-            onClick={cancelNavigation}
-          />
-        </div>
+        <ConfirmPopup
+          message="หากเปลี่ยนเป็นฟอร์ม ไฟล์ที่แนบไว้จะหายไป คุณต้องการดำเนินการต่อหรือไม่?"
+          onConfirm={confirmNavigation}
+          onCancel={cancelNavigation}
+        />
       )}
+      <div className="right-tab"></div>
     </div>
   );
 };

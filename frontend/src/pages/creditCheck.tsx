@@ -118,6 +118,7 @@ const CreditCheckPage: React.FC = () => {
   return (
     <div className="credit-check-page">
       <Header />
+      <div className="left-tab"></div>
       <div className="content">
         <div className="credit-check-container">
           <div className="button-container">
@@ -214,6 +215,7 @@ const CreditCheckPage: React.FC = () => {
           />
         </div>
       )}
+      <div className="right-tab"></div>
     </div>
   );
 };
