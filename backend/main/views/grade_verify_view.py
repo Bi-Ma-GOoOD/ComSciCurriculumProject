@@ -30,7 +30,7 @@ class GradeVerifyView(APIView) :
                 return Response(
                     {
                         'success': False,
-                        'message': str(e),
+                        'message': 'เกิดข้อผิดพลาดจากผลลัพธ์การคำนวณ',
                     },
                     status=HTTP_400_BAD_REQUEST,
                 )
@@ -61,7 +61,7 @@ class GradeVerifyView(APIView) :
                 return Response(
                     {
                         'success': False,
-                        'message': str(e),
+                        'message': 'เกิดข้อผิดพลาดจากการลบข้อมูล',
                     },
                     status=HTTP_400_BAD_REQUEST,
                 )

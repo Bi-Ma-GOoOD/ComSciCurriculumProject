@@ -31,7 +31,7 @@ class CalculateView(APIView):
                 return Response(
                     {
                         'success': False,
-                        'message': str(e),
+                        'message': 'เกิดข้อผิดพลาดจากการคำนวณผลลัพธ์',
                     },
                     status=HTTP_400_BAD_REQUEST,
                 )
